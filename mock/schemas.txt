@@ -9,7 +9,7 @@
   "scanner_name": "Buellia novomexicana de Lesd.",
   "it_manager_id": 593
 }
-** note: the status is COLOR FILED. so we can deside on the json proccessor which color will present finished\pulling.
+** note: the status is COLOR FILED. so we can deside on the json proccessor which color will present finished\running\stoped .
 
 # scanners
 {
