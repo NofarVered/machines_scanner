@@ -38,7 +38,7 @@ notes:
 {
   "account_id": 1,
   "account_name": "Glennis",
-  "operating_platform": "Female",
+  "operating_platform": "windows",
   "privilege": true,
   "set_password_date": "2022-07-12 07:08:07",
   "scan_transaction": 918,
