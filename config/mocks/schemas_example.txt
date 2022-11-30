@@ -33,19 +33,25 @@ notes:
 * "it_manager_id" is refernce to it_managers.id 
 
 
+# machines
+{
+  "machine_id": 1,
+  "platform": "windows"
+}
+
 
 # accounts 
 {
   "account_id": 1,
-  "account_name": "Glennis",
-  "operating_platform": "windows",
+  "account_name": "Hermine",
   "privilege": true,
-  "set_password_date": "2022-07-12 07:08:07",
-  "scan_transaction": 918,
-  "ip_address": "230.14.106.76"
+  "set_password_date": "2022-06-19 09:09:17",
+  "scan_transaction": 452,
+  "machine_id": 837
 }
 note:
 * "scan_transaction" is refernce to scan_transactions.transaction_id 
+* "machine_id" is refernce to machines.machine_id
 
 
 
