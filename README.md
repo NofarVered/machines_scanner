@@ -1,4 +1,1 @@
-# users_machine_scanner
-
-test
-test
+# machines_scanner
