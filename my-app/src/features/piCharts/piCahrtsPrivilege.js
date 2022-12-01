@@ -1,8 +1,28 @@
 import React from 'react';
 import ReactApexChart from "react-apexcharts";
+import { getPrivilegStatictis } from "./ApiPieChart";
 export class ApexChartPrivilege extends React.Component {
+       
+    componentDidMount() {
+        getPrivilegStatictis().then((theStatic)=>{      
+            const privileged =theStatic["privileged"]   
+            const nonprivileged =theStatic["nonpriviliged"]
+            const all_users = privileged+nonprivileged   
+            const privilegAndNon = [(privileged/all_users)*100,(nonprivileged/all_users)*100]
+            this.setState({
+                series:privilegAndNon
+            })
+         }            
+        ).catch(()=>
+         {
+            this.setState({
+                error:true
+            })
+         }  
+        )
+    }
     
-    
+
     constructor(props) {
       super(props);
       this.state = {      
@@ -25,6 +45,7 @@ export class ApexChartPrivilege extends React.Component {
             }
           }]
         },
+        error:false
       
       
       };
@@ -33,12 +54,11 @@ export class ApexChartPrivilege extends React.Component {
   
 
     render() {
-    return (
-        
+    return (        
 
   <div id="chart">
         <ReactApexChart options={this.state.options} series={this.state.series} type="pie" width={380} />
-    </div>
+  </div>
 
       )
     }
