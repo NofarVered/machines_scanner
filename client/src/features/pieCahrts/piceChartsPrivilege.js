@@ -56,9 +56,12 @@ export class ApexChartPrivilege extends React.Component {
     render() {
     return (        
 
+
   <div id="chart">
+    {!this.state.error?
         <ReactApexChart options={this.state.options} series={this.state.series} type="pie" width={380} />
-  </div>
+    :null}
+    </div>
 
       )
     }
