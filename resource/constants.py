@@ -3,14 +3,15 @@ create_db = "CREATE DATABASE machines_scanners;"
 use_db = "USE machines_scanners;"
 
 
-create_scanners_table = """CREATE TABLE scanners(
-    scanner_name VARCHAR(255) PRIMARY KEY
-);"""
+create_scanners_table = """
+    CREATE TABLE scanners( scanner_name VARCHAR(255) PRIMARY KEY);
+"""
 
-create_scan_credentials_table = """CREATE TABLE scan_credentials(
+create_scan_credentials_table = """
+    CREATE TABLE scan_credentials(
     user_name VARCHAR(255) PRIMARY KEY,
-    hashed_password VARCHAR(255)
-);"""
+    hashed_password VARCHAR(255));
+"""
 
 create_scan_iterations_table = """CREATE TABLE scan_iterations(
     scan_iteration_id INT NOT NULL PRIMARY KEY,
