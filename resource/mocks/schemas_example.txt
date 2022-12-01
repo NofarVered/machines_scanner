@@ -1,53 +1,46 @@
-# scanners
+1) scanners
 {
-  "scanner_id": 1,
-  "scanner_name": "Quercus ×egglestonii Trel."
+  "scanner_name":"Schinus polygamus (Cav.) Cabrera"
 }
 
-
-it_managers
+2) scan_credentials
 {
-  "id": 1,
-  "user_name": "eferryn0",
-  "first_name": "Evan",
-  "last_name": "Ferryn",
-  "email": "eferryn0@google.de",
-  "hashed_password": "Hfa3itnpeSq"
+  "user_name":"aarchbutt0",
+  "hashed_password":"01E7kzpEjb"
 }
 
-
-# scan_transactions
+3) scan_iterations
 {
-  "transaction_id": 1,
-  "transaction_name": "NVVD",
-  "status": "Red",
-  "creation_time": "2022-11-24 16:53:37",
-  "last_run_time": "2022-05-29 09:41:24",
-  "csv_file": "Leo.mp3",
-  "scanner_name": "Buellia novomexicana de Lesd.",
-  "it_manager_id": 593
+  "scan_iteration_id":1,
+  "scan_iteration_name":"KPRC",
+  "scan_status":"Teal",
+  "csv_file":"LuctusEtUltrices.xls",
+  "scanner_name":"Erigeron flabellifolius Rydb.",
+  "last_run_date":"2022-01-09 09:37:40",
+  "user_credential":"flune1"
 }
 notes:
-* the status is COLOR FILED. so we can deside on the json proccessor which color will present finished\running\stoped .
+* the stascan_statustus is COLOR FILED. so we can deside on the json proccessor which color will present finished\running\stoped .
 * "scanner_name" is refernce to scanners.scanner_name
-* "it_manager_id" is refernce to it_managers.id 
+* "user_credential" is refernce to scan_credentials.user_name
 
 
-# machines
+4) machines
 {
-  "machine_id": 1,
-  "platform": "windows"
+  "machine_id":1,
+  "operating_platform":"linux",
+  "ip_address":"227.2.140.24"
 }
 
-
-# accounts 
+5) accounts 
 {
-  "account_id": 1,
-  "account_name": "Hermine",
-  "privilege": true,
-  "set_password_date": "2022-06-19 09:09:17",
-  "scan_transaction": 452,
-  "machine_id": 837
+  "account_name":"Parsifal",
+  "scan_iteration_id":58,
+  "machine_id":5,
+  "is_privilege":false,
+  "set_password_date":"2022-05-30 02:39:40",
+  "group_name":"TOA",
+  "is_removed":false
 }
 note:
 * "scan_transaction" is refernce to scan_transactions.transaction_id 
