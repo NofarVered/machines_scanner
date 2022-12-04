@@ -1,6 +1,6 @@
-drop_db = "DROP DATABASE machines_scanners;"
-create_db = "CREATE DATABASE machines_scanners;"
-use_db = "USE machines_scanners;"
+drop_db = "DROP DATABASE machines_scanner;"
+create_db = "CREATE DATABASE machines_scanner;"
+use_db = "USE machines_scanner;"
 
 
 create_cpms_table = """

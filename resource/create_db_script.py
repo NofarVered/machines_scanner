@@ -63,5 +63,5 @@ if __name__ == "__main__":
     print("--- START creating tables")
     create_all_tables()
     print("--- DATABSE IS READY")
-    load_data()
-    print("--- DONE LOAD DATA")
+    # load_data()
+    # print("--- DONE LOAD DATA")
