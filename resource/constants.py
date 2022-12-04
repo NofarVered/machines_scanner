@@ -58,8 +58,14 @@ create_machines_accounts_table = """CREATE TABLE machines_accounts(
 """
 
 
-mock_accounts = "./mocks/accounts.json"
-mock_machines = "./mocks/machines.json"
-mock_scanners = "./mocks/scanners.json"
-mock_scan_iterations = "./mocks/scan_iterations.json"
-mock_scan_credentials = "./mocks/scan_credentials.json"
+mock_accounts_file = "./mocks/accounts.json"
+mock_machines_file = "./mocks/machines.json"
+mock_scanners_file = "./mocks/scanners.json"
+mock_scan_iterations_file = "./mocks/scan_iterations.json"
+mock_scan_credentials_file = "./mocks/scan_credentials.json"
+
+insert_to_accounts_table = ""
+insert_to_cpms_table = ""
+insert_to_machines_table = ""
+insert_to_scan_requests_table = ""
+insert_to_machines_ccounts_table = ""
