@@ -1,0 +1,51 @@
+1) scanners
+{
+  "scanner_name":"Schinus polygamus (Cav.) Cabrera"
+}
+
+2) scan_credentials
+{
+  "user_name":"aarchbutt0",
+  "hashed_password":"01E7kzpEjb"
+}
+
+3) scan_iterations
+{
+  "scan_iteration_id":1,
+  "scan_iteration_name":"KPRC",
+  "scan_status":"Teal",
+  "csv_file":"LuctusEtUltrices.xls",
+  "scanner_name":"Erigeron flabellifolius Rydb.",
+  "last_run_date":"2022-01-09 09:37:40",
+  "user_credential":"flune1"
+}
+notes:
+* the stascan_statustus is COLOR FILED. so we can deside on the json proccessor which color will present finished\running\stoped .
+* "scanner_name" is refernce to scanners.scanner_name
+* "user_credential" is refernce to scan_credentials.user_name
+
+
+4) machines
+{
+  "machine_id":1,
+  "operating_platform":"linux",
+  "ip_address":"227.2.140.24"
+}
+
+5) accounts 
+{
+  "account_name":"Parsifal",
+  "scan_iteration_id":58,
+  "machine_id":5,
+  "is_privilege":false,
+  "set_password_date":"2022-05-30 02:39:40",
+  "group_name":"TOA",
+  "is_removed":false
+}
+note:
+* "scan_transaction" is refernce to scan_transactions.transaction_id 
+* "machine_id" is refernce to machines.machine_id
+
+
+
+# https://www.mockaroo.com/datasets
