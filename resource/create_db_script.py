@@ -42,7 +42,7 @@ def load_data():
     try:
         with CONNECTOR.cursor() as cursor:
             for record in data:
-                print(record)
+                cursor.execute(sql_query, params)
             CONNECTOR.commit()
             CONNECTOR.close()
     except Exception as e:
