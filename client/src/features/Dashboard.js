@@ -19,6 +19,7 @@ import AccountsWrapper from './AccountsWrapper';
 import StatisticsWrapper from './StatisticsWrapper';
 import ScansWrapper from './ScansWrapper'
 import CpmWrapper from './CpmWrapper';
+import Machineswrapper from './MachinesWrapper';
 
 
 const drawerWidth = 240;
@@ -149,6 +150,7 @@ function DashboardContent() {
           <Route path='/' exact render={()=> <ScansWrapper />}/>
           <Route path='cpm' exact render={()=> <CpmWrapper />}/>
           <Route path='/accounts' exact render={()=> <AccountsWrapper />}/>
+          <Route path='/machines' exact render={()=> <Machineswrapper />}/>
           <Route path='/statistics' exact render={()=> <StatisticsWrapper />}/>
         </Box>
       </Box>

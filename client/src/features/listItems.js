@@ -8,6 +8,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import ComputerIcon from '@mui/icons-material/Computer';
+import DevicesIcon from '@mui/icons-material/Devices';
 
 
 export const mainListItems = (
@@ -34,6 +35,14 @@ export const mainListItems = (
             <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Accounts" />
+        </ListItemButton>
+    </Link> 
+    <Link to='/machines'>
+        <ListItemButton>
+        <ListItemIcon>
+            <DevicesIcon />
+        </ListItemIcon>
+        <ListItemText primary="Machines" />
         </ListItemButton>
     </Link> 
     <Link to='/statistics'>
