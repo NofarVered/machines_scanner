@@ -1,5 +1,5 @@
 import pymysql
-from ..resource.exceptions import *
+from resource.exceptions import *
 
 class db_wrapper:
     def __init__(self):

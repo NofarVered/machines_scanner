@@ -8,7 +8,7 @@ CONNECTOR = pymysql.connect(
     password="",
     db="machines_scanner",
     charset="utf8",
-    cursorclass=pymysql.cursors.DictCursor
+    cursorclass=pymysql.cursors.DictCursor,
 )
 
 
@@ -26,6 +26,11 @@ def create_all_tables():
     try:
         with CONNECTOR.cursor() as cursor:
             cursor.execute(use_db)
+            cursor.execute(create_cpms_table)
+            cursor.execute(create_scan_requests_table)
+            cursor.execute(create_accounts_table)
+            cursor.execute(create_machines_table)
+            cursor.execute(create_machine_accounts_table)
             # code
             CONNECTOR.commit()
     except Exception as e:

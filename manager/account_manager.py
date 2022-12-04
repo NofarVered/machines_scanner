@@ -1,8 +1,8 @@
 from fastapi import APIRouter , status , Response ,Request
 from fastapi.responses import JSONResponse
-from ..repositories import querys
-from ..repositories.sql_wrapper import db_wrapper 
-from ..repositories.models.account import Account
+from repositories import querys
+from repositories.sql_wrapper import db_wrapper 
+from repositories.models.account import Account
 
 db = db_wrapper()
 account = APIRouter()
