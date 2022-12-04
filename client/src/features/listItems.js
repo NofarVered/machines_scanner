@@ -6,9 +6,9 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import ComputerIcon from '@mui/icons-material/Computer';
+import DevicesIcon from '@mui/icons-material/Devices';
 
 
 export const mainListItems = (
@@ -21,12 +21,36 @@ export const mainListItems = (
         <ListItemText primary="Scans" />
         </ListItemButton>
     </Link>
+    <Link to='/cpm'>
+        <ListItemButton>
+        <ListItemIcon>
+            <ComputerIcon />
+        </ListItemIcon>
+        <ListItemText primary="CPM Selection" />
+        </ListItemButton>
+    </Link>
     <Link to='/accounts'>
         <ListItemButton>
         <ListItemIcon>
             <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Accounts" />
+        </ListItemButton>
+    </Link> 
+    <Link to='/machines'>
+        <ListItemButton>
+        <ListItemIcon>
+            <DevicesIcon />
+        </ListItemIcon>
+        <ListItemText primary="Machines" />
+        </ListItemButton>
+    </Link> 
+    <Link to='/statistics'>
+        <ListItemButton>
+        <ListItemIcon>
+            <QueryStatsIcon />
+        </ListItemIcon>
+        <ListItemText primary="Statistics" />
         </ListItemButton>
     </Link> 
   </React.Fragment>

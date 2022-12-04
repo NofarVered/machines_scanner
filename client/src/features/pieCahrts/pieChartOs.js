@@ -1,31 +1,31 @@
-
-
 import React from 'react';
 import { getPrivilegStatictis } from "./ApiClientPieChart";
 import ReactApexChart from "react-apexcharts";
-   export class ApexChartOsStatic extends React.Component {
-    componentDidMount() {
-        getPrivilegStatictis().then((theStatic)=>{      
-            const mac =theStatic["mac"]   
-            const linux =theStatic["linux"]
-            const windows =theStatic["windows"]            
-            const privilegAndNon = [mac,linux,windows]
-            const series=
-            [{"name": 'Inflation',
-            "data":privilegAndNon}]
 
-            this.setState({
-                series:series
-            })
-         }            
-        ).catch(()=>
-         {
-            this.setState({
-                error:true
-            })
-         }  
-        )
-    }
+
+export class ApexChartOsStatistics extends React.Component {
+    // componentDidMount() {
+    //     getPrivilegStatictis().then((theStatic)=>{      
+    //         const mac =theStatic["mac"]   
+    //         const linux =theStatic["linux"]
+    //         const windows =theStatic["windows"]            
+    //         const privilegAndNon = [mac,linux,windows]
+    //         const series=
+    //         [{"name": 'Inflation',
+    //         "data":privilegAndNon}]
+
+    //         this.setState({
+    //             series:series
+    //         })
+    //      }            
+    //     ).catch(()=>
+    //      {
+    //         this.setState({
+    //             error:true
+    //         })
+    //      }  
+    //     )
+    // }
     
     
     constructor(props) {

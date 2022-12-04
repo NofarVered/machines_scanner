@@ -9,8 +9,8 @@ function App() {
       <div className="App">
          <Dashboard/>
       </div>
-    </Router>   
-  );
+    </Router> 
+  )  
 }
 
 export default App;
