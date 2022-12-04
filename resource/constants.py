@@ -64,8 +64,26 @@ mock_scanners_file = "./mocks/scanners.json"
 mock_scan_iterations_file = "./mocks/scan_iterations.json"
 mock_scan_credentials_file = "./mocks/scan_credentials.json"
 
-insert_to_accounts_table = ""
-insert_to_cpms_table = ""
-insert_to_machines_table = ""
+insert_to_accounts_table = """
+                            INSERT IGNORE into accounts (account_name, scan_id, is_privileged, group_name, password_age)
+                            values (%s , %s, %s %s, %s)
+                            """
+
+insert_to_cpms_table = """
+                            INSERT IGNORE into cpms (cpm_id, ip_adresses, last_activity_date)
+                            values (%s , %s, %s)
+                            """
+
+insert_to_machines_table = """
+                            INSERT IGNORE into machines (machine_id, operating_platform, ip_address)
+                            values (%s , %s, %s)
+                            """
+
 insert_to_scan_requests_table = ""
 insert_to_machines_ccounts_table = ""
+
+
+sql_insert_scan = """
+                            INSERT IGNORE into scan_iterations (scan_itersation_id,scan_itersation_name,scan_status,csv_file,scanner_name,last_run_time_date,user_credential)
+                            values (%s , %s, %s, %s, %s, %s, %s)
+                            """
