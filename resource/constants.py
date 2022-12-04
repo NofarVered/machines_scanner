@@ -67,5 +67,12 @@ mock_scan_credentials_file = "./mocks/scan_credentials.json"
 insert_to_accounts_table = ""
 insert_to_cpms_table = ""
 insert_to_machines_table = ""
-insert_to_scan_requests_table = ""
-insert_to_machines_ccounts_table = ""
+insert_to_scan_requests_table = """
+                            INSERT IGNORE into scan_requests (scan_id, success_date, execute_by, scan_name, cpm_id, scan_status, scan_file, is_most_recent)
+                            values (%s , %s, %s, %s , %s, %s, %s , %s)
+                            """
+
+insert_to_machines_accounts_table = """
+                            INSERT IGNORE into machines_accounts (account_name,machine_id,enum_status)
+                            values (%s , %s, %s)
+                            """

@@ -37,12 +37,12 @@ def create_all_tables():
         print(e)
 
 
-def load_data():
-    data = json_processor(mock_accounts_file)
+def load_data(sql_query, file_name):
+    data = json_processor(file_name)
     try:
         with CONNECTOR.cursor() as cursor:
             for record in data:
-                cursor.execute(sql_query, params)
+                cursor.execute(sql_query, **data)
             CONNECTOR.commit()
             CONNECTOR.close()
     except Exception as e:
@@ -58,10 +58,10 @@ def json_processor(file_name):
 
 # python create_db_script.py
 if __name__ == "__main__":
-    # print("--- START creating DB machines_scanner")
-    # create_database()
-    # print("--- START creating tables")
-    # create_all_tables()
-    # print("--- DATABSE IS READY")
+    print("--- START creating DB machines_scanner")
+    create_database()
+    print("--- START creating tables")
+    create_all_tables()
+    print("--- DATABSE IS READY")
     load_data()
     print("--- DONE LOAD DATA")
