@@ -6,9 +6,8 @@ import ListItemText from '@mui/material/ListItemText';
 import ListSubheader from '@mui/material/ListSubheader';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import LayersIcon from '@mui/icons-material/Layers';
-import AssignmentIcon from '@mui/icons-material/Assignment';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import ComputerIcon from '@mui/icons-material/Computer';
 
 
 export const mainListItems = (
@@ -19,6 +18,14 @@ export const mainListItems = (
             <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Scans" />
+        </ListItemButton>
+    </Link>
+    <Link to='/cpm'>
+        <ListItemButton>
+        <ListItemIcon>
+            <ComputerIcon />
+        </ListItemIcon>
+        <ListItemText primary="CPM Selection" />
         </ListItemButton>
     </Link>
     <Link to='/accounts'>
@@ -32,7 +39,7 @@ export const mainListItems = (
     <Link to='/statistics'>
         <ListItemButton>
         <ListItemIcon>
-            <PeopleIcon />
+            <QueryStatsIcon />
         </ListItemIcon>
         <ListItemText primary="Statistics" />
         </ListItemButton>

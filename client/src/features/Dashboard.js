@@ -8,20 +8,17 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import Paper from '@mui/material/Paper';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import Accounts from './Accounts';
 import { Route } from 'react-router-dom';
 import AccountsWrapper from './AccountsWrapper';
 import StatisticsWrapper from './StatisticsWrapper';
 import ScansWrapper from './ScansWrapper'
+import CpmWrapper from './CpmWrapper';
 
 
 const drawerWidth = 240;
@@ -150,6 +147,7 @@ function DashboardContent() {
         >
           <Toolbar />
           <Route path='/' exact render={()=> <ScansWrapper />}/>
+          <Route path='cpm' exact render={()=> <CpmWrapper />}/>
           <Route path='/accounts' exact render={()=> <AccountsWrapper />}/>
           <Route path='/statistics' exact render={()=> <StatisticsWrapper />}/>
         </Box>

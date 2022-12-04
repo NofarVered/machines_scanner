@@ -13,11 +13,16 @@ export default function StatisticsWrapper() {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        <ApexChartOsStatistics/>
-                        <ApexChartPrivilege />
+                        <ApexChartOsStatistics/>      
                     </Paper>
-                </Grid>     
+                </Grid> 
+                <Grid item xs={12}>
+                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                        <ApexChartPrivilege/>      
+                    </Paper>
+                </Grid>      
             </Grid>
         </Container>
+
     )
 }
