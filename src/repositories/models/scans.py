@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 
-class ScanTransaction(BaseModel):
+class Scans(BaseModel):
     transaction_id: int
     transaction_name: str
     status: str

@@ -1,7 +1,7 @@
 import pymysql
-from ..models.exceptions import *
+from ..resource.exceptions import *
 
-class db_proxy:
+class db_wrapper:
     def __init__(self):
         try:
             self.connection = pymysql.connect(

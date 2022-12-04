@@ -1,9 +1,9 @@
 from fastapi import FastAPI ,status
 import uvicorn
 # from server.routes.routes.users_route import users
-from src.routes.users_route.users import users
-from src.routes.scans_route.scans import scans
-from src.routes.machine_route.machins import machine
+from src.manager.account_manager import account
+from src.manager.scans_manager import scans
+from src.manager.machins_manager import machine
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -23,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.include_router(users)
+app.include_router(account)
 app.include_router(scans)
 app.include_router(machine)
 

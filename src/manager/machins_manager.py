@@ -1,9 +1,9 @@
 from fastapi import APIRouter , status , Response ,Request
 from fastapi.responses import JSONResponse
-from ...db_proxy import querys 
-from ...db_proxy.proxy import db_proxy 
-from ...models.scan import Scan
-db = db_proxy()
+from ..repositories import querys
+from ..repositories.sql_wrapper import db_wrapper
+from ..repositories.models.machine import Machine
+db = db_wrapper()
 machine = APIRouter()
 
 
