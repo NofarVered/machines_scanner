@@ -1,13 +1,13 @@
-drop_db = "DROP DATABASE machines_scanners;"
-create_db = "CREATE DATABASE machines_scanners;"
-use_db = "USE machines_scanners;"
+drop_db = "DROP DATABASE machines_scanner;"
+create_db = "CREATE DATABASE machines_scanner;"
+use_db = "USE machines_scanner;"
 
 
 create_cpms_table = """
     CREATE TABLE cpms(
     cpm_id INT NOT NULL PRIMARY KEY,
     ip_addresses VARCHAR(255),
-    last_activity DATETIME
+    last_activity_date DATETIME
 );
 """
 
@@ -19,9 +19,9 @@ CREATE TABLE scan_requests(
     PRIMARY KEY (scan_id, success_date, execute_by),
 
     scan_name VARCHAR(255),
-    scan_status VARCHAR(255),
+    scan_status INT,
     scan_file VARCHAR(255),
-    is_most_recent boolean,
+    is_most_recent BOOLEAN,
     cpm_id INT,
 
     FOREIGN KEY(cpm_id) REFERENCES cpms(cpm_id)
@@ -31,7 +31,7 @@ CREATE TABLE scan_requests(
 create_accounts_table = """CREATE TABLE accounts(
     account_name VARCHAR(255) PRIMARY KEY,
     scan_id INT,
-    is_privileged boolean,
+    is_privileged BOOLEAN,
     group_name VARCHAR(255),
     password_age INT,
 
@@ -40,12 +40,12 @@ create_accounts_table = """CREATE TABLE accounts(
 
 create_machines_table = """CREATE TABLE machines(
     machine_id INT PRIMARY KEY,
-    operating_platform VARCHAR(255),
+    operating_platform INT,
     ip_address VARCHAR(255)
 );"""
 
 
-create_machine_accounts_table = """CREATE TABLE machine_accounts(
+create_machines_accounts_table = """CREATE TABLE machines_accounts(
     account_name VARCHAR(255),
     machine_id INT,
     PRIMARY KEY (account_name, machine_id),
