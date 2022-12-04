@@ -1,9 +1,9 @@
-
-
 import React from 'react';
 import { getPrivilegStatictis } from "./ApiClientPieChart";
 import ReactApexChart from "react-apexcharts";
-   export class ApexChartOsStatic extends React.Component {
+
+
+export class ApexChartOsStatistics extends React.Component {
     componentDidMount() {
         getPrivilegStatictis().then((theStatic)=>{      
             const mac =theStatic["mac"]   

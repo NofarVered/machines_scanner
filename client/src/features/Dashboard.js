@@ -20,7 +20,8 @@ import { mainListItems, secondaryListItems } from './listItems';
 import Accounts from './Accounts';
 import { Route } from 'react-router-dom';
 import AccountsWrapper from './AccountsWrapper';
-
+import StatisticsWrapper from './StatisticsWrapper';
+import ScansWrapper from './ScansWrapper'
 
 
 const drawerWidth = 240;
@@ -148,7 +149,9 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
+          <Route path='/' exact render={()=> <ScansWrapper />}/>
           <Route path='/accounts' exact render={()=> <AccountsWrapper />}/>
+          <Route path='/statistics' exact render={()=> <StatisticsWrapper />}/>
         </Box>
       </Box>
     </ThemeProvider>
