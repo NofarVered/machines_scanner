@@ -1,8 +1,8 @@
 from fastapi import APIRouter , status , Response ,Request
 from fastapi.responses import JSONResponse
-from ..repositories import querys
-from ..repositories.sql_wrapper import db_wrapper 
-from ..repositories.models.scans import Scans
+from repositories import querys
+from repositories.sql_wrapper import db_wrapper 
+from repositories.models.scans import Scans
 
 db = db_wrapper()
 scans = APIRouter()
