@@ -8,8 +8,7 @@ function App() {
   return (
     <div className="App">
         <Dashboard/>
-        <ApexChartOsStatic/>
-       
+        <ApexChartOsStatic/>      
     </div>  
   );
 }
