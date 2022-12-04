@@ -3,28 +3,39 @@ create_db = "CREATE DATABASE machines_scanners;"
 use_db = "USE machines_scanners;"
 
 
-create_scanners_table = """
-    CREATE TABLE scanners( scanner_name VARCHAR(255) PRIMARY KEY);
+create_cpms_table = """
+    CREATE TABLE cpms(
+    cpm_id INT NOT NULL PRIMARY KEY,
+    ip_addresses VARCHAR(255),
+    last_activity DATETIME
+);
 """
 
-create_scan_credentials_table = """
-    CREATE TABLE scan_credentials(
-    user_name VARCHAR(255) PRIMARY KEY,
-    hashed_password VARCHAR(255));
-"""
+create_scan_requests_table = """
+CREATE TABLE scan_requests(
+    scan_id INT NOT NULL,
+    success_date DATETIME,
+    execute_by VARCHAR(255),
+    PRIMARY KEY (scan_id, success_date, execute_by),
 
-create_scan_iterations_table = """CREATE TABLE scan_iterations(
-    scan_iteration_id INT NOT NULL PRIMARY KEY,
-    scan_iteration_name VARCHAR(255),
+    scan_name VARCHAR(255),
     scan_status VARCHAR(255),
-    csv_file VARCHAR(255),
-    scanner_name VARCHAR(255),
+    scan_file VARCHAR(255),
+    is_most_recent boolean,
+    cpm_id INT,
 
-    last_run_time_date DATETIME,
-    user_credential VARCHAR(255),
+    FOREIGN KEY(cpm_id) REFERENCES cpms(cpm_id)
+);
+"""
 
-    FOREIGN KEY(scanner_name) REFERENCES scanners(scanner_name),
-    FOREIGN KEY(user_credential) REFERENCES scan_credentials(user_name)
+create_accounts_table = """CREATE TABLE accounts(
+    account_name VARCHAR(255) PRIMARY KEY,
+    scan_id INT,
+    is_privileged boolean,
+    group_name VARCHAR(255),
+    password_age INT,
+
+    FOREIGN KEY(scan_id) REFERENCES scan_requests(scan_id)
 );"""
 
 create_machines_table = """CREATE TABLE machines(
@@ -34,17 +45,15 @@ create_machines_table = """CREATE TABLE machines(
 );"""
 
 
-create_accounts_table = """CREATE TABLE accounts(
+create_machine_accounts_table = """CREATE TABLE machine_accounts(
     account_name VARCHAR(255),
-    scan_iteration_id INT,
     machine_id INT,
-    is_privileged boolean,
-    set_password_date DATETIME,
-    group_name VARCHAR(255),
-    is_removed boolean,
+    PRIMARY KEY (account_name, machine_id),
+
+    enum_status INT,
     
     FOREIGN KEY(machine_id) REFERENCES machines(machine_id),
-    FOREIGN KEY(scan_iteration_id) REFERENCES scan_iterations(scan_iteration_id)
+    FOREIGN KEY(account_name) REFERENCES accounts(account_name)
 );
 """
 
