@@ -18,6 +18,8 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import Accounts from './Accounts';
+import { Route } from 'react-router-dom';
+import AccountsWrapper from './AccountsWrapper';
 
 
 
@@ -146,15 +148,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                         <Accounts />
-                    </Paper>
-                </Grid>     
-            </Grid>
-          </Container>
+          <Route path='/accounts' exact render={()=> <AccountsWrapper />}/>
         </Box>
       </Box>
     </ThemeProvider>
