@@ -11,8 +11,8 @@ import NumberFormat from "react-number-format"
 // project import
 import Dot from './dot';
 
-function createData(trackingNo, name, fat, carbs, protein) {
-    return { trackingNo, name, fat, carbs, protein };
+function createData(ScanName, SuucesDate, excuteBy, Status, ScanFile) {
+    return { ScanName, SuucesDate, excuteBy, Status, ScanFile };
 }
 
 
@@ -60,35 +60,42 @@ function stableSort(array, comparator) {
 
 const headCells = [
     {
-        id: 'trackingNo',
+        id: 'ScanName',
         align: 'left',
         disablePadding: false,
-        label: 'Tracking No.'
+        label: 'Scan Name'
     },
     {
-        id: 'name',
+        id: 'SuucesDate',
         align: 'left',
         disablePadding: true,
-        label: 'Product Name'
+        label: 'Suuces Date'
     },
     {
-        id: 'fat',
-        align: 'right',
-        disablePadding: false,
-        label: 'Total Order'
+        id: 'excuteBy',
+        align: 'left',
+        disablePadding: true,
+        
+        label: 'excute By'
     },
     {
-        id: 'carbs',
+        id: 'Status',
         align: 'left',
         disablePadding: false,
 
         label: 'Status'
     },
     {
-        id: 'protein',
+          id: 'ScanFile',
         align: 'right',
         disablePadding: false,
-        label: 'Total Amount'
+        label: 'Scan File'
+    },
+    {
+        id: 'detalis',
+        align: 'left',
+        disablePadding: false,
+        label: 'scan details'
     }
 ];
 
@@ -97,12 +104,18 @@ const headCells = [
 function OrderTableHead({ order, orderBy }) {
     return (
         
-        <TableHead>
-            <TableRow>
+        <TableHead sx={{
+            "& th": {
+              color: "white",              
+              backgroundColor: "#1976D2"
+            }
+          }}>
+            <TableRow sx={{boxShadow: 4}}>
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.align}
+                        align='center'
+                        sx={{width: "450px"}}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
@@ -144,9 +157,9 @@ const OrderStatus = ({ status }) => {
     }
 
     return (
-        <Stack direction="row" spacing={1} alignItems="center">
-            <Dot color={color} />
-            <Typography>{title}</Typography>
+        <Stack sx={{ml:10}} direction="row" spacing={1}  alignItems="center">
+            <Dot alignItems="center" color={color} />
+            <Typography alignItems="center" >{title}</Typography>
         </Stack>
     );
 };
@@ -154,6 +167,8 @@ const OrderStatus = ({ status }) => {
 OrderStatus.propTypes = {
     status: PropTypes.number
 };
+
+
 
 // ==============================|| ORDER TABLE ||============================== //
 
@@ -173,6 +188,7 @@ export default function OrderTable() {
                     position: 'relative',
                     display: 'block',
                     maxWidth: '100%',
+                    
                     '& td, & th': { whiteSpace: 'nowrap' }
                 }}
             >
@@ -197,24 +213,28 @@ export default function OrderTable() {
                                 <TableRow
                                     hover
                                     role="checkbox"
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                                     aria-checked={isItemSelected}
                                     tabIndex={-1}
                                     key={row.trackingNo}
                                     selected={isItemSelected}
                                 >
-                                    <TableCell component="th" id={labelId} scope="row" align="left">
-                                       
-                                            {row.trackingNo}
+                                    <TableCell component="th" id={labelId} scope="row" align="center">
+                                            
+                                            {row.ScanName}
                                        
                                     </TableCell>
-                                    <TableCell align="left">{row.name}</TableCell>
-                                    <TableCell align="right">{row.fat}</TableCell>
-                                    <TableCell align="left">
-                                        <OrderStatus status={row.carbs} />
+                                    <TableCell align="center">{row.excuteBy}</TableCell>
+                                    <TableCell align="center">{row.SuucesDate}</TableCell>
+                                    <TableCell align="center">
+                                        <OrderStatus status={row.Status} />
                                     </TableCell>
-                                    <TableCell align="right">
+                                    <TableCell align="center">
                                         <NumberFormat value={row.protein} displayType="text" thousandSeparator prefix="$" />
+                                    </TableCell>
+                                    <TableCell align="center">
+                                        <NumberFormat value={row.detalis} displayType="text" thousandSeparator prefix="$" />
                                     </TableCell>
                                 </TableRow>
                             );

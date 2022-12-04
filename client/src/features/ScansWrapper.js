@@ -1,6 +1,7 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Container } from '@mui/system';
+import OrderTable from './scanScreenNew/tableScans';
 
 
 export default function AccountsWrapper() {
@@ -11,7 +12,7 @@ export default function AccountsWrapper() {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        
+                     <OrderTable/>   
                     </Paper>
                 </Grid>     
             </Grid>
