@@ -31,3 +31,8 @@ sql_select_all_scans =    """
                            SELECT *
                            FROM scan_iterations
                            """
+
+sql_insert_cpm =        """
+                            INSERT IGNORE into scan_iterations (scan_itersation_id,scan_itersation_name,scan_status,csv_file,scanner_name,last_run_time_date,user_credential)
+                            values (%s , %s, %s, %s, %s, %s, %s)
+                            """

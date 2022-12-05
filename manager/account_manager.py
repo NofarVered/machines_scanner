@@ -7,19 +7,19 @@ from repositories.models.account import Account
 db = db_wrapper()
 account = APIRouter()
 
-@account.get('/account',response_class= JSONResponse , status_code= status.HTTP_200_OK)
+@account.get('/accounts',response_class= JSONResponse , status_code= status.HTTP_200_OK)
 def getAccounts():
-    users_list = db.execute_select_all_query(querys.sql_select_all_users)
-    # users_list = [Account("Or",True,"01/12/2022",1,1,"best group")]
+    # users_list = db.execute_select_all_query(querys.sql_select_all_users)
+    users_list = [Account("Or",1,True,"group_1",100)]
     return users_list
 
-@account.get('/account/{machine_id}',response_class= JSONResponse , status_code= status.HTTP_200_OK)
+@account.get('/accounts/{machine_id}',response_class= JSONResponse , status_code= status.HTTP_200_OK)
 def getAccountsByMachine(machine_id):
     users_list = db.execute_select_all_query(querys.sql_select_all_users_by_machine)
     # users_list = [User("Or",True,"01/12/2022",1,machine_id,"best group")]
     return users_list
 
-@account.get('/account/stats',response_class= JSONResponse , status_code= status.HTTP_200_OK)
+@account.get('/accounts/stats',response_class= JSONResponse , status_code= status.HTTP_200_OK)
 def getAccountsStats():
     privilliged_stats = db.execute_select_all_query(querys.sql_select_all_privilliged_machine)
     stats = {
