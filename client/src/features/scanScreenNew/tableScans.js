@@ -4,9 +4,9 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Collapse from '@mui/material/Collapse';
+import { DataTable } from "./historySchema";
 import * as React from 'react';
 import {getScans} from './ApiScans'
-import { TableComponent } from "./historySchemScan";
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
@@ -196,10 +196,10 @@ function Row(props){
                 <TableCell align="center">{row.excuteBy}</TableCell>
                 <TableCell align="center">{row.SuucesDate}</TableCell>
                 <TableCell align="center">
-                    <OrderStatus status={row.Status} />
+                    {row.Status}
                 </TableCell>
                 <TableCell align="center">
-                    <NumberFormat value={row.ScanFile} displayType="text" thousandSeparator prefix="$" />
+                    {row.ScanFile} 
                 </TableCell>
                 <TableCell align="center">
                 <IconButton
@@ -216,7 +216,7 @@ function Row(props){
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
             <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-            <TableComponent/>
+            <DataTable/>
         </Box>
        </Collapse>
      </TableCell>
@@ -234,7 +234,7 @@ export default function OrderTable() {
     const [selected] = useState([]);
     
     const [scans,setScans]=useState([])
-  
+    let rows =useState([])
 
 
     
