@@ -1,7 +1,3 @@
-sql_select_all_users = """
-                           SELECT *
-                           FROM accounts
-                        """
 
 sql_count_privilliged_accounts = """
                                         SELECT COUNT(*) as number_of_privileged
