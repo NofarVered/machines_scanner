@@ -60,30 +60,31 @@ create_machines_accounts_table = """CREATE TABLE machines_accounts(
 
 mock_accounts_file = "./mocks/accounts.json"
 mock_machines_file = "./mocks/machines.json"
-mock_scanners_file = "./mocks/scanners.json"
-mock_scan_iterations_file = "./mocks/scan_iterations.json"
-mock_scan_credentials_file = "./mocks/scan_credentials.json"
+mock_cpms_file = "./mocks/cpms.json"
+mock_scan_requests_file = "./mocks/scan_requests.json"
+mock_machines_accounts_file = "./mocks/machines_accounts.json"
+
+insert_to_scan_requests_table = """
+                            INSERT IGNORE into scan_requests (scan_id, success_date, execute_by, scan_name, cpm_id, scan_status, scan_file, is_most_recent)
+                            values (%s , %s, %s, %s, %s, %s, %s, %s)
+                            """
+
+insert_to_machines_accounts_table = """
+                            INSERT IGNORE into machines_accounts (account_name,machine_id,enum_status)
+                            values (%s , %s, %s)
+                            """
 
 insert_to_accounts_table = """
                             INSERT IGNORE into accounts (account_name, scan_id, is_privileged, group_name, password_age)
-                            values (%s , %s, %s %s, %s)
+                            values (%s , %s, %s, %s, %s)
                             """
 
 insert_to_cpms_table = """
-                            INSERT IGNORE into cpms (cpm_id, ip_adresses, last_activity_date)
-                            values (%s , %s, %s)
+                            INSERT IGNORE into cpms (cpm_id, ip_addresses, last_activity_date)
+                            values (%s, %s, %s)
                             """
 
 insert_to_machines_table = """
                             INSERT IGNORE into machines (machine_id, operating_platform, ip_address)
                             values (%s , %s, %s)
-                            """
-
-insert_to_scan_requests_table = ""
-insert_to_machines_ccounts_table = ""
-
-
-sql_insert_scan = """
-                            INSERT IGNORE into scan_iterations (scan_itersation_id,scan_itersation_name,scan_status,csv_file,scanner_name,last_run_time_date,user_credential)
-                            values (%s , %s, %s, %s, %s, %s, %s)
                             """
