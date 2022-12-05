@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from dataclasses import dataclass
 
-
-class Cpm(BaseModel):
+@dataclass
+class Cpm():
     cpm_id: int
     ip_adress: str
     last_activity: str

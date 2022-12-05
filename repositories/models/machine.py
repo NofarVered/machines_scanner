@@ -1,6 +1,6 @@
-from pydantic import BaseModel
+from dataclasses import dataclass
 
-
-class Machine(BaseModel):
+@dataclass
+class Machine():
     machine_id: int
     platform: str

@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from dataclasses import dataclass
 
-
-class Scans(BaseModel):
+@dataclass
+class Scans():
     scan_id: int
     scan_name: str
     success_date: str
