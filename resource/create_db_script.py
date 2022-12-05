@@ -8,7 +8,7 @@ CONNECTOR = pymysql.connect(
     password="",
     db="machines_scanner",
     charset="utf8",
-    cursorclass=pymysql.cursors.DictCursor
+    cursorclass=pymysql.cursors.DictCursor,
 )
 
 
@@ -26,6 +26,11 @@ def create_all_tables():
     try:
         with CONNECTOR.cursor() as cursor:
             cursor.execute(use_db)
+            cursor.execute(create_cpms_table)
+            cursor.execute(create_scan_requests_table)
+            cursor.execute(create_accounts_table)
+            cursor.execute(create_machines_table)
+            cursor.execute(create_machines_accounts_table)
             # code
             CONNECTOR.commit()
     except Exception as e:
@@ -33,11 +38,11 @@ def create_all_tables():
 
 
 def load_data():
-    data = json_processor()
-    # code
+    data = json_processor(mock_accounts_file)
     try:
         with CONNECTOR.cursor() as cursor:
-            # code
+            for record in data:
+                cursor.execute(sql_query, params)
             CONNECTOR.commit()
             CONNECTOR.close()
     except Exception as e:
@@ -48,7 +53,7 @@ def json_processor(file_name):
     data_file = open(file_name)
     data = json.load(data_file)
     data_file.close()
-    return data
+    return(data)
 
 
 # python create_db_script.py
@@ -58,5 +63,5 @@ if __name__ == "__main__":
     print("--- START creating tables")
     create_all_tables()
     print("--- DATABSE IS READY")
-    load_data()
-    print("--- DONE LOAD DATA")
+    # load_data()
+    # print("--- DONE LOAD DATA")

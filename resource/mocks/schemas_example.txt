@@ -1,51 +1,46 @@
-1) scanners
+1) accounts : V
 {
-  "scanner_name":"Schinus polygamus (Cav.) Cabrera"
+  "account_name":"chest congestion",
+  "scan_id":3,
+  "is_privileged":false,
+  "group_name":"Fisher",
+  "password_age":210
 }
 
-2) scan_credentials
+2) cpms : V
 {
-  "user_name":"aarchbutt0",
-  "hashed_password":"01E7kzpEjb"
+  "cpm_id":1,
+  "ip_adresses":"0.0.0.0 - 127.255.255.255",
+  "last_activity_date":"2021-12-10 04:15:16"
 }
 
-3) scan_iterations
+3) scan requests : V
 {
-  "scan_iteration_id":1,
-  "scan_iteration_name":"KPRC",
-  "scan_status":"Teal",
-  "csv_file":"LuctusEtUltrices.xls",
-  "scanner_name":"Erigeron flabellifolius Rydb.",
-  "last_run_date":"2022-01-09 09:37:40",
-  "user_credential":"flune1"
+  "scan_id":1,
+  "success_date":"2021-12-10 04:15:16",
+  "execute_by":"Reagan Poate",
+  "scan_name":"Christiansen, Robel and Terry",
+  "cpm_id":5,
+  "scan_status":2,
+  "scan_file":"EuMagna.ppt",
+  "is_most_recent":true
 }
-notes:
-* the stascan_statustus is COLOR FILED. so we can deside on the json proccessor which color will present finished\running\stoped .
-* "scanner_name" is refernce to scanners.scanner_name
-* "user_credential" is refernce to scan_credentials.user_name
+* "scan_status" is enum. 1= "pending", 2="stoped", 3="done"
 
-
-4) machines
+4) machines : V
 {
   "machine_id":1,
-  "operating_platform":"linux",
-  "ip_address":"227.2.140.24"
+  "operating_platform":3,
+  "ip_address":"124.21.29.219"
 }
+* "operating_platform" is enum. 1= "windows", 2="mac", 3="linux"
 
-5) accounts 
+5) machines_accounts : V
 {
-  "account_name":"Parsifal",
-  "scan_iteration_id":58,
-  "machine_id":5,
-  "is_privilege":false,
-  "set_password_date":"2022-05-30 02:39:40",
-  "group_name":"TOA",
-  "is_removed":false
+  "account_name":"Entyvio",
+  "machine_id":4,
+  "enum_status":3
 }
-note:
-* "scan_transaction" is refernce to scan_transactions.transaction_id 
-* "machine_id" is refernce to machines.machine_id
-
-
+* "enum_status" is enum. 1= "exists", 2="removed", 3="readded"
 
 # https://www.mockaroo.com/datasets

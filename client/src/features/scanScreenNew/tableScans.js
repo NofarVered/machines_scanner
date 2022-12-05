@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
-
+import { useState,useEffect } from 'react';
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Collapse from '@mui/material/Collapse';
+import * as React from 'react';
+import {getScans} from './ApiScans'
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
@@ -11,22 +16,25 @@ import NumberFormat from "react-number-format"
 // project import
 import Dot from './dot';
 
-function createData(trackingNo, name, fat, carbs, protein) {
-    return { trackingNo, name, fat, carbs, protein };
+function createData(ScanName, SuucesDate, excuteBy, Status, ScanFile) {
+    return { ScanName, SuucesDate, excuteBy, Status, ScanFile };
 }
 
-const rows = [
-    createData(84564564, 'Camera Lens', 40, 2, 40570),
-    createData(98764564, 'Laptop', 300, 0, 180139),
-    createData(98756325, 'Mobile', 355, 1, 90989),
-    createData(98652366, 'Handset', 50, 1, 10239),
-    createData(13286564, 'Computer Accessories', 100, 1, 83348),
-    createData(86739658, 'TV', 99, 0, 410780),
-    createData(13256498, 'Keyboard', 125, 2, 70999),
-    createData(98753263, 'Mouse', 89, 2, 10570),
-    createData(98753275, 'Desktop', 185, 1, 98063),
-    createData(98753291, 'Chair', 100, 0, 14001)
-];
+const history= [
+    {
+      date: '2020-01-05',
+      customerId: '11091700',
+      amount: 3,
+    },
+    {
+      date: '2020-01-02',
+      customerId: 'Anonymous',
+      amount: 1,
+    },
+  ]
+
+
+
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -58,48 +66,70 @@ function stableSort(array, comparator) {
 
 const headCells = [
     {
-        id: 'trackingNo',
+        id: 'ScanName',
         align: 'left',
         disablePadding: false,
-        label: 'Tracking No.'
+        label: 'Scan Name'
     },
     {
-        id: 'name',
+        id: 'SuucesDate',
         align: 'left',
         disablePadding: true,
-        label: 'Product Name'
+        label: 'success Date'
     },
     {
-        id: 'fat',
-        align: 'right',
-        disablePadding: false,
-        label: 'Total Order'
+        id: 'excuteBy',
+        align: 'left',
+        disablePadding: true,
+        
+        label: 'excute By'
     },
     {
-        id: 'carbs',
+        id: 'Status',
         align: 'left',
         disablePadding: false,
 
         label: 'Status'
     },
     {
-        id: 'protein',
-        align: 'right',
+          id: 'ScanFile',
+        align: 'right', 
         disablePadding: false,
-        label: 'Total Amount'
+        label: 'Scan File'
+    },
+    {
+        id: 'detalis',
+        align: 'left',
+        disablePadding: false,
+        label: 'scan details'
     }
 ];
+
+const fillRowInfo=(scans)=>{
+    for(let i=0;i<scans.length;i++){
+        createData(scans[i].scan_name, scans[i].success_date, scans[i].excute_by, scans[i].status, scans[i].scan_file)
+    }
+}
 
 // ==============================|| ORDER TABLE - HEADER ||============================== //
 
 function OrderTableHead({ order, orderBy }) {
+  
+
     return (
-        <TableHead>
-            <TableRow>
+        
+        <TableHead sx={{
+            "& th": {
+              color: "white",              
+              backgroundColor: "#1976D2"
+            }
+          }}>
+            <TableRow sx={{boxShadow: 4}}>
                 {headCells.map((headCell) => (
                     <TableCell
                         key={headCell.id}
-                        align={headCell.align}
+                        align='center'
+                        sx={{width: "450px"}}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
                     >
@@ -141,9 +171,9 @@ const OrderStatus = ({ status }) => {
     }
 
     return (
-        <Stack direction="row" spacing={1} alignItems="center">
-            <Dot color={color} />
-            <Typography>{title}</Typography>
+        <Stack sx={{ml:10}} direction="row" spacing={1}  alignItems="center">
+            <Dot alignItems="center" color={color} />
+            <Typography alignItems="center" >{title}</Typography>
         </Stack>
     );
 };
@@ -152,15 +182,31 @@ OrderStatus.propTypes = {
     status: PropTypes.number
 };
 
+
+
 // ==============================|| ORDER TABLE ||============================== //
 
 export default function OrderTable() {
     const [order] = useState('asc');
     const [orderBy] = useState('trackingNo');
     const [selected] = useState([]);
+    const [open, setOpen] = useState(false);
+    const [scans,setScans]=useState([])
+    const rows =useState([])
 
+
+    
     const isSelected = (trackingNo) => selected.indexOf(trackingNo) !== -1;
 
+    useEffect(() => {
+        getScans().then((result)=>{
+            setScans(result)
+            rows=fillRowInfo(scans)    
+        }).catch((error)=>{
+            console.log(error)
+
+        })
+      }, []); 
     return (
         <Box>
             <TableContainer
@@ -170,6 +216,7 @@ export default function OrderTable() {
                     position: 'relative',
                     display: 'block',
                     maxWidth: '100%',
+                    
                     '& td, & th': { whiteSpace: 'nowrap' }
                 }}
             >
@@ -191,29 +238,80 @@ export default function OrderTable() {
                             const labelId = `enhanced-table-checkbox-${index}`;
 
                             return (
+                                <React.Fragment>
                                 <TableRow
                                     hover
                                     role="checkbox"
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                    
+                                    sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                                     aria-checked={isItemSelected}
                                     tabIndex={-1}
                                     key={row.trackingNo}
                                     selected={isItemSelected}
                                 >
-                                    <TableCell component="th" id={labelId} scope="row" align="left">
-                                       
-                                            {row.trackingNo}
+                                    <TableCell component="th" id={labelId} scope="row" align="center">
+                                            
+                                            {row.ScanName}
                                        
                                     </TableCell>
-                                    <TableCell align="left">{row.name}</TableCell>
-                                    <TableCell align="right">{row.fat}</TableCell>
-                                    <TableCell align="left">
-                                        <OrderStatus status={row.carbs} />
+                                    <TableCell align="center">{row.excuteBy}</TableCell>
+                                    <TableCell align="center">{row.SuucesDate}</TableCell>
+                                    <TableCell align="center">
+                                        <OrderStatus status={row.Status} />
                                     </TableCell>
-                                    <TableCell align="right">
+                                    <TableCell align="center">
                                         <NumberFormat value={row.protein} displayType="text" thousandSeparator prefix="$" />
                                     </TableCell>
+                                    <TableCell align="center">
+                                    <IconButton
+                                        aria-label="expand row"
+                                        size="small"
+                                        onClick={() => setOpen(!open)}
+                                    >
+                                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                    </IconButton>
+                                    </TableCell>
+
+
+                                    
                                 </TableRow>
+                                
+                                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                                  <Collapse in={open} timeout="auto" unmountOnExit>
+                                    <Box sx={{ margin: 1 }}>
+                                      <Typography variant="h6" gutterBottom component="div">
+                                        History
+                                      </Typography>
+                                      <Table size="small" aria-label="purchases">
+                                        <TableHead>
+                                          <TableRow>
+                                            <TableCell>Date</TableCell>
+                                            <TableCell>Customer</TableCell>
+                                            <TableCell align="right">Amount</TableCell>
+                                            <TableCell align="right">Total price ($)</TableCell>
+                                          </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                          {history.map((historyRow) => (
+                                            <TableRow key={historyRow.date}>
+                                              <TableCell component="th" scope="row">
+                                                {historyRow.date}
+                                              </TableCell>
+                                              <TableCell>{historyRow.customerId}</TableCell>
+                                              <TableCell align="right">{historyRow.amount}</TableCell>
+                                              <TableCell align="right">
+                                                {Math.round(historyRow.amount) / 100}
+                                              </TableCell>
+                                            </TableRow>
+                                          ))}
+                                        </TableBody>
+                                      </Table>
+                                    </Box>
+                                  </Collapse>
+                                </TableCell>
+                              
+                              </React.Fragment>
+                                
                             );
                         })}
                     </TableBody>
