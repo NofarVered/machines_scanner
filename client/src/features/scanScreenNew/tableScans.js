@@ -193,8 +193,7 @@ function Row(props){
                                 
             <TableRow
                 hover
-                role="checkbox"
-                
+                role="checkbox"                
                 sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
                 aria-checked={isItemSelected}
                 tabIndex={-1}
