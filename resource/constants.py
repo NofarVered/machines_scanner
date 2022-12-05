@@ -7,7 +7,7 @@ create_cpms_table = """
     CREATE TABLE cpms(
     cpm_id INT NOT NULL PRIMARY KEY,
     ip_addresses VARCHAR(255),
-    last_activity DATETIME
+    last_activity_date DATETIME
 );
 """
 
@@ -19,9 +19,9 @@ CREATE TABLE scan_requests(
     PRIMARY KEY (scan_id, success_date, execute_by),
 
     scan_name VARCHAR(255),
-    scan_status VARCHAR(255),
+    scan_status INT,
     scan_file VARCHAR(255),
-    is_most_recent boolean,
+    is_most_recent BOOLEAN,
     cpm_id INT,
 
     FOREIGN KEY(cpm_id) REFERENCES cpms(cpm_id)
@@ -31,7 +31,7 @@ CREATE TABLE scan_requests(
 create_accounts_table = """CREATE TABLE accounts(
     account_name VARCHAR(255) PRIMARY KEY,
     scan_id INT,
-    is_privileged boolean,
+    is_privileged BOOLEAN,
     group_name VARCHAR(255),
     password_age INT,
 
@@ -40,12 +40,12 @@ create_accounts_table = """CREATE TABLE accounts(
 
 create_machines_table = """CREATE TABLE machines(
     machine_id INT PRIMARY KEY,
-    operating_platform VARCHAR(255),
+    operating_platform INT,
     ip_address VARCHAR(255)
 );"""
 
 
-create_machine_accounts_table = """CREATE TABLE machine_accounts(
+create_machines_accounts_table = """CREATE TABLE machines_accounts(
     account_name VARCHAR(255),
     machine_id INT,
     PRIMARY KEY (account_name, machine_id),
@@ -58,8 +58,32 @@ create_machine_accounts_table = """CREATE TABLE machine_accounts(
 """
 
 
-mock_accounts = "./mocks/accounts.json"
-mock_machines = "./mocks/machines.json"
-mock_scanners = "./mocks/scanners.json"
-mock_scan_iterations = "./mocks/scan_iterations.json"
-mock_scan_credentials = "./mocks/scan_credentials.json"
+mock_accounts_file = "./mocks/accounts.json"
+mock_machines_file = "./mocks/machines.json"
+mock_scanners_file = "./mocks/scanners.json"
+mock_scan_iterations_file = "./mocks/scan_iterations.json"
+mock_scan_credentials_file = "./mocks/scan_credentials.json"
+
+insert_to_accounts_table = """
+                            INSERT IGNORE into accounts (account_name, scan_id, is_privileged, group_name, password_age)
+                            values (%s , %s, %s %s, %s)
+                            """
+
+insert_to_cpms_table = """
+                            INSERT IGNORE into cpms (cpm_id, ip_adresses, last_activity_date)
+                            values (%s , %s, %s)
+                            """
+
+insert_to_machines_table = """
+                            INSERT IGNORE into machines (machine_id, operating_platform, ip_address)
+                            values (%s , %s, %s)
+                            """
+
+insert_to_scan_requests_table = ""
+insert_to_machines_ccounts_table = ""
+
+
+sql_insert_scan = """
+                            INSERT IGNORE into scan_iterations (scan_itersation_id,scan_itersation_name,scan_status,csv_file,scanner_name,last_run_time_date,user_credential)
+                            values (%s , %s, %s, %s, %s, %s, %s)
+                            """
