@@ -1,9 +1,6 @@
 import PropTypes from 'prop-types';
 import { useState,useEffect } from 'react';
-import IconButton from '@mui/material/IconButton';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import Collapse from '@mui/material/Collapse';
+
 import * as React from 'react';
 import {getScans} from './ApiScans'
 
@@ -11,7 +8,7 @@ import {getScans} from './ApiScans'
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
 // third-party
-import NumberFormat from "react-number-format"
+
 
 // project import
 
