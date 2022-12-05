@@ -106,9 +106,12 @@ const headCells = [
 ];
 
 const fillRowInfo=(scans)=>{
+    const new_scans=[]
     for(let i=0;i<scans.length;i++){
-        createData(scans[i].scan_name, scans[i].success_date, scans[i].excute_by, scans[i].status, scans[i].scan_file)
+        new_scans.push(createData(scans[i].scan_name, scans[i].success_date, scans[i].excute_by, scans[i].status, scans[i].scan_file))
     }
+    return new_scans
+
 }
 
 // ==============================|| ORDER TABLE - HEADER ||============================== //
@@ -272,7 +275,7 @@ export default function OrderTable() {
     const [selected] = useState([]);
     
     const [scans,setScans]=useState([])
-    const rows =useState([])
+    let rows =useState([])
 
 
     
@@ -280,13 +283,14 @@ export default function OrderTable() {
 
     useEffect(() => {
         getScans().then((result)=>{
-            setScans(result)
-            rows=fillRowInfo(scans)    
+            setScans(fillRowInfo(result.payload))              
         }).catch((error)=>{
             console.log(error)
 
         })
       }, []); 
+
+       
     return (
         <Box>
             <TableContainer
@@ -313,7 +317,7 @@ export default function OrderTable() {
                 >
                     <OrderTableHead order={order} orderBy={orderBy} />
                     <TableBody>
-                        {stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
+                        {stableSort(scans, getComparator(order, orderBy)).map((row, index) => {
                             const isItemSelected = isSelected(row.ScanName);
                             const labelId = `enhanced-table-checkbox-${index}`;
 
