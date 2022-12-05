@@ -19,8 +19,8 @@ def addScan(scan:Scans):
 
 @scans.get('/scans',response_class= JSONResponse , status_code= status.HTTP_200_OK)
 def getScans():
-    scans_list = db.execute_select_all_query(querys.sql_select_all_scans)
-    # scans_list = [Scans(1,"first_scan","active","mock.csv","my_scanner","1/1/2022","user123","password123")]
+    # scans_list = db.execute_select_all_query(querys.sql_select_all_scans)
+    scans_list = [Scans(1,"test","1.1.1990","or","pending","file.csv")]
     return {
             "success": True,
             "payload": scans_list
