@@ -12,7 +12,7 @@ export default function CpmWrapper() {
             <Grid container spacing={3}>
                 <Grid item xs={12}>
                     <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        <CpmSelection />
+                        <CpmSelection /> 
                     </Paper>
                 </Grid>     
             </Grid>
