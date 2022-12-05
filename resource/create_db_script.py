@@ -37,12 +37,12 @@ def create_all_tables():
         print(e)
 
 
-def load_data():
-    data = json_processor(mock_accounts_file)
+def load_data(sql_query, file_name):
+    data = json_processor(file_name)
     try:
         with CONNECTOR.cursor() as cursor:
             for record in data:
-                cursor.execute(sql_query, params)
+                cursor.execute(sql_query, [field for field in record.values()])
             CONNECTOR.commit()
             CONNECTOR.close()
     except Exception as e:
@@ -63,5 +63,9 @@ if __name__ == "__main__":
     print("--- START creating tables")
     create_all_tables()
     print("--- DATABSE IS READY")
-    # load_data()
-    # print("--- DONE LOAD DATA")
+    load_data(insert_to_cpms_table, mock_cpms_file)
+    load_data(insert_to_scan_requests_table, mock_scan_requests_file)
+    load_data(insert_to_accounts_table, mock_accounts_file)
+    load_data(insert_to_machines_table, mock_machines_file)
+    load_data(insert_to_machines_accounts_table, mock_machines_accounts_file)
+    print("--- DONE LOAD DATA. Ninja scanner team wish u luck")
