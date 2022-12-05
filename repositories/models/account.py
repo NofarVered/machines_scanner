@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from dataclasses import dataclass
 
-
-class Account(BaseModel):
+@dataclass
+class Account():
     account_id: int
     account_name: str
     privilege: bool

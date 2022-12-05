@@ -113,8 +113,7 @@ const fillRowInfo=(scans)=>{
 
 // ==============================|| ORDER TABLE - HEADER ||============================== //
 
-function OrderTableHead({ order, orderBy }) {
-  
+function OrderTableHead({ order, orderBy }) { 
 
     return (
         
@@ -184,19 +183,100 @@ OrderStatus.propTypes = {
 
 
 
+function Row(props){
+    const row =props.row;
+    const [open, setOpen] = useState(false);
+    const labelId=props.labelId
+    const isItemSelected=props.isItemSelected
+    return(                          
+            <React.Fragment>
+                                
+            <TableRow
+                hover
+                role="checkbox"                
+                sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
+                aria-checked={isItemSelected}
+                tabIndex={-1}
+                key={row.ScanName}
+                selected={isItemSelected}
+            >
+                <TableCell component="th" id={labelId} scope="row" align="center">
+                        
+                        {row.ScanName}
+                
+                </TableCell>
+                <TableCell align="center">{row.excuteBy}</TableCell>
+                <TableCell align="center">{row.SuucesDate}</TableCell>
+                <TableCell align="center">
+                    <OrderStatus status={row.Status} />
+                </TableCell>
+                <TableCell align="center">
+                    <NumberFormat value={row.ScanFile} displayType="text" thousandSeparator prefix="$" />
+                </TableCell>
+                <TableCell align="center">
+                <IconButton
+                    aria-label="expand row"
+                    size="small"
+                    onClick={() => setOpen(!open)}
+                >
+                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                </IconButton>
+                </TableCell>
+                
+            </TableRow>
+            <TableRow>
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+            <Typography variant="h6" gutterBottom component="div">
+            History
+            </Typography>
+            <Table size="small" aria-label="purchases">
+            <TableHead>
+            <TableRow>
+            <TableCell>Date</TableCell>
+            <TableCell>Customer</TableCell>
+            <TableCell align="right">Amount</TableCell>
+            <TableCell align="right">Total price ($)</TableCell>
+            </TableRow>
+            </TableHead>
+            <TableBody>
+            {history.map((historyRow) => (
+            <TableRow key={historyRow.date}>
+            <TableCell component="th" scope="row">
+            {historyRow.date}
+            </TableCell>
+            <TableCell>{historyRow.customerId}</TableCell>
+            <TableCell align="right">{historyRow.amount}</TableCell>
+            <TableCell align="right">
+            {Math.round(historyRow.amount * 100) / 100}
+            </TableCell>
+            </TableRow>
+            ))}
+            </TableBody>
+            </Table>
+            </Box>
+            </Collapse>
+            </TableCell>
+            </TableRow>
+
+    </React.Fragment>
+    )
+}
+
 // ==============================|| ORDER TABLE ||============================== //
 
 export default function OrderTable() {
     const [order] = useState('asc');
-    const [orderBy] = useState('trackingNo');
+    const [orderBy] = useState('ScanName');
     const [selected] = useState([]);
-    const [open, setOpen] = useState(false);
+    
     const [scans,setScans]=useState([])
     const rows =useState([])
 
 
     
-    const isSelected = (trackingNo) => selected.indexOf(trackingNo) !== -1;
+    const isSelected = (ScanName) => selected.indexOf(ScanName) !== -1;
 
     useEffect(() => {
         getScans().then((result)=>{
@@ -234,83 +314,12 @@ export default function OrderTable() {
                     <OrderTableHead order={order} orderBy={orderBy} />
                     <TableBody>
                         {stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
-                            const isItemSelected = isSelected(row.trackingNo);
+                            const isItemSelected = isSelected(row.ScanName);
                             const labelId = `enhanced-table-checkbox-${index}`;
 
                             return (
-                                <React.Fragment>
-                                <TableRow
-                                    hover
-                                    role="checkbox"
-                                    
-                                    sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
-                                    aria-checked={isItemSelected}
-                                    tabIndex={-1}
-                                    key={row.trackingNo}
-                                    selected={isItemSelected}
-                                >
-                                    <TableCell component="th" id={labelId} scope="row" align="center">
-                                            
-                                            {row.ScanName}
-                                       
-                                    </TableCell>
-                                    <TableCell align="center">{row.excuteBy}</TableCell>
-                                    <TableCell align="center">{row.SuucesDate}</TableCell>
-                                    <TableCell align="center">
-                                        <OrderStatus status={row.Status} />
-                                    </TableCell>
-                                    <TableCell align="center">
-                                        <NumberFormat value={row.protein} displayType="text" thousandSeparator prefix="$" />
-                                    </TableCell>
-                                    <TableCell align="center">
-                                    <IconButton
-                                        aria-label="expand row"
-                                        size="small"
-                                        onClick={() => setOpen(!open)}
-                                    >
-                                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                                    </IconButton>
-                                    </TableCell>
-
-
-                                    
-                                </TableRow>
                                 
-                                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
-                                  <Collapse in={open} timeout="auto" unmountOnExit>
-                                    <Box sx={{ margin: 1 }}>
-                                      <Typography variant="h6" gutterBottom component="div">
-                                        History
-                                      </Typography>
-                                      <Table size="small" aria-label="purchases">
-                                        <TableHead>
-                                          <TableRow>
-                                            <TableCell>Date</TableCell>
-                                            <TableCell>Customer</TableCell>
-                                            <TableCell align="right">Amount</TableCell>
-                                            <TableCell align="right">Total price ($)</TableCell>
-                                          </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                          {history.map((historyRow) => (
-                                            <TableRow key={historyRow.date}>
-                                              <TableCell component="th" scope="row">
-                                                {historyRow.date}
-                                              </TableCell>
-                                              <TableCell>{historyRow.customerId}</TableCell>
-                                              <TableCell align="right">{historyRow.amount}</TableCell>
-                                              <TableCell align="right">
-                                                {Math.round(historyRow.amount) / 100}
-                                              </TableCell>
-                                            </TableRow>
-                                          ))}
-                                        </TableBody>
-                                      </Table>
-                                    </Box>
-                                  </Collapse>
-                                </TableCell>
-                              
-                              </React.Fragment>
+                                <Row labelId={labelId} isItemSelected={isItemSelected} row={row} />
                                 
                             );
                         })}

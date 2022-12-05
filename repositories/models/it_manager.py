@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from dataclasses import dataclass
 
-
-class ItManager(BaseModel):
+@dataclass
+class ItManager():
     id: int
     user_name: str
     first_name: str
