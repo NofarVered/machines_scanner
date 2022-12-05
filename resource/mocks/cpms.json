@@ -1,0 +1,5 @@
+[{"cpm_id":1,"ip_adresses":"0.0.0.0 - 127.255.255.255","last_activity_date":"2021-12-10 04:15:16"},
+{"cpm_id":2,"ip_adresses":"128.0.0.0 - 191.255.255.255","last_activity_date":"2022-03-16 00:54:25"},
+{"cpm_id":3,"ip_adresses":"192.0.0.0 - 223.255.255.255","last_activity_date":"2022-08-10 11:50:49"},
+{"cpm_id":4,"ip_adresses":"224.0.0.0 - 239.255.255.255","last_activity_date":"2022-10-31 08:37:39"},
+{"cpm_id":5,"ip_adresses":"240.0.0.0 - 255.255.255.255","last_activity_date":"2022-07-16 19:05:48"}]
