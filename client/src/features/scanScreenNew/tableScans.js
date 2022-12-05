@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
-
+import IconButton from '@mui/material/IconButton';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import Collapse from '@mui/material/Collapse';
+import * as React from 'react';
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
@@ -15,6 +19,18 @@ function createData(ScanName, SuucesDate, excuteBy, Status, ScanFile) {
     return { ScanName, SuucesDate, excuteBy, Status, ScanFile };
 }
 
+const history= [
+    {
+      date: '2020-01-05',
+      customerId: '11091700',
+      amount: 3,
+    },
+    {
+      date: '2020-01-02',
+      customerId: 'Anonymous',
+      amount: 1,
+    },
+  ]
 
 
 const rows = [
@@ -87,7 +103,7 @@ const headCells = [
     },
     {
           id: 'ScanFile',
-        align: 'right',
+        align: 'right', 
         disablePadding: false,
         label: 'Scan File'
     },
@@ -176,6 +192,7 @@ export default function OrderTable() {
     const [order] = useState('asc');
     const [orderBy] = useState('trackingNo');
     const [selected] = useState([]);
+    const [open, setOpen] = useState(false);
 
     const isSelected = (trackingNo) => selected.indexOf(trackingNo) !== -1;
 
@@ -210,6 +227,7 @@ export default function OrderTable() {
                             const labelId = `enhanced-table-checkbox-${index}`;
 
                             return (
+                                <React.Fragment>
                                 <TableRow
                                     hover
                                     role="checkbox"
@@ -234,9 +252,55 @@ export default function OrderTable() {
                                         <NumberFormat value={row.protein} displayType="text" thousandSeparator prefix="$" />
                                     </TableCell>
                                     <TableCell align="center">
-                                        <NumberFormat value={row.detalis} displayType="text" thousandSeparator prefix="$" />
+                                    <IconButton
+                                        aria-label="expand row"
+                                        size="small"
+                                        onClick={() => setOpen(!open)}
+                                    >
+                                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                                    </IconButton>
                                     </TableCell>
+
+
+                                    
                                 </TableRow>
+                                
+                                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                                  <Collapse in={open} timeout="auto" unmountOnExit>
+                                    <Box sx={{ margin: 1 }}>
+                                      <Typography variant="h6" gutterBottom component="div">
+                                        History
+                                      </Typography>
+                                      <Table size="small" aria-label="purchases">
+                                        <TableHead>
+                                          <TableRow>
+                                            <TableCell>Date</TableCell>
+                                            <TableCell>Customer</TableCell>
+                                            <TableCell align="right">Amount</TableCell>
+                                            <TableCell align="right">Total price ($)</TableCell>
+                                          </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                          {history.map((historyRow) => (
+                                            <TableRow key={historyRow.date}>
+                                              <TableCell component="th" scope="row">
+                                                {historyRow.date}
+                                              </TableCell>
+                                              <TableCell>{historyRow.customerId}</TableCell>
+                                              <TableCell align="right">{historyRow.amount}</TableCell>
+                                              <TableCell align="right">
+                                                {Math.round(historyRow.amount) / 100}
+                                              </TableCell>
+                                            </TableRow>
+                                          ))}
+                                        </TableBody>
+                                      </Table>
+                                    </Box>
+                                  </Collapse>
+                                </TableCell>
+                              
+                              </React.Fragment>
+                                
                             );
                         })}
                     </TableBody>
