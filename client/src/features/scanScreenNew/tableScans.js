@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Collapse from '@mui/material/Collapse';
 import * as React from 'react';
+import {getScans} from './ApiScans'
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
@@ -31,6 +32,7 @@ const history= [
       amount: 1,
     },
   ]
+
 
 
 const rows = [
@@ -85,7 +87,7 @@ const headCells = [
         id: 'SuucesDate',
         align: 'left',
         disablePadding: true,
-        label: 'Suuces Date'
+        label: 'success Date'
     },
     {
         id: 'excuteBy',
@@ -118,6 +120,16 @@ const headCells = [
 // ==============================|| ORDER TABLE - HEADER ||============================== //
 
 function OrderTableHead({ order, orderBy }) {
+    const [scans,setScans]=useState([])
+    
+    useEffect(() => {
+        getScans().then((result)=>{
+            setScans(result)    
+        }).catch(()=>{
+
+        })
+      }, []); 
+
     return (
         
         <TableHead sx={{
