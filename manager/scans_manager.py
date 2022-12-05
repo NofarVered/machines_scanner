@@ -20,7 +20,7 @@ def addScan(scan:Scans):
 @scans.get('/scans',response_class= JSONResponse , status_code= status.HTTP_200_OK)
 def getScans():
 
-    scans_list = [Scans(1,"test","1.1.1990","or","pending","file.csv") ]
+    scans_list = [Scans(1,"1.1.1990","Or","test","pending","csv.file",True,1) ]
     return {
             "success": True,
             "payload": scans_list
