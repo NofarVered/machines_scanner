@@ -84,31 +84,31 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-      id: 'accountName',
+      id: 'account_name',
       align: 'left',
       disablePadding: false,
       label: 'Account Name'
   },
   {
-      id: 'scanId',
+      id: 'scan_id',
       align: 'left',
       disablePadding: true,
       label: 'Scan ID'
   },
   {
-      id: 'isPrivileged',
+      id: 'is_privilege',
       align: 'left',
       disablePadding: true,
       label: 'Privileged'
   },
   {
-      id: 'groupName',
+      id: 'group_name',
       align: 'right', 
       disablePadding: false,
       label: 'Group Name'
   },
   {
-    id: 'passwordAge',
+    id: 'password_age',
     align: 'right', 
     disablePadding: false,
     label: 'Password Age'
@@ -122,9 +122,12 @@ const headCells = [
 ];
 
 const fillRowInfo=(accounts)=>{
+  const new_accounts=[]
   for(let i=0;i<accounts.length;i++){
-      createData(accounts[i].account_name, accounts[i].scan_id, accounts[i].is_privilege, accounts[i].group_name, accounts[i].password_age)
+      new_accounts.push(createData(accounts[i].account_name, accounts[i].scan_id, accounts[i].is_privilege, accounts[i].group_name, accounts[i].password_age))
   }
+  return new_accounts
+
 }
 
 // ==============================|| ORDER TABLE - HEADER ||============================== //
@@ -247,7 +250,6 @@ export default function Accounts() {
     const [selected] = useState([]);
     
     const [accounts,setAccounts]=useState([])
-    const rows = useState([])
 
 
     
@@ -255,7 +257,9 @@ export default function Accounts() {
 
     useEffect(() => {
         getAccounts().then((result)=>{
-            setAccounts(result)
+          console.log(result)
+          setAccounts(fillRowInfo(result))
+          console.log(accounts)
      
         }).catch((error)=>{
             console.log(error)
@@ -289,7 +293,7 @@ export default function Accounts() {
                 >
                     <OrderTableHead order={order} orderBy={orderBy} />
                     <TableBody>
-                        {stableSort(rows, getComparator(order, orderBy)).map((row, index) => {
+                        {stableSort(accounts, getComparator(order, orderBy)).map((row, index) => {
                             const isItemSelected = isSelected(row.accountName);
                             const labelId = `enhanced-table-checkbox-${index}`;
 
