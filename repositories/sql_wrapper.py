@@ -8,7 +8,7 @@ class db_wrapper:
                                                 host='localhost',
                                                 user='root',
                                                 password="",
-                                                db="bank",
+                                                db="machines_scanner",
                                                 charset="utf8",
                                                 cursorclass=pymysql.cursors.DictCursor
                                             )
