@@ -45,6 +45,9 @@ sql_select_all_recent_accounts = """
                                """
 
 sql_select_machines_by_account = """
+                                SELECT m.machine_id
+                                FROM machines m JOIN machines_accounts ma ON m.machine_id = ma.machine_id
+                                WHERE ma.account_name =  values (%s)
                                 """
 
 insert_to_scan_requests_table = """
