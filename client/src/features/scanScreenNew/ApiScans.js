@@ -1,4 +1,4 @@
-const scansUrl ='http://localhost:8081/scans/'
+const scansUrl ='http://localhost:8000/scans/'
 
 
 export function getScans(){

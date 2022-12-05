@@ -35,18 +35,6 @@ const history= [
 
 
 
-const rows = [
-    createData(84564564, 'Camera Lens', 40, 2, 40570),
-    createData(98764564, 'Laptop', 300, 0, 180139),
-    createData(98756325, 'Mobile', 355, 1, 90989),
-    createData(98652366, 'Handset', 50, 1, 10239),
-    createData(13286564, 'Computer Accessories', 100, 1, 83348),
-    createData(86739658, 'TV', 99, 0, 410780),
-    createData(13256498, 'Keyboard', 125, 2, 70999),
-    createData(98753263, 'Mouse', 89, 2, 10570),
-    createData(98753275, 'Desktop', 185, 1, 98063),
-    createData(98753291, 'Chair', 100, 0, 14001)
-];
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -117,18 +105,16 @@ const headCells = [
     }
 ];
 
+const fillRowInfo=(scans)=>{
+    for(let i=0;i<scans.length;i++){
+        createData(scans[i].scan_name, scans[i].success_date, scans[i].excute_by, scans[i].status, scans[i].scan_file)
+    }
+}
+
 // ==============================|| ORDER TABLE - HEADER ||============================== //
 
 function OrderTableHead({ order, orderBy }) {
-    const [scans,setScans]=useState([])
-    
-    useEffect(() => {
-        getScans().then((result)=>{
-            setScans(result)    
-        }).catch(()=>{
-
-        })
-      }, []); 
+  
 
     return (
         
@@ -205,9 +191,22 @@ export default function OrderTable() {
     const [orderBy] = useState('trackingNo');
     const [selected] = useState([]);
     const [open, setOpen] = useState(false);
+    const [scans,setScans]=useState([])
+    const rows =useState([])
 
+
+    
     const isSelected = (trackingNo) => selected.indexOf(trackingNo) !== -1;
 
+    useEffect(() => {
+        getScans().then((result)=>{
+            setScans(result)
+            rows=fillRowInfo(scans)    
+        }).catch((error)=>{
+            console.log(error)
+
+        })
+      }, []); 
     return (
         <Box>
             <TableContainer
