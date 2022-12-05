@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Container } from '@mui/system';
-import Accounts from './Accounts';
+import Accounts from './accounts/Accounts';
 
 export default function AccountsWrapper() {
 

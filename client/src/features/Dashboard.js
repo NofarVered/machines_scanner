@@ -148,7 +148,7 @@ function DashboardContent() {
         >
           <Toolbar />
           <Route path='/' exact render={()=> <ScansWrapper />}/>
-          <Route path='cpm' exact render={()=> <CpmWrapper />}/>
+          <Route path='/cpm' exact render={()=> <CpmWrapper />}/>
           <Route path='/accounts' exact render={()=> <AccountsWrapper />}/>
           <Route path='/machines' exact render={()=> <Machineswrapper />}/>
           <Route path='/statistics' exact render={()=> <StatisticsWrapper />}/>
