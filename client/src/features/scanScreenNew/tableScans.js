@@ -6,6 +6,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Collapse from '@mui/material/Collapse';
 import * as React from 'react';
 import {getScans} from './ApiScans'
+import { TableComponent } from "./historySchemScan";
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
@@ -20,18 +21,6 @@ function createData(ScanName, SuucesDate, excuteBy, Status, ScanFile) {
     return { ScanName, SuucesDate, excuteBy, Status, ScanFile };
 }
 
-const history= [
-    {
-      date: '2020-01-05',
-      customerId: '11091700',
-      amount: 3,
-    },
-    {
-      date: '2020-01-02',
-      customerId: 'Anonymous',
-      amount: 1,
-    },
-  ]
 
 
 
@@ -117,7 +106,6 @@ const fillRowInfo=(scans)=>{
 // ==============================|| ORDER TABLE - HEADER ||============================== //
 
 function OrderTableHead({ order, orderBy }) { 
-
     return (
         
         <TableHead sx={{
@@ -133,8 +121,7 @@ function OrderTableHead({ order, orderBy }) {
                         align='center'
                         sx={{width: "450px"}}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
-                        sortDirection={orderBy === headCell.id ? order : false}
-                    >
+                        sortDirection={orderBy === headCell.id ? order : false}                    >
                         {headCell.label}
                     </TableCell>
                 ))}
@@ -192,8 +179,7 @@ function Row(props){
     const labelId=props.labelId
     const isItemSelected=props.isItemSelected
     return(                          
-            <React.Fragment>
-                                
+            <React.Fragment>                                
             <TableRow
                 hover
                 role="checkbox"                
@@ -203,8 +189,7 @@ function Row(props){
                 key={row.ScanName}
                 selected={isItemSelected}
             >
-                <TableCell component="th" id={labelId} scope="row" align="center">
-                        
+                <TableCell component="th" id={labelId} scope="row" align="center">                        
                         {row.ScanName}
                 
                 </TableCell>
@@ -231,37 +216,11 @@ function Row(props){
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
             <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-            <Typography variant="h6" gutterBottom component="div">
-            History
-            </Typography>
-            <Table size="small" aria-label="purchases">
-            <TableHead>
-            <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Customer</TableCell>
-            <TableCell align="right">Amount</TableCell>
-            <TableCell align="right">Total price ($)</TableCell>
-            </TableRow>
-            </TableHead>
-            <TableBody>
-            {history.map((historyRow) => (
-            <TableRow key={historyRow.date}>
-            <TableCell component="th" scope="row">
-            {historyRow.date}
-            </TableCell>
-            <TableCell>{historyRow.customerId}</TableCell>
-            <TableCell align="right">{historyRow.amount}</TableCell>
-            <TableCell align="right">
-            {Math.round(historyRow.amount * 100) / 100}
-            </TableCell>
-            </TableRow>
-            ))}
-            </TableBody>
-            </Table>
-            </Box>
-            </Collapse>
-            </TableCell>
-            </TableRow>
+            <TableComponent/>
+        </Box>
+       </Collapse>
+     </TableCell>
+     </TableRow>
 
     </React.Fragment>
     )
@@ -275,7 +234,7 @@ export default function OrderTable() {
     const [selected] = useState([]);
     
     const [scans,setScans]=useState([])
-    let rows =useState([])
+  
 
 
     
