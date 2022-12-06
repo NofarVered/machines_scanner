@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from repositories import querys
 from repositories.sql_wrapper import db_wrapper 
 from repositories.models.account import Account
+from repositories.accounts_repository import Acount_repo
 
 db = db_wrapper()
 account = APIRouter()
@@ -26,3 +27,11 @@ def getAccountsStats():
                 "privilliged_stats": privilliged_stats
             }
     return stats
+
+@account.delete('/accounts/{acount_name}',response_class= JSONResponse , status_code= status.HTTP_204_NO_CONTENT)
+def deleteAcountByAcountName(acount_name):
+    Acount_repo.delete_acount(acount_name)
+    return {
+            "success": True
+            
+           }

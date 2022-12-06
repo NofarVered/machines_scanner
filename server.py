@@ -1,9 +1,8 @@
 from fastapi import FastAPI ,status
 import uvicorn
 # from server.routes.routes.users_route import users
-from manager.account_manager import account
+from manager.accounts_manager import account
 from manager.scans_manager import scans
-from manager.machins_manager import machine
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -25,7 +24,7 @@ app.add_middleware(
 
 app.include_router(account)
 app.include_router(scans)
-app.include_router(machine)
+
 
 @app.get('/sanity' , response_class= JSONResponse , status_code= status.HTTP_200_OK)
 def root():
