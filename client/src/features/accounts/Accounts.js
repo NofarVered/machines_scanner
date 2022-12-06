@@ -15,18 +15,9 @@ import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import NumberFormat from "react-number-format"
 
 import { getAccounts } from './ApiAccounts';
+import MachinesByAccount from './MachinesByAccounts';
 
 
-// const accounts = [
-//     {
-//         'userName': 'matan',
-//         'groupName': 'admins',
-//         'privileged': 'yes',
-//         'password': '1234',
-//         'lastPasswordChange': '30-11-2022',
-//         'remoteMachine': 'Linux'
-//     }
-// ]
 
 
 function preventDefault(event) {
@@ -37,20 +28,6 @@ function preventDefault(event) {
 function createData(accountName, scanId, isPrivileged, groupName, passwordAge) {
   return { accountName, scanId, isPrivileged, groupName, passwordAge };
 }
-
-const history= [
-  {
-    date: '2020-01-05',
-    customerId: '11091700',
-    amount: 3,
-  },
-  {
-    date: '2020-01-02',
-    customerId: 'Anonymous',
-    amount: 1,
-  },
-]
-
 
 
 
@@ -205,35 +182,7 @@ function Row(props){
           <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-          <Box sx={{ margin: 1 }}>
-          <Typography variant="h6" gutterBottom component="div">
-          Machines
-          </Typography>
-          <Table size="small" aria-label="purchases">
-          <TableHead>
-          <TableRow>
-          <TableCell>Date</TableCell>
-          <TableCell>Customer</TableCell>
-          <TableCell align="right">Amount</TableCell>
-          <TableCell align="right">Total price ($)</TableCell>
-          </TableRow>
-          </TableHead>
-          <TableBody>
-          {history.map((historyRow) => (
-          <TableRow key={historyRow.date}>
-          <TableCell component="th" scope="row">
-          {historyRow.date}
-          </TableCell>
-          <TableCell>{historyRow.customerId}</TableCell>
-          <TableCell align="right">{historyRow.amount}</TableCell>
-          <TableCell align="right">
-          {Math.round(historyRow.amount * 100) / 100}
-          </TableCell>
-          </TableRow>
-          ))}
-          </TableBody>
-          </Table>
-          </Box>
+                <MachinesByAccount />
           </Collapse>
           </TableCell>
           </TableRow>
