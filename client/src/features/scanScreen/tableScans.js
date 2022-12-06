@@ -7,12 +7,8 @@ import {getScans} from './ApiScans'
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
-// third-party
 
 
-// project import
-
-import DataTable from './historySchema';
 import { Row } from './row';
 
 function createData(ScanName, SuucesDate, excuteBy, Status, ScanFile) {
@@ -91,6 +87,7 @@ const headCells = [
         disablePadding: false,
         label: 'rerun scan'
     },
+    
     {
         id: 'detalis',
         align: 'left',
