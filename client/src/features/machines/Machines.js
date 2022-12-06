@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Link from '@mui/material/Link';
-import Title from './Title';
 import PropTypes from 'prop-types';
 import { useState,useEffect } from 'react';
 import IconButton from '@mui/material/IconButton';
@@ -23,8 +22,8 @@ function preventDefault(event) {
 }
 
 
-function createData(machineId, OperatingSystem, IpAddress) {
-  return { machineId, OperatingSystem, IpAddress };
+function createData(machineId, OperatingSystem, ipAddress) {
+  return { machineId, OperatingSystem, ipAddress };
 }
 
 const history= [
@@ -73,35 +72,23 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-      id: 'account_name',
+      id: 'machine_id',
       align: 'left',
       disablePadding: false,
-      label: 'Account Name'
+      label: 'Machine ID'
   },
   {
-      id: 'scan_id',
+      id: 'operating_platform',
       align: 'left',
       disablePadding: true,
-      label: 'Scan ID'
+      label: 'Operating System'
   },
   {
-      id: 'is_privilege',
+      id: 'ip_address',
       align: 'left',
       disablePadding: true,
-      label: 'Privileged'
+      label: 'IP Address'
   },
-  {
-      id: 'group_name',
-      align: 'right', 
-      disablePadding: false,
-      label: 'Group Name'
-  },
-  {
-    id: 'password_age',
-    align: 'right', 
-    disablePadding: false,
-    label: 'Password Age'
-},
   {
       id: 'detalis',
       align: 'left',
@@ -110,12 +97,12 @@ const headCells = [
   }
 ];
 
-const fillRowInfo=(accounts)=>{
-  const new_accounts=[]
-  for(let i=0;i<accounts.length;i++){
-      new_accounts.push(createData(accounts[i].account_name, accounts[i].scan_id, accounts[i].is_privilege, accounts[i].group_name, accounts[i].password_age))
+const fillRowInfo=(machines)=>{
+  const new_machines=[]
+  for(let i=0;i<machines.length;i++){
+      new_machines.push(createData(machines[i].machine_id, machines[i].operating_platform, machines[i].ip_address))
   }
-  return new_accounts
+  return new_machines
 
 }
 
@@ -168,18 +155,16 @@ function Row(props){
               sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
               aria-checked={isItemSelected}
               tabIndex={-1}
-              key={row.accountName}
+              key={row.machineId}
               selected={isItemSelected}
           >
               <TableCell component="th" id={labelId} scope="row" align="center">
                       
-                      {row.accountName}
+                      {row.machineId}
               
               </TableCell>
-              <TableCell align="center">{row.scanId}</TableCell>
-              <TableCell align="center">{row.isPrivileged}</TableCell>
-              <TableCell align="center">{row.groupName}</TableCell>
-              <TableCell align="center">{row.passwordAge}</TableCell>
+              <TableCell align="center">{row.OperatingSystem}</TableCell>
+              <TableCell align="center">{row.ipAddress}</TableCell>
               <TableCell align="center">
               <IconButton
                   aria-label="expand row"
@@ -196,7 +181,7 @@ function Row(props){
           <Collapse in={open} timeout="auto" unmountOnExit>
           <Box sx={{ margin: 1 }}>
           <Typography variant="h6" gutterBottom component="div">
-          Machines
+          Accounts
           </Typography>
           <Table size="small" aria-label="purchases">
           <TableHead>
@@ -238,17 +223,15 @@ export default function Machines() {
     const [orderBy] = useState('ScanName');
     const [selected] = useState([]);
     
-    const [accounts,setAccounts]=useState([])
+    const [machines,setMachines]=useState([])
 
 
     
-    const isSelected = (accountName) => selected.indexOf(accountName) !== -1;
+    const isSelected = (machineId) => selected.indexOf(machineId) !== -1;
 
     useEffect(() => {
-        getAccounts().then((result)=>{
-          console.log(result)
-          setAccounts(fillRowInfo(result))
-          console.log(accounts)
+        getMachines().then((result)=>{
+          setMachines(fillRowInfo(result))
      
         }).catch((error)=>{
             console.log(error)
@@ -282,8 +265,8 @@ export default function Machines() {
                 >
                     <OrderTableHead order={order} orderBy={orderBy} />
                     <TableBody>
-                        {stableSort(accounts, getComparator(order, orderBy)).map((row, index) => {
-                            const isItemSelected = isSelected(row.accountName);
+                        {stableSort(machines, getComparator(order, orderBy)).map((row, index) => {
+                            const isItemSelected = isSelected(row.machineId);
                             const labelId = `enhanced-table-checkbox-${index}`;
 
                             return (

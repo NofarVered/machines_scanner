@@ -1,4 +1,4 @@
-const accountsUrl ='http://localhost:8000/machines/'
+const machinesUrl ='http://localhost:8000/machines/'
 
 
 export function getMachines(){
