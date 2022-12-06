@@ -11,13 +11,19 @@ insert_to_scan_requests_table = """
 sql_select_recent_scans = """
                             SELECT *
                             FROM scan_requests
-                            WHERE is_most_recent = 1
+                            WHERE scan_requests.is_most_recent = 1
                             """
 
 sql_select_history_scans = """
                             SELECT *
                             FROM scan_requests
-                            WHERE is_most_recent = 0 AND scan_requests.scan_id = %s
+                            WHERE scan_requests.is_most_recent = 0 AND scan_requests.scan_id = %s
+                            """
+
+sql_select_scans_by_id_date = """
+                            SELECT *
+                            FROM scan_requests
+                            WHERE scan_requests.scan_id = %s AND scan_requests.success_date = %s
                             """
 
 db = db_wrapper()
@@ -32,6 +38,9 @@ class Scans_repo:
         return scans
 
     def getScanById(scan_id):
+        scans = db.execute_select_all_query(sql_select_history_scans,(scan_id))
+        return scans
+    def getScanByIdAndDate(scan_id,date):
         scans = db.execute_select_all_query(sql_select_history_scans,(scan_id))
         return scans
 

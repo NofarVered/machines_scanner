@@ -25,6 +25,17 @@ class db_wrapper:
                 return cursor.lastrowid
         except pymysql.Error :
             raise DbError("Failed to execute insert query")
+    
+    def execute_update_query(self, sql_query, params):
+        try:
+            self.connection.ping()
+            with self.connection.cursor() as cursor:
+                cursor.execute(sql_query, params)
+                self.connection.commit()
+                print(f'{params} updated successfully')
+                return cursor.lastrowid
+        except pymysql.Error :
+            raise DbError("Failed to execute update query")
 
     def execute_delete_query(self, sql_query, params):
         try:
