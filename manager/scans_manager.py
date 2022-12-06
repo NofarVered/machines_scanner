@@ -20,19 +20,26 @@ async def addScan(request: Request):
             }
 
 @scans.get('/scans',response_class= JSONResponse , status_code= status.HTTP_200_OK)
-def getScans(recent = None ,history = None):
-    scans = Scans_repo.getScan(recent,history)
+def getRecentScans():
+    scans = Scans_repo.getRecentScan()
     return {
             "success": True,
             "payload": scans
             }
 
-@scans.post('/scans/{scan_transaction_id}', response_class= JSONResponse , status_code= status.HTTP_201_CREATED)
-async def addScan(request: Request): 
-    req = await request.json()
-    ## need to implement the change status logic
+@scans.get('/scans/{scan_id}',response_class= JSONResponse , status_code= status.HTTP_200_OK)
+def getScansByHistoryId(scan_id):
+    scans = Scans_repo.getScansByHistoryId(scan_id)
     return {
-
             "success": True,
-            "payload": req
+            "payload": scans
+            }
+
+@scans.post('/scans/rerun',response_class= JSONResponse , status_code= status.HTTP_200_OK)
+async def reRunScan(request: Request):
+    req = await request.json()
+    scans = Scans_repo.reRunScan(req)
+    return {
+            "success": True,
+            "payload": scans
             }
