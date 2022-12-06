@@ -1,29 +1,16 @@
 import PropTypes from 'prop-types';
 import { useState,useEffect } from 'react';
-
 import * as React from 'react';
 import {getScans} from './ApiScans'
-
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
-// third-party
 
 
-// project import
-
-import DataTable from './historySchema';
 import { Row } from './row';
-
 function createData(ScanName, SuucesDate, excuteBy, Status, ScanFile) {
     return { ScanName, SuucesDate, excuteBy, Status, ScanFile };
 }
-
-
-
-
-
-
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
         return -1;
@@ -33,11 +20,9 @@ function descendingComparator(a, b, orderBy) {
     }
     return 0;
 }
-
 function getComparator(order, orderBy) {
     return order === 'desc' ? (a, b) => descendingComparator(a, b, orderBy) : (a, b) => -descendingComparator(a, b, orderBy);
 }
-
 function stableSort(array, comparator) {
     const stabilizedThis = array.map((el, index) => [el, index]);
     stabilizedThis.sort((a, b) => {
@@ -49,9 +34,7 @@ function stableSort(array, comparator) {
     });
     return stabilizedThis.map((el) => el[0]);
 }
-
 // ==============================|| ORDER TABLE - HEADER CELL ||============================== //
-
 const headCells = [
     {
         id: 'ScanName',
@@ -69,19 +52,17 @@ const headCells = [
         id: 'excuteBy',
         align: 'left',
         disablePadding: true,
-        
         label: 'excute By'
     },
     {
         id: 'Status',
         align: 'left',
         disablePadding: false,
-
         label: 'Status'
     },
     {
           id: 'ScanFile',
-        align: 'right', 
+        align: 'right',
         disablePadding: false,
         label: 'Scan File'
     },
@@ -91,6 +72,7 @@ const headCells = [
         disablePadding: false,
         label: 'rerun scan'
     },
+    
     {
         id: 'detalis',
         align: 'left',
@@ -99,22 +81,16 @@ const headCells = [
     },
     
 ];
-
 const fillRowInfo=(scans)=>{
     const new_scans=[]
     for(let i=0;i<scans.length;i++){
         new_scans.push(createData(scans[i].scan_name, scans[i].success_date, scans[i].execute_by, scans[i].scan_status, scans[i].scan_file))
     }
-  
     return new_scans
-
 }
-
 // ==============================|| ORDER TABLE - HEADER ||============================== //
-
-function OrderTableHead({ order, orderBy }) { 
+function OrderTableHead({ order, orderBy }) {
     return (
-        
         <TableHead sx={{
             "& th": {
               color: "white",              
@@ -136,44 +112,25 @@ function OrderTableHead({ order, orderBy }) {
         </TableHead>
     );
 }
-
 OrderTableHead.propTypes = {
     order: PropTypes.string,
     orderBy: PropTypes.string
 };
-
 // ==============================|| ORDER TABLE - STATUS ||============================== //
-
-
-
-
-
-
 // ==============================|| ORDER TABLE ||============================== //
-
 export default function OrderTable() {
     const [order] = useState('asc');
     const [orderBy] = useState('ScanName');
     const [selected] = useState([]);
-   
-    
-    const [scans,setScans]=useState([]) 
-    
-
-
-    
+    const [scans,setScans]=useState([])
     const isSelected = (ScanName) => selected.indexOf(ScanName) !== -1;
-
     useEffect(() => {
         getScans().then((result)=>{
             setScans(fillRowInfo(result.payload))              
         }).catch((error)=>{
             console.log(error)
-
         })
-      }, []); 
-
-       
+      }, []);
     return (
         <Box>
             <TableContainer
@@ -183,7 +140,6 @@ export default function OrderTable() {
                     position: 'relative',
                     display: 'block',
                     maxWidth: '100%',
-                    
                     '& td, & th': { whiteSpace: 'nowrap' }
                 }}
             >
@@ -203,10 +159,8 @@ export default function OrderTable() {
                         {stableSort(scans, getComparator(order, orderBy)).map((row, index) => {
                             const isItemSelected = isSelected(row.ScanName);
                             const labelId = `enhanced-table-checkbox-${index}`;
-
                             return (                                
                                 <Row  labelId={labelId} isItemSelected={isItemSelected} row={row} />
-                                
                             );
                         })}
                     </TableBody>

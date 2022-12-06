@@ -33,11 +33,10 @@ class db_wrapper:
                 cursor.execute(sql_query, params)
                 self.connection.commit()
                 if not cursor.rowcount:
-                   raise DbError("Failed to execute insert query") 
+                   raise DbError("Failed to execute delete query") 
                 print(f'{params} deleted successfully')
-
         except pymysql.Error as e:
-            raise DbError("Failed to execute insert query")
+            raise DbError(e)
 
     def execute_select_one_query(self, sql_query, params = None):
         try:

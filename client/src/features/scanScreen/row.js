@@ -5,6 +5,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Collapse from '@mui/material/Collapse';
 import * as React from 'react';
+import {ReRunComp} from './rerunComponent'
 
 import Dot from './dot';
 
@@ -25,21 +26,21 @@ const OrderStatus = ({ status }) => {
     let title;
 
     switch (status) {
-        case 3:
+        case 1:
             color = 'warning';
             title = 'Pending';
             break;
-        case 1:
+        case 3:
             color = 'success';
-            title = 'Approved';
+            title = 'Done';
+            break;
+        case 4:
+            color = 'error';
+            title = 'failed';
             break;
         case 2:
-            color = 'error';
-            title = 'Rejected';
-            break;
-        default:
             color = 'primary';
-            title = 'None';
+            title = 'Stop';
     }
 
     return (
@@ -57,7 +58,8 @@ OrderStatus.propTypes = {
 export function Row(props){
 
     const row =props.row;   
-      
+    const imageStop = "https://cdn-icons-png.flaticon.com/512/1670/1670326.png"    
+    const imageReRun = "https://cdn4.iconfinder.com/data/icons/audio-video-gaming-controls/512/Audio_video_game_controls_Replay-512.png"    
       
     const [open, setOpen] = useState(false);
     const labelId=props.labelId
@@ -85,8 +87,13 @@ export function Row(props){
                 <TableCell align="center">
                     <OrderStatus status={row.Status} />
                 </TableCell>
-                <TableCell align="center">{row.ScanFile}</TableCell>
-                <TableCell align="center">{row.ScanFile}</TableCell>
+                <TableCell  align="center">{row.ScanFile}</TableCell> 
+
+               {row.Status==1? 
+                    <ReRunComp image={imageStop}/>
+                :
+                    <ReRunComp image={imageReRun}/>}
+               
                 <TableCell align="center">
                     
                 <IconButton
