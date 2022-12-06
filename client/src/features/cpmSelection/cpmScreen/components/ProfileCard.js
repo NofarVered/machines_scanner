@@ -6,7 +6,7 @@ export function ProfileCard(props) {
 	return (
 		<div className="card-container">
 			<header className="header_card">
-				<img src={avatar} alt={props.name} />
+				<img src={props.image} alt={props.cpm.name} />
 			</header>
 			<h1 className="bold-text">
 				{props.name} <span className="normal-text">{props.age}</span>
