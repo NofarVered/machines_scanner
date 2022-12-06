@@ -1,0 +1,17 @@
+routers list (with endpoints):
+
+1) cpms:
+	- GET list of cpms
+2) accounts:
+	- GET list of accounts by spesific accounts + pay a spesific attention to re-added account (+logic of alert)
+	- DELETE account from machine
+	- GET all machines by a given account 
+3) scans:
+	- INSERT a new scan 
+	- UPDATE a scan (the is_most_recent feild)
+	- GET list of all recent requests scans
+	- GET list of all "history" scans, group by a scan_id.
+4) statistics: 
+	- GET the number of priviliget + not priviliget accounts by scan. 
+	- GET the number of mac\ linux\ windows platforms of machines by scan. 
+
