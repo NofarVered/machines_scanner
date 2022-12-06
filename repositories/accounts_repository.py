@@ -20,8 +20,10 @@ class Accounts_repo:
         accounts = db.execute_select_all_query(sql_select_all_accounts)
         return accounts
 
-    def getAllMachinesByAccount():
-        machines = db.execute_select_all_query(sql_select_machines_by_account)
+    def getAllMachinesByAccount(account_id):
+        machines = db.execute_select_all_query(
+            sql_select_machines_by_account, account_id
+        )
         return machines
 
 

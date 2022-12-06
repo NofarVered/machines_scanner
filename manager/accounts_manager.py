@@ -14,13 +14,13 @@ def getAccounts():
     return Accounts_repo.getAllAccounts()
 
 
-@account.get(
-    "/accounts/{account_name}",
-    response_class=JSONResponse,
-    status_code=status.HTTP_200_OK,
-)
-def getMachinesByAccount(account_name):
-    return Accounts_repo.getAllMachinesByAccount()
+# @account.get(
+#     "/accounts/{account_name}",
+#     response_class=JSONResponse,
+#     status_code=status.HTTP_200_OK,
+# )
+# def getMachinesByAccount(account_name):
+#     return Accounts_repo.getAllMachinesByAccount(account_name)
 
 
 @account.get(
