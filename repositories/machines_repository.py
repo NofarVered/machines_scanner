@@ -1,7 +1,7 @@
 from repositories.sql_wrapper import db_wrapper
 
 sql_select_machines_by_account = """
-                                SELECT m.machine_id
+                                SELECT m.machine_id, m.operating_platform, ip_address
                                 FROM machines m JOIN machines_accounts ma ON m.machine_id = ma.machine_id
                                 WHERE ma.account_name =  %s
                                 """
