@@ -25,7 +25,7 @@
   "scan_file":"EuMagna.ppt",
   "is_most_recent":true
 }
-* "scan_status" is enum. 1= "pending", 2="stoped", 3="done"
+* "scan_status" is enum. 1= "pending", 2="stoped", 3="done",4="failed"
 
 4) machines : V
 {

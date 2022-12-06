@@ -24,10 +24,6 @@ sql_select_all_privilliged_accounts = """
                                     GROUP BY accounts.account_name
                                     """
 
-sql_select_all_scans = """
-                        SELECT *
-                        FROM scan_requests
-                        """
 
 sql_select_all_recent_accounts = """
                                 SELECT a.account_name , a.scan_id , a.is_privileged , a.group_name , a.password_age
@@ -41,7 +37,3 @@ sql_select_machines_by_account = """
                                 WHERE ma.account_name =  values (%s)
                                 """
 
-insert_to_scan_requests_table = """
-                            INSERT IGNORE into scan_requests (scan_id, success_date, execute_by, scan_name, cpm_id, scan_status, scan_file, is_most_recent)
-                            values (%s , %s, %s, %s, %s, %s, %s, %s)
-                            """
