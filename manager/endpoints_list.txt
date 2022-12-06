@@ -1,7 +1,7 @@
 routers list (with endpoints):
 
 1) cpms:
-	- GET list of cpms
+	- GET list of cpms V
 2) accounts:
 	- GET list of accounts by spesific accounts + pay a spesific attention to re-added account (+logic of alert)
 	- DELETE account from machine

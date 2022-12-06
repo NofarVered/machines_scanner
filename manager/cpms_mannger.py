@@ -1,10 +1,8 @@
 from fastapi import APIRouter, status, Response, Request
 from fastapi.responses import JSONResponse
-from repositories import querys
-from repositories.sql_wrapper import db_wrapper
 from repositories.models.cpm import Cpm
 from repositories.cpms_repository import get_cpms_list
-db = db_wrapper()
+
 cpm = APIRouter()
 
 
