@@ -1,4 +1,4 @@
-1) accounts : V
+1) accounts : 
 {
   "account_name":"chest congestion",
   "scan_id":3,
@@ -7,14 +7,14 @@
   "password_age":210
 }
 
-2) cpms : V
+2) cpms : 
 {
   "cpm_id":1,
   "ip_adresses":"0.0.0.0 - 127.255.255.255",
   "last_activity_date":"2021-12-10 04:15:16"
 }
 
-3) scan requests : V
+3) scan requests : 
 {
   "scan_id":1,
   "success_date":"2021-12-10 04:15:16",
@@ -27,7 +27,7 @@
 }
 * "scan_status" is enum. 1= "pending", 2="stoped", 3="done",4="failed"
 
-4) machines : V
+4) machines : 
 {
   "machine_id":1,
   "operating_platform":3,
@@ -35,7 +35,7 @@
 }
 * "operating_platform" is enum. 1= "windows", 2="mac", 3="linux"
 
-5) machines_accounts : V
+5) machines_accounts : 
 {
   "account_name":"Entyvio",
   "machine_id":4,
