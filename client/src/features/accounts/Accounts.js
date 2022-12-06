@@ -15,7 +15,7 @@ import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 import NumberFormat from "react-number-format"
 
 import { getAccounts } from './ApiAccounts';
-import MachinesByAccount from './MachinesByAccounts';
+import MachinesByAccount from './MachinesByAccount';
 
 
 
@@ -116,7 +116,7 @@ function OrderTableHead({ order, orderBy }) {
       <TableHead sx={{
           "& th": {
             color: "white",              
-            backgroundColor: "#1976D2"
+            backgroundColor: "#1976D2",
           }
         }}>
           <TableRow sx={{boxShadow: 4}}>
@@ -182,7 +182,7 @@ function Row(props){
           <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-                <MachinesByAccount />
+                <MachinesByAccount accountName={row.accountName}/>
           </Collapse>
           </TableCell>
           </TableRow>
@@ -240,7 +240,7 @@ export default function Accounts() {
                         }
                     }}
                 >
-                    <OrderTableHead order={order} orderBy={orderBy} />
+                    <OrderTableHead order={order} orderBy={orderBy}/>
                     <TableBody>
                         {stableSort(accounts, getComparator(order, orderBy)).map((row, index) => {
                             const isItemSelected = isSelected(row.accountName);

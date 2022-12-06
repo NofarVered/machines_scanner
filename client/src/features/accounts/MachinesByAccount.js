@@ -21,7 +21,7 @@ const machines = [
   
   
 
-export default function MachinesByAccount() {
+export default function MachinesByAccount(props) {
     return(
         <Box sx={{ margin: 1 }}>
           <Typography variant="h6" gutterBottom component="div">
@@ -31,8 +31,8 @@ export default function MachinesByAccount() {
           <TableHead>
           <TableRow>
           <TableCell>Machine ID</TableCell>
-          <TableCell align="right">Operating System</TableCell>
-          <TableCell align="right">IP Address ($)</TableCell>
+          <TableCell >Operating System</TableCell>
+          <TableCell align="right">IP Address </TableCell>
           </TableRow>
           </TableHead>
           <TableBody>

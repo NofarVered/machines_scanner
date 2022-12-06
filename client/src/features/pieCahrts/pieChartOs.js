@@ -40,6 +40,7 @@ export class ApexChartOsStatistics extends React.Component {
         options: {
           chart: {
             height: 350,
+            width: 100,
             type: 'bar',
           },
           plotOptions: {
@@ -57,7 +58,7 @@ export class ApexChartOsStatistics extends React.Component {
             },
             offsetY: -20,
             style: {
-              fontSize: '12px',
+              fontSize: '20px',
               colors: ["#304758"]
             }
           },
@@ -103,7 +104,7 @@ export class ApexChartOsStatistics extends React.Component {
           
           },
           title: {
-            text: 'Opertion systems diversion ',
+            text: 'Operating systems ',
             floating: true,
             offsetY: 330,
             align: 'center',
