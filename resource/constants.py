@@ -17,7 +17,6 @@ CREATE TABLE scan_requests(
     success_date DATETIME,
     execute_by VARCHAR(255),
     PRIMARY KEY (scan_id, success_date, execute_by),
-
     scan_name VARCHAR(255),
     scan_status INT,
     scan_file VARCHAR(255),
