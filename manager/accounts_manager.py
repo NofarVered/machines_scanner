@@ -12,10 +12,10 @@ account = APIRouter()
 @account.get("/accounts", response_class=JSONResponse, status_code=status.HTTP_200_OK)
 def getAccounts():
     result = Accounts_repo.getAllAccounts()
-    return {"success": True, "result": result}
+    return {"result": result}
 
 
 @account.delete("/accounts/{account_name}", response_class=JSONResponse, status_code=status.HTTP_204_NO_CONTENT)
 def deleteAcountByAcountName(account_name):
     Accounts_repo.deleteAccount(account_name)
-    return {"success": True}
+    return {"result": True}
