@@ -7,10 +7,10 @@ routers list (with endpoints):
 	- DELETE account from machine
 	- GET all machines by a given account 
 3) scans:
-	- INSERT a new scan 
+	- INSERT a new scan V
 	- UPDATE a scan (the is_most_recent feild)
-	- GET list of all recent requests scans
-	- GET list of all "history" scans, group by a scan_id.
+	- GET list of all recent requests scans V
+	- GET list of all "history" scans, group by a scan_id. V
 4) statistics: 
 	- GET the number of priviliget + not priviliget accounts by scan. 
 	- GET the number of mac\ linux\ windows platforms of machines by scan. 
