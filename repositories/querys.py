@@ -25,11 +25,6 @@ sql_select_all_privilliged_accounts = """
                                     """
 
 
-sql_select_all_cpms = """
-                           SELECT *
-                           FROM cpms
-                    """
-
 sql_select_all_recent_accounts = """
                                 SELECT a.account_name , a.scan_id , a.is_privileged , a.group_name , a.password_age
                                 FROM accounts a JOIN scan_requests sr ON a.scan_id = sr.scan_id
