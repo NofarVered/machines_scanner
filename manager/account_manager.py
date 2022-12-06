@@ -9,7 +9,7 @@ account = APIRouter()
 
 @account.get('/accounts',response_class= JSONResponse , status_code= status.HTTP_200_OK)
 def getAccounts():
-    # users_list = db.execute_select_all_query(querys.sql_select_all_users)
+    users_list = db.execute_select_all_query(querys.sql_select_all_users)
     users_list = [Account("Or",1,True,"group_1",100)]
     return users_list
 

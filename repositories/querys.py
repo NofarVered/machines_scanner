@@ -1,7 +1,3 @@
-sql_select_all_users = """
-                           SELECT *
-                           FROM accounts
-                        """
 
 sql_count_privilliged_accounts = """
                                         SELECT COUNT(*) as number_of_privileged
@@ -28,10 +24,6 @@ sql_select_all_privilliged_accounts = """
                                     GROUP BY accounts.account_name
                                     """
 
-sql_select_all_scans = """
-                        SELECT *
-                        FROM scan_requests
-                        """
 
 sql_select_all_cpms = """
                            SELECT *
@@ -50,7 +42,3 @@ sql_select_machines_by_account = """
                                 WHERE ma.account_name =  values (%s)
                                 """
 
-insert_to_scan_requests_table = """
-                            INSERT IGNORE into scan_requests (scan_id, success_date, execute_by, scan_name, cpm_id, scan_status, scan_file, is_most_recent)
-                            values (%s , %s, %s, %s, %s, %s, %s, %s)
-                            """

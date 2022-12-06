@@ -14,3 +14,16 @@ export function getScans(){
     )
 }
 
+export function getScansHistory(scanId){
+    return fetch(scansUrl+scanId) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        return result
+      },           
+      (error) => {              
+        return error
+      }
+    )
+}
+

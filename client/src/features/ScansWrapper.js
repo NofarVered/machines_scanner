@@ -1,7 +1,7 @@
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Container } from '@mui/system';
-import OrderTable from './scanScreenNew/tableScans';
+import OrderTable from './scanScreen/tableScans';
 
 
 export default function AccountsWrapper() {

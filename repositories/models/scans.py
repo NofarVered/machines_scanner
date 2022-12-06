@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Scans():
     scan_id: int
     success_date: str
-    excute_by: str
+    execute_by: str
     scan_name: str
     scan_status: str
     scan_file: str
