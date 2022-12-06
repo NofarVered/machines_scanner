@@ -177,7 +177,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Nutrition
+          History
         </Typography>
       )}
 
@@ -248,7 +248,7 @@ export default function EnhancedTable(props) {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+      <Paper sx={{ width: '110%', mb: 2,mt:2,ml:3,align:"center",boxShadow: 6 }}>
         <EnhancedTableToolbar />
         <TableContainer>
           <Table
@@ -264,7 +264,7 @@ export default function EnhancedTable(props) {
               onRequestSort={handleRequestSort}
               rowCount={scansHistory.length}
             />
-            <TableBody>
+            <TableBody >
               {stableSort(scansHistory, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {              
@@ -273,8 +273,7 @@ export default function EnhancedTable(props) {
                     <TableRow
                       hover
 
-                    >
-                     
+                    >                     
                      <TableCell align="left">{row.scan_name}</TableCell>                       
                       <TableCell align="right">{row.status}</TableCell>
                       <TableCell align="right">{row.success_date}</TableCell>
