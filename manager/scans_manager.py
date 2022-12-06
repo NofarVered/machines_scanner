@@ -11,18 +11,17 @@ scans = APIRouter()
 
 
 @scans.post('/scans', response_class= JSONResponse , status_code= status.HTTP_201_CREATED)
-def addScan(scan:Scans):
-    Scans_repo.addScan()
+async def addScan(request: Request):
+    req = await request.json()
+    Scans_repo.addScan(req)
     return {
             "success": True,
-            "payload": scan
+            "payload": req
             }
 
 @scans.get('/scans',response_class= JSONResponse , status_code= status.HTTP_200_OK)
-def getScans():
-
-    # scans_list = [Scans(1,"1.1.1990","Or","test","pending","csv.file",True,1) ]
-    scans = Scans_repo.getScan()
+def getScans(recent = None ,history = None):
+    scans = Scans_repo.getScan(recent,history)
     return {
             "success": True,
             "payload": scans

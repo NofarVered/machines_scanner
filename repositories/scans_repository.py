@@ -3,25 +3,36 @@ from repositories.sql_wrapper import db_wrapper
 
 
 insert_to_scan_requests_table = """
-                                INSERT IGNORE into scan_requests (scan_id, success_date, execute_by, scan_name, cpm_id, scan_status, scan_file, is_most_recent)
-                                values (%s , %s, %s, %s, %s, %s, %s, %s)
+                                INSERT IGNORE into scan_requests (success_date, execute_by, scan_name,scan_status,scan_file,is_most_recent, cpm_id)
+                                values (%s, %s, %s, %s, %s, %s, %s)
                                 """
 
 
-sql_select_all_scans = """
-                        SELECT *
-                        FROM scan_requests
-                        """
+sql_select_recent_scans = """
+                            SELECT *
+                            FROM scan_requests
+                            WHERE is_most_recent = 1
+                            """
+
+sql_select_history_scans = """
+                            SELECT *
+                            FROM scan_requests
+                            WHERE is_most_recent = 0
+                            """
 
 db = db_wrapper()
 
 class Scans_repo:
-
-    def addScan(self,scan:Scans):
-        db.execute_insert_query(insert_to_scan_requests_table,(scan.cpm_id,scan.success_date,scan.execute_by,scan.scan_name,scan.cpm_id,scan.scan_status,scan.scan_file,scan.is_most_recent))
+    def addScan(scan:Scans):
+        db.execute_insert_query(insert_to_scan_requests_table,(scan["success_date"],scan['execute_by'],scan['scan_name'],scan['scan_status'],scan['scan_file'],scan['is_most_recent'],scan['cpm_id']))
         return scan
     
-    def getScan():
-        scans = db.execute_select_all_query(sql_select_all_scans)
+    def getScan(recent,history):
+        if recent:
+            scans = db.execute_select_all_query(sql_select_recent_scans)
+        elif history:
+            scans = db.execute_select_all_query(sql_select_history_scans)
+        else:
+            scans = "missing params"
         return scans
 
