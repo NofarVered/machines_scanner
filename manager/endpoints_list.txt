@@ -3,15 +3,16 @@ routers list (with endpoints):
 1) cpms:
 	- GET list of cpms V
 2) accounts:
-	- GET list of recent+done accounts + pay a spesific attention to re-added account (+logic of alert) NOFAR
-	- DELETE account by machine
-	- GET all machines by a given account 
+	- GET list of recent+done accounts + pay a spesific attention to re-added account (+logic of alert) - NOFAR ON WORKING
+	- DELETE account by account name V 
 3) scans:
 	- INSERT a new scan V
 	-  reRun - UPDATE a scan (the is_most_recent feild)
 	- GET list of all recent requests scans V
 	- GET list of all "history" scans, group by a scan_id. V
 4) statistics: 
-	- GET the number of priviliget + not priviliget accounts by scan. 
-	- GET the number of mac\ linux\ windows platforms of machines by scan. 
+	- GET the number of priviliget + not priviliget accounts by scan. V
+	- GET the number of mac\ linux\ windows platforms of machines by scan. - MATAN ON WORKING
+5) machines:
+	- GET all machines by a given account V
 
