@@ -25,7 +25,6 @@ app.add_middleware(
 app.include_router(account)
 app.include_router(scans)
 
-
 @app.get('/sanity' , response_class= JSONResponse , status_code= status.HTTP_200_OK)
 def root():
     return {"message":"Server is up and running"}
