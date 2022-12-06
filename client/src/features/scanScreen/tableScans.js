@@ -86,11 +86,18 @@ const headCells = [
         label: 'Scan File'
     },
     {
+        id: 'rerun',
+        align: 'left',
+        disablePadding: false,
+        label: 'rerun scan'
+    },
+    {
         id: 'detalis',
         align: 'left',
         disablePadding: false,
         label: 'scan details'
-    }
+    },
+    
 ];
 
 const fillRowInfo=(scans)=>{

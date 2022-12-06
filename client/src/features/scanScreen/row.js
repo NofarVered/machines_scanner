@@ -86,7 +86,7 @@ export function Row(props){
                     <OrderStatus status={row.Status} />
                 </TableCell>
                 <TableCell align="center">{row.ScanFile}</TableCell>
-                
+                <TableCell align="center">{row.ScanFile}</TableCell>
                 <TableCell align="center">
                     
                 <IconButton
@@ -97,6 +97,8 @@ export function Row(props){
                     {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </IconButton>
                 </TableCell>
+                
+                
                 
             </TableRow>
             <TableRow>
