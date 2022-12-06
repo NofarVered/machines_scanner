@@ -8,8 +8,7 @@ export function ProfileCard(props) {
 		<div className="card-container">
 			<header className="header_card">
 				<img src={avatar} />
-			</header>
-			
+			</header>			
 			<h2 className="normal-text">{}</h2>
 			<div className="social-container">
 				<div className="followers">

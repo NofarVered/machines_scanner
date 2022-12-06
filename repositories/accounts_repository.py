@@ -5,13 +5,10 @@ sql_select_all_accounts = """
                            FROM accounts
                         """
 
-sql_delete_acount =  """
-                                DELETE FROM accounts 
-                                WHERE account_name = %s
-                                
-                                """
-sql_delete_acount_machine =  """
-                                DELETE FROM machines_accounts 
+
+sql_remove_acount_machine =  """
+                                UPDATE machines_accounts
+                                SET enum_status = 2
                                 WHERE account_name = %s
                              """   
                                 
@@ -26,9 +23,9 @@ db = db_wrapper()
 
 class Accounts_repo:
     
-         def delete_acount(acount_name):
-            db.execute_delete_query(sql_delete_acount_machine,(acount_name))        
-            db.execute_delete_query(sql_delete_acount,(acount_name))  
+         def removed_acount(acount_name):
+            db.execute_update_query(sql_remove_acount_machine,(acount_name))        
+           
 
          def getAllAccounts():
             accounts = db.execute_select_all_query(sql_select_all_accounts)
