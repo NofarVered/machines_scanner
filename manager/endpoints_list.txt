@@ -5,7 +5,7 @@ routers list (with endpoints):
 2) accounts:
 	- GET list of recent+done accounts + pay a spesific attention to re-added account (+logic of alert) - NOFAR ON WORKING
 	- DELETE account by account name V 
-3) scans:
+3) scans: - OR SHOULD UPDATE
 	- INSERT a new scan V
 	-  reRun - UPDATE a scan (the is_most_recent feild)
 	- GET list of all recent requests scans V
