@@ -14,7 +14,7 @@ import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 // third-party
 import NumberFormat from "react-number-format"
 
-import { getAccounts } from './ApiAccounts';
+import { getAccounts, getMachinesByAccount } from './ApiAccounts';
 import MachinesByAccount from './MachinesByAccount';
 
 
@@ -145,8 +145,18 @@ OrderTableHead.propTypes = {
 function Row(props){
   const row =props.row;
   const [open, setOpen] = useState(false);
+  const [machines, setMachines] = useState([])
   const labelId=props.labelId
   const isItemSelected=props.isItemSelected
+  
+  const getMachines = account => {
+    setOpen(!open)
+    getMachinesByAccount(account).then(result=> {
+        console.log(result)
+        !Array.isArray(result) ? setMachines([]) : setMachines(result)
+    })
+  } 
+  
   return(                          
           <React.Fragment>
                               
@@ -172,7 +182,7 @@ function Row(props){
               <IconButton
                   aria-label="expand row"
                   size="small"
-                  onClick={() => setOpen(!open)}
+                  onClick={() => getMachines(row.accountName)}
               >
                   {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </IconButton>
@@ -182,7 +192,7 @@ function Row(props){
           <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-                <MachinesByAccount accountName={row.accountName}/>
+                <MachinesByAccount machines={machines}/>
           </Collapse>
           </TableCell>
           </TableRow>

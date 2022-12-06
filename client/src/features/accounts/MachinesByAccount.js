@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
@@ -22,7 +23,9 @@ const machines = [
   
 
 export default function MachinesByAccount(props) {
-    return(
+  const machines = props.machines
+  
+  return(
         <Box sx={{ margin: 1 }}>
           <Typography variant="h6" gutterBottom component="div">
           Machines
@@ -37,12 +40,12 @@ export default function MachinesByAccount(props) {
           </TableHead>
           <TableBody>
           {machines.map(machine => (
-            <TableRow key={machine.date}>
+            <TableRow key={machine.machine_id}>
             <TableCell component="th" scope="row">
-            {machine.machineId}
+            {machine.machine_id}
             </TableCell>
-            <TableCell>{machine.operatingSystem}</TableCell>
-            <TableCell align="right">{machine.ipAddress}</TableCell>
+            <TableCell>{machine.operating_platform}</TableCell>
+            <TableCell align="right">{machine.ip_address}</TableCell>
             </TableRow>
           ))}
           </TableBody>

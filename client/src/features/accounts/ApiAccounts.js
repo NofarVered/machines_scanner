@@ -13,3 +13,16 @@ export function getAccounts(){
       }
     )
 }
+
+export function getMachinesByAccount(account) {
+  return fetch(`http://localhost:8000/machines/${account}`) 
+  .then(res => res.json())
+  .then(
+    (result) => {                    
+      return result
+    },           
+    (error) => {              
+      return error
+    }
+  )
+}
