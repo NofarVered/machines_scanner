@@ -2,18 +2,29 @@ routers list (with endpoints):
 
 1) cpms:
 	- GET list of cpms V
+		URL: '/cpms'
+		RESPONSE: {"result": result}
+
 2) accounts:
 	- GET list of recent+done accounts V
 		+ pay a spesific attention to re-added account (+logic of alert) - NOFAR ON WORKING
+		URL: "/accounts"
+		RESPONSE: {"result": result}
+
 	- DELETE account by account name V 
+		URL: "/accounts/{account_name}"
+		RESPONSE: {"result": True}
+
 3) scans: - OR SHOULD UPDATE
 	- INSERT a new scan V
 	-  reRun - UPDATE a scan (the is_most_recent feild)
 	- GET list of all recent requests scans V
 	- GET list of all "history" scans, group by a scan_id. V
+
 4) statistics: 
 	- GET the number of priviliget + not priviliget accounts by scan. V
 	- GET the number of mac\ linux\ windows platforms of machines by scan. - MATAN ON WORKING
+
 5) machines:
 	- GET all machines by a given account V
 
