@@ -3,8 +3,8 @@ routers list (with endpoints):
 1) cpms:
 	- GET list of cpms V
 2) accounts:
-	- GET list of accounts by spesific accounts + pay a spesific attention to re-added account (+logic of alert)
-	- DELETE account from machine
+	- GET list of recent+done accounts + pay a spesific attention to re-added account (+logic of alert) NOFAR
+	- DELETE account by machine
 	- GET all machines by a given account 
 3) scans:
 	- INSERT a new scan 
