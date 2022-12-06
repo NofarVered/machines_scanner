@@ -19,7 +19,7 @@ sql_delete_acount_machine = """
 sql_select_machines_by_account = """
                                 SELECT m.machine_id
                                 FROM machines m JOIN machines_accounts ma ON m.machine_id = ma.machine_id
-                                WHERE ma.account_name =  values (%s)
+                                WHERE ma.account_name =  %s
                                 """
 
 db = db_wrapper()
@@ -34,6 +34,8 @@ class Accounts_repo:
         accounts = db.execute_select_all_query(sql_select_all_accounts)
         return accounts
 
-    def getAllMachinesByAccount():
-        machines = db.execute_select_all_query(sql_select_machines_by_account)
+    def getAllMachinesByAccount(acount_name):
+        machines = db.execute_select_all_query(
+            sql_select_machines_by_account, (acount_name)
+        )
         return machines
