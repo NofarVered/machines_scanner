@@ -15,3 +15,12 @@ statistics = APIRouter()
 )
 def getPrivilegedAmount():
     return Statistics_repo.getPrivilegedAmount()
+
+
+@statistics.get(
+    "/statistics/nonPrivilegedAmount",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getNonPrivilegedAmount():
+    return Statistics_repo.getNonPrivilegedAmount()

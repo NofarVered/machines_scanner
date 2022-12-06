@@ -11,12 +11,12 @@ sql_count_privilliged_accounts = """
                                 """
 
 sql_count_not_privilliged_accounts = """
-                                        SELECT COUNT(*) as number_of_privileged
+                                        SELECT COUNT(*) as number_of_nonPrivileged
                                         FROM
                                         (SELECT account_name, accounts.is_privileged
                                         FROM accounts
                                         WHERE is_privileged = 0 
-                                        GROUP BY accounts.account_name) AS t                                     
+                                        GROUP BY accounts.account_name) AS t                                    
                                 """
 
 sql_select_all_privilliged_accounts = """
@@ -34,6 +34,12 @@ class Statistics_repo:
     def getPrivilegedAmount():
         privilegedAmount = db.execute_select_all_query(sql_count_privilliged_accounts)
         return privilegedAmount
+
+    def getNonPrivilegedAmount():
+        nonPrivilegedAmount = db.execute_select_all_query(
+            sql_count_not_privilliged_accounts
+        )
+        return nonPrivilegedAmount
 
     # def getAllMachinesByAccount(acount_name):
     #     machines = db.execute_select_all_query(
