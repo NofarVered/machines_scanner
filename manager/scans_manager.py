@@ -20,10 +20,8 @@ async def addScan(request: Request):
             }
 
 @scans.get('/scans',response_class= JSONResponse , status_code= status.HTTP_200_OK)
-def getScans():
-
-    # scans_list = [Scans(1,"1.1.1990","Or","test","pending","csv.file",True,1) ]
-    scans = Scans_repo.getScan()
+def getScans(recent = None ,history = None):
+    scans = Scans_repo.getScan(recent,history)
     return {
             "success": True,
             "payload": scans
