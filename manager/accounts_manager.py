@@ -14,13 +14,14 @@ def getAccounts():
     return Accounts_repo.getAllAccounts()
 
 
-# @account.get(
-#     "/machines/{account_name}",
-#     response_class=JSONResponse,
-#     status_code=status.HTTP_200_OK,
-# )
-# def getMachinesByAccount(account_name):
-#     return Accounts_repo.getAllMachinesByAccount(account_name)
+@account.delete(
+    "/accounts/{account_name}",
+    response_class=JSONResponse,
+    status_code=status.HTTP_204_NO_CONTENT,
+)
+def deleteAcountByAcountName(account_name):
+    Accounts_repo.delete_acount(account_name)
+    return {"success": True}
 
 
 # @account.get(
@@ -31,27 +32,6 @@ def getAccounts():
 # def getAccountsByMachine(machine_id):
 #     users_list = db.execute_select_all_query(querys.sql_select_all_users_by_machine)
 #     return users_list
-
-
-# @account.get(
-#     "/accounts/stats", response_class=JSONResponse, status_code=status.HTTP_200_OK
-# )
-# def getAccountsStats():
-#     privilliged_stats = db.execute_select_all_query(
-#         querys.sql_select_all_privilliged_machine
-#     )
-#     stats = {"privilliged_stats": privilliged_stats}
-#     return stats
-
-
-@account.delete(
-    "/accounts/{account_name}",
-    response_class=JSONResponse,
-    status_code=status.HTTP_204_NO_CONTENT,
-)
-def deleteAcountByAcountName(account_name):
-    Accounts_repo.delete_acount(account_name)
-    return {"success": True}
 
 
 # @account.get(
