@@ -1,22 +1,17 @@
 import Grid from '@mui/material/Grid';
 
-import { Container } from '@mui/system';
-import ProfileCard from './components/ProfileCard';
 
-
-
-
-
+import ProfileCard from './ProfileCard';
 
 export default function CpmScreen(props) {
-    const cpms =props.cpm
+    const cpms =props.cpms
     const images = props.images
       
     return(    
         <Grid container spacing={2}>
-        {cpms.map((cpm)=>{
-            <ProfileCard images={images} cpm={cpm}/>     
-         })}
+            {cpms.map((cpm) => (
+                   <ProfileCard images={images} cpm={cpm}/>     
+            ))}        
           
          </Grid>  
       
