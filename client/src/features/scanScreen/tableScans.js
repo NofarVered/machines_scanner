@@ -4,8 +4,9 @@ import * as React from 'react';
 import {getScans} from './ApiScans'
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
-// third-party
-// project import
+
+
+
 import { Row } from './row';
 function createData(ScanName, SuucesDate, excuteBy, Status, ScanFile) {
     return { ScanName, SuucesDate, excuteBy, Status, ScanFile };
@@ -71,12 +72,14 @@ const headCells = [
         disablePadding: false,
         label: 'rerun scan'
     },
+    
     {
         id: 'detalis',
         align: 'left',
         disablePadding: false,
         label: 'scan details'
     },
+    
 ];
 const fillRowInfo=(scans)=>{
     const new_scans=[]

@@ -8,10 +8,10 @@ export default function AccountsWrapper() {
 
 
     return(
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
+        <Container maxWidth="lg" sx={{ mt: 4,ml:2, mb: 4 }}>
+            <Grid container spacing={1}>
                 <Grid item xs={12}>
-                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                    <Paper sx={{ p: 2,width:'120%' }}>
                      <OrderTable/>   
                     </Paper>
                 </Grid>     
