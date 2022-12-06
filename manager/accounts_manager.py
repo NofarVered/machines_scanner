@@ -14,15 +14,24 @@ def getAccounts():
     return Accounts_repo.getAllAccounts()
 
 
-# @account.get(
-#     "/accounts/{machine_id}",
-#     response_class=JSONResponse,
-#     status_code=status.HTTP_200_OK,
-# )
-# def getAccountsByMachine(machine_id):
-#     users_list = db.execute_select_all_query(querys.sql_select_all_users_by_machine)
-#     # users_list = [User("Or",True,"01/12/2022",1,machine_id,"best group")]
-#     return users_list
+@account.get(
+    "/accounts/{account_name}",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getMachinesByAccount(account_name):
+    return Accounts_repo.getAllMachinesByAccount()
+
+
+@account.get(
+    "/accounts/{machine_id}",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getAccountsByMachine(machine_id):
+    users_list = db.execute_select_all_query(querys.sql_select_all_users_by_machine)
+    # users_list = [User("Or",True,"01/12/2022",1,machine_id,"best group")]
+    return users_list
 
 
 # @account.get(
