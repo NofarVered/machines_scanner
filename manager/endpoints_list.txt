@@ -8,7 +8,7 @@ routers list (with endpoints):
 	- GET all machines by a given account 
 3) scans:
 	- INSERT a new scan V
-	- UPDATE a scan (the is_most_recent feild)
+	-  reRun - UPDATE a scan (the is_most_recent feild)
 	- GET list of all recent requests scans V
 	- GET list of all "history" scans, group by a scan_id. V
 4) statistics: 
