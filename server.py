@@ -35,5 +35,5 @@ def root():
     return {"message": "Server is up and running"}
 
 
-if __name__ == "__main__":
+if __name__ == "_main_":
     uvicorn.run("server:app", host="localhost", port=8000, reload=True)
