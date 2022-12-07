@@ -28,11 +28,47 @@ routers list (with endpoints):
 		URL: "/accounts/{account_name}/{machine_id}"
 		RESPONSE: status_code=status.HTTP_200_OK
 
-3) scans: - OR SHOULD UPDATE
-	- INSERT a new scan V
-	-  reRun - UPDATE a scan (the is_most_recent feild)
-	- GET list of all recent requests scans V
-	- GET list of all "history" scans, group by a scan_id. V
+
+3) scans: -
+	- INSERT a new scan  TO DO
+
+	-  reRun - UPDATE a scan (the is_most_recent feild) TO DO
+
+	- GET list of all recent requests scans 
+		URL: "/scans"
+		RESPONSE: {
+					"success": true,
+					"payload": [
+						{
+							"scan_id": 1,
+							"success_date": "2021-12-10T04:15:16",
+							"execute_by": "Reagan Poate",
+							"scan_name": "Christiansen, Robel and Terry",
+							"scan_status": 1,
+							"scan_file": "EuMagna.ppt",
+							"is_most_recent": 1,
+							"cpm_id": 5
+						}, ... ] }
+
+
+	- GET list of all "history" scans, group by a scan_id. TO DO FRONTEND
+		URL: "/scans/{scan_id}"
+		RESPONSE: 
+				{
+					"success": true,
+					"payload": [
+						{
+							"scan_id": 8,
+							"success_date": "2022-08-10T11:50:49",
+							"execute_by": "Minna Van Oord",
+							"scan_name": "Feil, Ritchie and Bode",
+							"scan_status": 3,
+							"scan_file": "TellusSemper.txt",
+							"is_most_recent": 0,
+							"cpm_id": 2
+						}
+					]
+				}
 
 4) statistics: 
 	- GET the number of priviliget + not priviliget accounts by scan. V
