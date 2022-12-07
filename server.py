@@ -28,11 +28,7 @@ app.include_router(machine)
 app.include_router(statistics)
 
 
-<<<<<<< HEAD
-@app.get('/sanity', response_class=JSONResponse, status_code=status.HTTP_200_OK)
-=======
 @app.get("/sanity", response_class=JSONResponse, status_code=status.HTTP_200_OK)
->>>>>>> origin/accounts-branch---matan
 def root():
     return {"message": "Server is up and running"}
 
