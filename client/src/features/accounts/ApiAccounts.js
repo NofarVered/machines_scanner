@@ -6,7 +6,7 @@ export function getAccounts(){
     .then(res => res.json())
     .then(
       (result) => {                    
-        return result
+        return result.result
       },           
       (error) => {              
         return error

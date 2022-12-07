@@ -15,6 +15,7 @@ sql_remove_acount_machine = """
                                 UPDATE machines_accounts
                                 SET enum_status = 2
                                 WHERE account_name = %s
+                                AND machine_id = %s
                              """
 
 
@@ -23,8 +24,9 @@ db = db_wrapper()
 
 class Accounts_repo:
 
-    def removed_acount(acount_name):
-        db.execute_update_query(sql_remove_acount_machine, (acount_name))
+    def removed_acount(account_name, machine_id):
+        db.execute_update_query(sql_remove_acount_machine,
+                                (account_name, machine_id))
 
     def getAllAccounts():
         accounts = db.execute_select_all_query(
