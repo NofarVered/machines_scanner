@@ -1,19 +1,16 @@
-import Box from '@mui/material/Box';
+import Box from "@mui/material/Box";
 
-
-import ProfileCard from './ProfileCard';
+import ProfileCard from "./ProfileCard";
 
 export default function CpmScreen(props) {
-    const cpms =props.cpms
-    const images = props.images
-      
-    return(    
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' ,}}>
-            {cpms.map((cpm) => (
-                   <ProfileCard images={images} cpm={cpm}/>     
-            ))}       
-          
-         </Box>  
-      
-    )
+  const cpms = props.cpms;
+  const images = props.images;
+
+  return (
+    <Box sx={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)" }}>
+      {cpms.map((cpm) => (
+        <ProfileCard images={images} cpm={cpm} />
+      ))}
+    </Box>
+  );
 }
