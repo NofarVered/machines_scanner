@@ -1,7 +1,7 @@
 const scansUrl ='http://localhost:8000/scans/'
 
 
-export function getScans(){
+export function getScansRecent(){
     return fetch(scansUrl) 
     .then(res => res.json())
     .then(

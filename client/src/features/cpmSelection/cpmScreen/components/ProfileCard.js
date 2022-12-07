@@ -5,7 +5,7 @@ import avatar from "../images/image-rita.png";
 export function ProfileCard(props) {
     console.log(props.cpm)
 	return (
-		<div className="card-container">
+		<div className="card-container card ">
 			<header className="header_card">
 				<img src={avatar} />
 			</header>			
