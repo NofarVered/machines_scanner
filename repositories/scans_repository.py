@@ -53,6 +53,3 @@ class Scans_repo:
         db.execute_update_query(sql_select_scans_by_id_date,(scan['scan_id'],scan["success_date"]))
         scan = db.execute_insert_query(insert_to_scan_requests_table_with_id,(scan['scan_id'],date_string,scan['execute_by'],scan['scan_name'],scan['scan_status'],scan['scan_file'],scan['is_most_recent'],scan['cpm_id']))
         return scan
-
-
-# scan['scan_id']
