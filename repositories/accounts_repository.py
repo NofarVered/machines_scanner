@@ -6,6 +6,7 @@ sql_select_all_recent_and_done_accounts = """
                                 WHERE sr.is_most_recent = 1 AND sr.scan_status = '3';
                                """
 
+
 sql_delete_acount = """
                     DELETE FROM accounts 
                     WHERE account_name = %s

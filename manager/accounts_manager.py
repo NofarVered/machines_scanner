@@ -18,9 +18,9 @@ def getAccounts():
 @account.get(
     "/accounts/removed", response_class=JSONResponse, status_code=status.HTTP_200_OK
 )
-def getAccounts():
-    result = Accounts_repo.getAllRemovedAccounts()
-    return {"result": result}
+def getAllRemovedAccounts():
+    removedAccounts = Accounts_repo.getAllRemovedAccounts()
+    return removedAccounts
 
 
 @account.put(
