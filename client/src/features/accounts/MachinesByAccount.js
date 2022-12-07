@@ -77,7 +77,7 @@ const headCells = [
   {
     id: 'operating_system',
     numeric: true,
-    disablePadding: false,
+    disablePadding: true,
     label: 'Operating System',
   },
   {
@@ -118,7 +118,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -241,9 +241,9 @@ export default function MachinesByAccount(props) {
   return(
 
     <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '110%', mb: 2,mt:2,ml:3,align:"center",boxShadow: 6 }}>
+      <Paper sx={{ width: '98%', mb: 2,mt:2,ml:3,align:"center",boxShadow: 6 }}>
         <EnhancedTableToolbar />
-        <TableContainer>
+        <TableContainer >
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
@@ -270,9 +270,9 @@ export default function MachinesByAccount(props) {
                                    
                       <TableCell align="left">{row.machine_id}</TableCell>                       
                       <TableCell align="left">{row.operating_platform}</TableCell>
-                      <TableCell align="right">{row.ip_address}</TableCell>
-                      <TableCell align="right">{row.status}</TableCell>
-                      <TableCell align='center'>
+                      <TableCell align="left">{row.ip_address}</TableCell>
+                      <TableCell align="left">{row.enum_status}</TableCell>
+                      <TableCell align='left' >
                         <IconButton>
                           <DeleteOutlineIcon></DeleteOutlineIcon>
                         </IconButton>
