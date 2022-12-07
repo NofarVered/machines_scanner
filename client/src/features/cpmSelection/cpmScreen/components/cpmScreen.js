@@ -1,4 +1,4 @@
-import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 
 import ProfileCard from './ProfileCard';
@@ -8,12 +8,12 @@ export default function CpmScreen(props) {
     const images = props.images
       
     return(    
-        <Grid container spacing={2}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
             {cpms.map((cpm) => (
                    <ProfileCard images={images} cpm={cpm}/>     
-            ))}        
+            ))}       
           
-         </Grid>  
+         </Box>  
       
     )
 }
