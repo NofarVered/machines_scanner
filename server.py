@@ -6,6 +6,7 @@ from manager.accounts_manager import account
 from manager.scans_manager import scans
 from manager.machines_manager import machine
 from manager.statistics_manager import statistics
+from manager.cpms_mannger import cpm
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -26,6 +27,7 @@ app.include_router(account)
 app.include_router(scans)
 app.include_router(machine)
 app.include_router(statistics)
+app.include_router(cpm)
 
 
 @app.get('/sanity', response_class=JSONResponse, status_code=status.HTTP_200_OK)

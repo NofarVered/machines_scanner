@@ -34,7 +34,7 @@ class db_wrapper:
                 self.connection.commit()
                 print(f'{params} updated successfully')
                 return cursor.lastrowid
-        except pymysql.Error :
+        except pymysql.Error as e :
             raise DbError("Failed to execute update query")
 
     def execute_delete_query(self, sql_query, params):

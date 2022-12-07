@@ -15,7 +15,7 @@ def getAccounts():
     return {"result": result}
 
 
-@account.delete("/accounts/{account_name}", response_class=JSONResponse, status_code=status.HTTP_204_NO_CONTENT)
-def deleteAcountByAcountName(account_name):
-    Accounts_repo.deleteAccount(account_name)
-    return {"result": True}
+@account.put('/accounts/{account_name}', response_class=JSONResponse, status_code=status.HTTP_204_NO_CONTENT)
+def updateRemovedAccountByName(account_name):
+    Accounts_repo.removed_acount(account_name)
+    return {"success": True}
