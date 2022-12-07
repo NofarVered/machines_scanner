@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { useState } from 'react';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import IconButton from '@mui/material/IconButton';
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
@@ -22,6 +24,8 @@ export default function MachinesByAccount(props) {
           <TableCell>Machine ID</TableCell>
           <TableCell >Operating System</TableCell>
           <TableCell align="right">IP Address </TableCell>
+          <TableCell align="center">Status </TableCell>
+          <TableCell align="center">Remove Access </TableCell>
           </TableRow>
           </TableHead>
           <TableBody>
@@ -32,6 +36,12 @@ export default function MachinesByAccount(props) {
             </TableCell>
             <TableCell>{machine.operating_platform}</TableCell>
             <TableCell align="right">{machine.ip_address}</TableCell>
+            <TableCell align="center">{machine.status}</TableCell>
+            <TableCell align='center'>
+                <IconButton>
+                    <DeleteOutlineIcon></DeleteOutlineIcon>
+                </IconButton>
+              </TableCell>
             </TableRow>
           ))}
           </TableBody>

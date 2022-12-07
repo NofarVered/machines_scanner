@@ -7,8 +7,9 @@ export function getAccounts(){
     return fetch(accountsUrl) 
     .then(res => res.json())
     .then(
-      (result) => {                    
-        return result.result
+      (result) => {  
+                          
+        return result
       },           
       (error) => {              
         return error

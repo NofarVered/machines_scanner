@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Collapse from '@mui/material/Collapse';
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
@@ -90,14 +90,7 @@ const headCells = [
     align: 'left',
     disablePadding: false,
     label: 'details'
-},
-{
-    id: 'delete',
-    align: 'left',
-    disablePadding: false,
-    label: 'Delete'  
 }
-
 ];
 
 const fillRowInfo=(accounts)=>{
@@ -187,13 +180,7 @@ function Row(props){
               >
                   {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </IconButton>
-              </TableCell>
-              <TableCell align='center'>
-                <IconButton>
-                    <DeleteOutlineIcon></DeleteOutlineIcon>
-                </IconButton>
-              </TableCell>
-              
+              </TableCell>  
           </TableRow>
           <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

@@ -25,11 +25,8 @@ app.add_middleware(
 
 app.include_router(account)
 app.include_router(scans)
-<<<<<<< HEAD
-=======
 app.include_router(machine)
 app.include_router(statistics)
->>>>>>> origin/mvp_first_version
 app.include_router(cpm)
 
 
