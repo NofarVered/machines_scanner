@@ -18,20 +18,29 @@ sql_remove_acount_machine = """
                                 AND machine_id = %s
                              """
 
+sql_get_all_removed_accounts = """
+                                SELECT accounts.*
+                                FROM accounts 
+                                JOIN machines_accounts
+                                ON accounts.account_name = machines_accounts.account_name
+                                where machines_accounts.enum_status = 2
+                             """
+
 
 db = db_wrapper()
 
 
 class Accounts_repo:
-
     def removed_acount(account_name, machine_id):
-        db.execute_update_query(sql_remove_acount_machine,
-                                (account_name, machine_id))
+        db.execute_update_query(sql_remove_acount_machine, (account_name, machine_id))
 
     def getAllAccounts():
-        accounts = db.execute_select_all_query(
-            sql_select_all_recent_and_done_accounts)
+        accounts = db.execute_select_all_query(sql_select_all_recent_and_done_accounts)
         return accounts
+
+    def getAllRemovedAccounts():
+        removedAccounts = db.execute_select_all_query(sql_get_all_removed_accounts)
+        return removedAccounts
 
     def getAlertedAccountsByScan(scan_id):
         accounts = db.execute_select_all_query()

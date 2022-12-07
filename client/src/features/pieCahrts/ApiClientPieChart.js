@@ -1,5 +1,5 @@
-const getPrivilegStatic ='http://localhost:8000/statictes/'
-const getOsStatics ='http://localhost:8000/statictes/'
+const getPrivilegStatic ='http://localhost:8000/statistics/privilegedAmount'
+const getOsStatics ='http://localhost:8000/statistics/nonPrivilegedAmount'
 
 export function getPrivilegStatictis(){
     return fetch(getPrivilegStatic) 
