@@ -3,11 +3,11 @@ routers list (with endpoints):
 1) cpms:
 	- GET list of cpms V
 		URL: '/cpms'
-		RESPONSE: {"result": result}
+		RESPONSE: {"result":[{"cpm_id":1,"ip_addresses":"0.0.0.0 - 127.255.255.255","last_activity_date":"2021-12-10T04:15:16"},{"cpm_id":2,"ip_addresses":"128.0.0.0 - 191.255.255.255","last_activity_date":"2022-03-16T00:54:25"},{"cpm_id":3,"ip_addresses":"192.0.0.0 - 223.255.255.255","last_activity_date":"2022-08-10T11:50:49"},{"cpm_id":4,"ip_addresses":"224.0.0.0 - 239.255.255.255","last_activity_date":"2022-10-31T08:37:39"},{"cpm_id":5,"ip_addresses":"240.0.0.0 - 255.255.255.255","last_activity_date":"2022-07-16T19:05:48"}]}
 
 2) accounts:
 	- GET list of recent+done accounts V
-		+ pay a spesific attention to re-added account (+logic of alert) - NOFAR ON WORKING
+		+ pay a spesific attention to re-added account (+logic of alert) - NOFAR ON WORKING X
 		URL: "/accounts"
 		RESPONSE: {"result": result}
 
