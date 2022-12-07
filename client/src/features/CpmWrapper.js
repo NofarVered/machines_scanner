@@ -1,7 +1,7 @@
 import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
-import CpmScreen from "./cpmSelection/cpmScreen/components/cpmScreen";
-import { getCpms } from "./cpmSelection/cpmScreen/components/ApiCpm";
+import CpmScreen from "./cpmScreen/components/cpmScreen";
+import { getCpms } from "./cpmScreen/components/ApiCpm";
 
 export default function CpmWrapper() {
   const [cpms, setCpms] = useState([]);
