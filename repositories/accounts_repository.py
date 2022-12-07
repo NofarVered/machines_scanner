@@ -12,7 +12,11 @@ sql_delete_acount = """
                     """
 
 sql_delete_acount_machine = """
-                                DELETE FROM machines_accounts 
+                                DELETE FROM machines_accounts """
+
+sql_remove_acount_machine =  """
+                                UPDATE machines_accounts
+                                SET enum_status = 2
                                 WHERE account_name = %s
                              """
 
@@ -24,6 +28,10 @@ class Accounts_repo:
     def deleteAccount(acount_name):
         db.execute_delete_query(sql_delete_acount_machine, (acount_name))
         db.execute_delete_query(sql_delete_acount, (acount_name))
+    
+    def removed_acount(acount_name):
+        db.execute_update_query(sql_remove_acount_machine,(acount_name))        
+           
 
     def getAllAccounts():
         accounts = db.execute_select_all_query(

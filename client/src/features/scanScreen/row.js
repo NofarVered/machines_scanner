@@ -10,15 +10,10 @@ import {ReRunComp} from './rerunComponent'
 import Dot from './dot';
 
 
-// material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
-// third-party
 
 
-// project import
-
-import DataTable from './historySchema';
 import EnhancedTable from './historySchema';
 
 const OrderStatus = ({ status }) => {
@@ -111,7 +106,7 @@ export function Row(props){
             <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
             <Collapse in={open} timeout="auto" unmountOnExit>
-            <EnhancedTable/>
+            <EnhancedTable id={row.id}/>
             </Collapse>
             </TableCell>
             </TableRow>
