@@ -12,7 +12,8 @@ sql_delete_acount = """
                     """
 
 sql_delete_acount_machine = """
-                                DELETE FROM machines_accounts """
+                                DELETE FROM machines_accounts 
+                            """
 
 sql_remove_acount_machine =  """
                                 UPDATE machines_accounts

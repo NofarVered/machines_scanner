@@ -19,16 +19,10 @@ def getAccounts():
 def deleteAcountByAcountName(account_name):
     Accounts_repo.deleteAccount(account_name)
     return {"result": True}
-@account.get(
-    "/accounts/{account_name}",
-    response_class=JSONResponse,
-    status_code=status.HTTP_200_OK,
-)
 
 @account.put('/accounts/{acount_name}',response_class= JSONResponse , status_code= status.HTTP_204_NO_CONTENT)
 def removeAcountByAcountName(acount_name):
     Accounts_repo.removed_acount(acount_name)
     return {
             "success": True
-            
            }
