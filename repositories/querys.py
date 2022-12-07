@@ -24,16 +24,8 @@ sql_select_all_privilliged_accounts = """
                                     GROUP BY accounts.account_name
                                     """
 
-
-sql_select_all_recent_accounts = """
-                                SELECT a.account_name , a.scan_id , a.is_privileged , a.group_name , a.password_age
-                                FROM accounts a JOIN scan_requests sr ON a.scan_id = sr.scan_id
-                                WHERE sr.is_most_recent = 1
-                               """
-
 sql_select_machines_by_account = """
                                 SELECT m.machine_id
                                 FROM machines m JOIN machines_accounts ma ON m.machine_id = ma.machine_id
                                 WHERE ma.account_name =  values (%s)
                                 """
-

@@ -8,5 +8,5 @@ cpm = APIRouter()
 
 @cpm.get('/cpms', response_class=JSONResponse, status_code=status.HTTP_200_OK)
 def getCpm():
-    cpm_list = get_cpms_list()
-    return cpm_list
+    result = get_cpms_list()
+    return {"result": result}

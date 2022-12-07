@@ -2,16 +2,82 @@ routers list (with endpoints):
 
 1) cpms:
 	- GET list of cpms V
-2) accounts:
-	- GET list of accounts by spesific accounts + pay a spesific attention to re-added account (+logic of alert)
-	- DELETE account from machine
-	- GET all machines by a given account 
-3) scans:
-	- INSERT a new scan V
-	-  reRun - UPDATE a scan (the is_most_recent feild)
-	- GET list of all recent requests scans V
-	- GET list of all "history" scans, group by a scan_id. V
-4) statistics: 
-	- GET the number of priviliget + not priviliget accounts by scan. 
-	- GET the number of mac\ linux\ windows platforms of machines by scan. 
+		URL: '/cpms'
+		RESPONSE: {"result":[
+			{
+				"cpm_id":1,
+				"ip_addresses":"0.0.0.0 - 127.255.255.255",
+				"last_activity_date":"2021-12-10T04:15:16"
+			},
+			... ]}
 
+2) accounts:
+	- GET list of recent+done accounts V
+		URL: "/accounts"
+		RESPONSE: {"result": [
+			{
+            "account_name": "Aurum Olibanum Myrrha",
+            "scan_id": 2,
+            "is_privileged": 0,
+            "group_name": "Blue fox",
+            "password_age": 56
+        	}, ... ] }
+
+	- UPDATE enum_status field of accounts by account name V 
+		1 = "exists" --> 2 = "removed"
+		URL: "/accounts/{account_name}/{machine_id}"
+		RESPONSE: status_code=status.HTTP_200_OK
+
+
+3) scans: -
+	- INSERT a new scan  TO DO
+
+	-  reRun - UPDATE a scan (the is_most_recent feild) TO DO
+
+	- GET list of all recent requests scans 
+		URL: "/scans"
+		RESPONSE: {
+					"success": true,
+					"payload": [
+						{
+							"scan_id": 1,
+							"success_date": "2021-12-10T04:15:16",
+							"execute_by": "Reagan Poate",
+							"scan_name": "Christiansen, Robel and Terry",
+							"scan_status": 1,
+							"scan_file": "EuMagna.ppt",
+							"is_most_recent": 1,
+							"cpm_id": 5
+						}, ... ] }
+
+
+	- GET list of all "history" scans, group by a scan_id. TO DO FRONTEND
+		URL: "/scans/{scan_id}"
+		RESPONSE: 
+				{
+					"success": true,
+					"payload": [
+						{
+							"scan_id": 8,
+							"success_date": "2022-08-10T11:50:49",
+							"execute_by": "Minna Van Oord",
+							"scan_name": "Feil, Ritchie and Bode",
+							"scan_status": 3,
+							"scan_file": "TellusSemper.txt",
+							"is_most_recent": 0,
+							"cpm_id": 2
+						}
+					]
+				}
+
+4) statistics: 
+	- GET the number of priviliget + not priviliget accounts by scan. V
+	- GET the number of mac\ linux\ windows platforms of machines by scan. - MATAN ON WORKING
+
+5) machines:
+	- GET all machines by a given account V
+
+
+
+TO DO - 
+1) pay a spesific attention to re-added account (+logic of alert) - NOFAR ON WORKING X
