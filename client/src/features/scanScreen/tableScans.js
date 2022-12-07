@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState,useEffect } from 'react';
 import * as React from 'react';
-import {getScans} from './ApiScans'
+import {getScansRecent} from './ApiScans'
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
@@ -125,7 +125,7 @@ export default function OrderTable() {
     const [scans,setScans]=useState([])
     const isSelected = (ScanName) => selected.indexOf(ScanName) !== -1;
     useEffect(() => {
-        getScans().then((result)=>{
+        getScansRecent().then((result)=>{
             setScans(fillRowInfo(result.payload))              
         }).catch((error)=>{
             console.log(error)

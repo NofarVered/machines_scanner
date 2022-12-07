@@ -33,6 +33,21 @@ def deleteAcountByAcountName(account_name):
 #     users_list = db.execute_select_all_query(querys.sql_select_all_users_by_machine)
 #     return users_list
 
+@account.get('/accounts/stats',response_class= JSONResponse , status_code= status.HTTP_200_OK)
+def getAccountsStats():
+    privilliged_stats = db.execute_select_all_query(querys.sql_select_all_privilliged_machine)
+    stats = {
+                "privilliged_stats": privilliged_stats
+            }
+    return stats
+
+@account.put('/accounts/{acount_name}',response_class= JSONResponse , status_code= status.HTTP_204_NO_CONTENT)
+def removeAcountByAcountName(acount_name):
+    Accounts_repo.removed_acount(acount_name)
+    return {
+            "success": True
+            
+           }
 
 # @account.get(
 #     "/accounts/stats", response_class=JSONResponse, status_code=status.HTTP_200_OK

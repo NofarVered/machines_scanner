@@ -5,7 +5,7 @@ use_db = "USE machines_scanner;"
 
 create_cpms_table = """
     CREATE TABLE cpms(
-    cpm_id INT NOT NULL PRIMARY KEY,
+    cpm_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     ip_addresses VARCHAR(255),
     last_activity_date DATETIME
 );
@@ -13,7 +13,7 @@ create_cpms_table = """
 
 create_scan_requests_table = """
 CREATE TABLE scan_requests(
-    scan_id INT NOT NULL,
+    scan_id INT NOT NULL AUTO_INCREMENT,
     success_date DATETIME,
     execute_by VARCHAR(255),
     PRIMARY KEY (scan_id, success_date, execute_by),
@@ -38,7 +38,7 @@ create_accounts_table = """CREATE TABLE accounts(
 );"""
 
 create_machines_table = """CREATE TABLE machines(
-    machine_id INT PRIMARY KEY,
+    machine_id INT PRIMARY KEY AUTO_INCREMENT,
     operating_platform INT,
     ip_address VARCHAR(255)
 );"""

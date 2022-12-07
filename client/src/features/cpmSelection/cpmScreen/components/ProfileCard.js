@@ -3,28 +3,25 @@ import "./ProfileCard.css";
 import avatar from "../images/image-rita.png";
 
 export function ProfileCard(props) {
+    console.log(props.cpm)
 	return (
-		<div className="card-container">
+		<div className="card-container card ">
 			<header className="header_card">
-				<img src={props.image} alt={props.cpm.name} />
-			</header>
-			<h1 className="bold-text">
-				{props.name} <span className="normal-text">{props.age}</span>
-			</h1>
-			<h2 className="normal-text">{props.city}</h2>
+				<img src={avatar} />
+			</header>			
+			<h2 className="normal-text">{}</h2>
 			<div className="social-container">
 				<div className="followers">
-					<h1 className="bold-text">{props.followers}</h1>
-					<h2 className="smaller-text">Followers</h2>
+                    <h2 className="smaller-text">last active </h2>
+					<h1 className="bold-text">{props.cpm.last_activity_date}</h1>
+					
 				</div>
 				<div className="likes">
-					<h1 className="bold-text">{props.likes}</h1>
-					<h2 className="smaller-text">Likes</h2>
+                    <h2 className="smaller-text">ip adress</h2>
+					<h1 className="bold-text">{props.cpm.ip_addresses}</h1>
+					
 				</div>
-				<div className="photos">
-					<h1 className="bold-text">{props.photos}</h1>
-					<h2 className="smaller-text">Photos</h2>
-				</div>
+				
 			</div>
 		</div>
 	);
