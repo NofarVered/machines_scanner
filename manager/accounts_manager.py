@@ -23,6 +23,7 @@ def deleteAcountByAcountName(account_name):
 @account.put('/accounts/{acount_name}',response_class= JSONResponse , status_code= status.HTTP_204_NO_CONTENT)
 def removeAcountByAcountName(acount_name):
     Accounts_repo.removed_acount(acount_name)
+    print("sdfsdf")
     return {
-            "success": True
+            "success": True         
            }
