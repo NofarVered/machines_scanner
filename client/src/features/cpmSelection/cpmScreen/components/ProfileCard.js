@@ -1,13 +1,13 @@
 import React from "react";
 import "./ProfileCard.css";
-import avatar from "../images/image-rita.png";
+import avatar from "../images/Elad.jpeg";
 
 export function ProfileCard(props) {
-    console.log(props.cpm)
+   
 	return (
 		<div className="card-container card ">
 			<header className="header_card">
-				<img src={avatar} />
+				<img className="avatar" src={avatar} />
 			</header>			
 			<h2 className="normal-text">{}</h2>
 			<div className="social-container">

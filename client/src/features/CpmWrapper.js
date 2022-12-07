@@ -18,7 +18,7 @@ export default function CpmWrapper() {
 
 
     return(
-        <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>            
+        <Container maxWidth="lg" sx={{ mt: 4, mb: 4}}>            
             <CpmScreen cpms={cpms}/>            
         </Container>
     )

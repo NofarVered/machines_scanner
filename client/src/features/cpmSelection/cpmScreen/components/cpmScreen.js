@@ -8,7 +8,7 @@ export default function CpmScreen(props) {
     const images = props.images
       
     return(    
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)' }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)' ,}}>
             {cpms.map((cpm) => (
                    <ProfileCard images={images} cpm={cpm}/>     
             ))}       
