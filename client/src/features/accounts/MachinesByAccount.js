@@ -5,21 +5,7 @@ import { useState } from 'react';
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
 
-
-const machines = [
-    {
-      machineId: '00-B0-D0-63-C2-26',
-      operatingSystem: 'Linux',
-      ipAddress: '192.158.1.38',
-    },
-    {
-      machineId: '00-B0-D0-63-C2-25',
-      operatingSystem: 'Windows',
-      ipAddress: '255.255.255.255',
-    },
-]
-  
-  
+ 
   
 
 export default function MachinesByAccount(props) {

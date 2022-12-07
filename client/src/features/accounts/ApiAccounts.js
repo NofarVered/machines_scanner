@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 const accountsUrl ='http://localhost:8000/accounts/'
 
 
@@ -25,4 +27,8 @@ export function getMachinesByAccount(account) {
       return error
     }
   )
+}
+
+export function changeStatusToRemoved(account) {
+  axios.put(``)
 }
