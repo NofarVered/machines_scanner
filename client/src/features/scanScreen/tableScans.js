@@ -8,8 +8,8 @@ import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 
 
 import { Row } from './row';
-function createData(ScanName, SuucesDate, excuteBy, Status, ScanFile) {
-    return { ScanName, SuucesDate, excuteBy, Status, ScanFile };
+function createData(ScanId,ScanName, SuucesDate, excuteBy, Status, ScanFile) {
+    return { ScanId,ScanName, SuucesDate, excuteBy, Status, ScanFile };
 }
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -84,7 +84,7 @@ const headCells = [
 const fillRowInfo=(scans)=>{
     const new_scans=[]
     for(let i=0;i<scans.length;i++){
-        new_scans.push(createData(scans[i].scan_name, scans[i].success_date, scans[i].execute_by, scans[i].scan_status, scans[i].scan_file))
+        new_scans.push(createData(scans[i].scan_id,scans[i].scan_name, scans[i].success_date, scans[i].execute_by, scans[i].scan_status, scans[i].scan_file))
     }
     return new_scans
 }

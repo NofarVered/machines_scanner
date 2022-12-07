@@ -33,8 +33,9 @@ function createData(scan_name, status, success_date, excute_by) {
 
 const fillRowInfo=(scans_request)=>{
     const new_scans=[]
+   
     for(let i=0;i<scans_request.length;i++){
-        new_scans.push(createData(scans_request[i].scan_name,scans_request[i].status, scans_request[i].success_date, scans_request[i].excute_by))
+        new_scans.push(createData(scans_request[i].scan_name,scans_request[i].scan_status, scans_request[i].success_date, scans_request[i].execute_by))
     }
     return new_scans
 
@@ -211,8 +212,9 @@ export default function EnhancedTable(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   React.useEffect(()=>{
+   
     getScansHistory(props.id).then((result)=>{
-        setScansHistory(fillRowInfo(result.payload))              
+        setScansHistory(fillRowInfo(result))              
     }).catch((error)=>{
         console.log(error)
 
@@ -273,7 +275,8 @@ export default function EnhancedTable(props) {
                     <TableRow
                       hover
 
-                    >                     
+                    > 
+                                   
                      <TableCell align="left">{row.scan_name}</TableCell>                       
                       <TableCell align="right">{row.status}</TableCell>
                       <TableCell align="right">{row.success_date}</TableCell>

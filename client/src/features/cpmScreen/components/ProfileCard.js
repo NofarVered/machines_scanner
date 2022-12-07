@@ -7,7 +7,7 @@ export function ProfileCard(props) {
 	return (
 		<div className="card-container card ">
 			<header className="header_card">
-				<img className="avatar" src={avatar} />
+				<img className="avatar" src={props.images} />
 			</header>			
 			<h2 className="normal-text">{}</h2>
 			<div className="social-container">

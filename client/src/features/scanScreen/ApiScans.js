@@ -19,7 +19,7 @@ export function getScansHistory(scanId){
     .then(res => res.json())
     .then(
       (result) => {                    
-        return result
+        return result.payload
       },           
       (error) => {              
         return error
