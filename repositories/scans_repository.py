@@ -53,18 +53,27 @@ sql_select_accounts_by_scan_id = """
                                     FROM accounts a JOIN machines_accounts ma ON a.account_name = ma.account_name
                                     WHERE a.scan_id = %s
                                     """  
+sql_select_cpm_id = """
+                        SELECT c.cpm_id
+                        FROM cpms c
+                        WHERE c.ip_addresses = %s
+                        """  
+
 
 db = db_wrapper()
 
 class Scans_repo:
     def addScan(scan):
-        id = db.execute_insert_query(insert_to_scan_requests_table,(scan["success_date"],scan['execute_by'],scan['scan_name'],scan['scan_status'],scan['scan_file'],scan['is_most_recent'],scan['cpm_id']))
-        accounts = []
-        for account in accounts:
-            db.execute_insert_query(insert_to_accounts_table,(account['account_name'],account['scan_id'],account['is_privilege'],account['group_name'],account['password_age']))
-            db.execute_insert_query(insert_to_machine_accounts_table,(account['account_name'],account['machine_id'],account['enum_status']))
-            db.execute_insert_query(insert_to_machines_table,(account['machine_id'],account['operating_platform'],account['ip_address']))
-        return scan
+        now = datetime.now()
+        date_string = now.strftime("%Y-%m-%dT%H:%M:%S")
+        cpm_id = db.execute_select_one_query(sql_select_cpm_id,(scan['cpm_ip_address']))['cpm_id']
+        id = db.execute_insert_query(insert_to_scan_requests_table,(date_string,scan['execute_by'],scan['scan_name'],3,"string of ips",1,cpm_id))
+        # accounts = []
+        # for account in accounts:
+        #     db.execute_insert_query(insert_to_accounts_table,(account['account_name'],account['scan_id'],account['is_privilege'],account['group_name'],account['password_age']))
+        #     db.execute_insert_query(insert_to_machine_accounts_table,(account['account_name'],account['machine_id'],account['enum_status']))
+        #     db.execute_insert_query(insert_to_machines_table,(account['machine_id'],account['operating_platform'],account['ip_address']))
+        return id
     
     def getRecentScan():
         scans = db.execute_select_all_query(sql_select_recent_scans)
