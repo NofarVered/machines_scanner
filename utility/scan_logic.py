@@ -39,22 +39,35 @@ def execute_select_all_query(sql_query, params=None):
         raise e
 
 
-def get_users_from_new_scan():
-    accounts_data = json_processor("utility/accounts_newscan.json")
-    return accounts_data
+def get_users_from_new_scan(ip_address_str):
+    ip_address_list = ip_address_str.split()
+    sql_get_machines = """
+                        SELECT machine_id, ip_address
+                        FROM machines;
+                        """
+    result = execute_select_all_query(sql_get_machines)
+    approved_machines = [record["machine_id"]
+                         for record in result if record["ip_address"] in ip_address_list]
+    accounts_data = json_processor("./accounts_newscan.json")
+    accounts_result = [
+        record for record in accounts_data if record["machine_id"] in approved_machines]
+    return accounts_result
 
 
-def get_users_from_rerun_scan(scan_id):
-    sql_get_accounts_by_scan = """
-                                SELECT a.*
-                                FROM accounts a JOIN scan_requests sr ON a.scan_id = sr.scan_id
-                                WHERE sr.is_most_recent = 1 AND sr.scan_status = %s;
-                               """
-    accounts_list = execute_select_all_query(
-        sql_get_accounts_by_scan, (scan_id))
-    # remove 2 accounts that were exist in the last scan
-    rnd_exist = random.choices(accounts_list, k=len(accounts_list)-3)
-    new_accounts = json_processor("./new_accounts.json")
-    rnd_new = random.choices(new_accounts, k=1)
-    return rnd_exist.append(rnd_new)
-    # important note- don't forget to ignore scan_id field
+# def get_users_from_rerun_scan(scan_id):
+#     sql_get_accounts_by_scan = """
+#                                 SELECT a.*
+#                                 FROM accounts a JOIN scan_requests sr ON a.scan_id = sr.scan_id
+#                                 WHERE sr.is_most_recent = 1 AND sr.scan_status = %s;
+#                                """
+#     accounts_list = execute_select_all_query(
+#         sql_get_accounts_by_scan, (scan_id))
+#     # remove 2 accounts that were exist in the last scan
+#     rnd_exist = random.choices(accounts_list, k=len(accounts_list)-3)
+#     new_accounts = json_processor("./new_accounts.json")
+#     rnd_new = random.choices(new_accounts, k=1)
+#     return rnd_exist.append(rnd_new)
+#     # important note- don't forget to ignore scan_id field
+
+
+get_users_from_new_scan("175.58.143.227 114.126.225.25")
