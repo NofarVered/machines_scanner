@@ -51,9 +51,11 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
+
+
 export  function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
-    
+
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -87,12 +89,10 @@ export  function CustomizedDialogs() {
                 
             </TableRow>
         </TableHead>
-        <DialogContent sx={{backgroundImage: `url(${Image})` }} dividers>
+        <DialogContent sx={{backgroundSize:'cover',backgroundImage: `url(${'https://img.freepik.com/free-vector/geometric-stripe-shape-with-diagonal-halftone-line-background_1409-1934.jpg?w=1380&t=st=1670481845~exp=1670482445~hmac=e256bcbeb4fedf7433aee932e74141e5e666cb3c692915dc4def0536456940a7'})` }} dividers>
             <NewScan handleClose={handleClose}/>
         </DialogContent>
-        <DialogActions>
-        
-        </DialogActions>
+      
       </BootstrapDialog>
     </div>
   );
