@@ -48,7 +48,7 @@ def get_users_from_new_scan(ip_address_str):
     result = execute_select_all_query(sql_get_machines)
     approved_machines = [record["machine_id"]
                          for record in result if record["ip_address"] in ip_address_list]
-    accounts_data = json_processor("./accounts_newscan.json")
+    accounts_data = json_processor("utility/accounts_newscan.json")
     accounts_result = [
         record for record in accounts_data if record["machine_id"] in approved_machines]
     return accounts_result
@@ -70,4 +70,3 @@ def get_users_from_new_scan(ip_address_str):
 #     # important note- don't forget to ignore scan_id field
 
 
-get_users_from_new_scan("175.58.143.227 114.126.225.25")

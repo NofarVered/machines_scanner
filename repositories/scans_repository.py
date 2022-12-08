@@ -70,7 +70,7 @@ class Scans_repo:
     def convertToIpString(ips):
         ips_string = ""
         for ip in ips:
-            ips_string +=  ip['ip_addresses '][:-2] + " "
+            ips_string +=  ip['ip_addresses '][:-1] + " "
         return ips_string
 
     def addScan(scan):
@@ -79,8 +79,7 @@ class Scans_repo:
         cpm_id = db.execute_select_one_query(sql_select_cpm_id,(scan['cpm_ip_address']))['cpm_id']
         ips_string = Scans_repo.convertToIpString(scan["scan_file"])
         id = db.execute_insert_query(insert_to_scan_requests_table,(date_string,scan['execute_by'],scan['scan_name'],3,ips_string,1,cpm_id))
-        # new_accounts = get_users_from_new_scan(scan["ips_string"])
-        new_accounts = get_users_from_new_scan()
+        new_accounts = get_users_from_new_scan(ips_string)
         old_accounts = Scans_repo.getAccounts()
         for new_account in new_accounts:
             for old_account in old_accounts:
@@ -94,7 +93,7 @@ class Scans_repo:
 
             db.execute_insert_query(insert_to_accounts_table,(new_account['account_name'],id,new_account['is_privileged'],new_account['group_name'],new_account['password_age']))
             db.execute_insert_query(insert_to_machine_accounts_table,(new_account['account_name'],new_account['machine_id'],new_account['enum_stauts']))
-        return new_accounts
+        return ips_string
     
     def getRecentScan():
         scans = db.execute_select_all_query(sql_select_recent_scans)
