@@ -65,9 +65,10 @@ export  function CustomizedDialogs() {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open dialog
-      </Button>
+        
+      <Button variant="outlined" sx={{mb:4}} onClick={handleClickOpen}>
+         open Scan   
+      </Button> 
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
