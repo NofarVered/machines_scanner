@@ -250,7 +250,7 @@ export default function EnhancedTable(props) {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '110%', mb: 2,mt:2,ml:3,align:"center",boxShadow: 6 }}>
+      <Paper sx={{ width: '98%', mb: 2,mt:2,ml:3,align:"center",boxShadow: 6 }}>
         <EnhancedTableToolbar />
         <TableContainer>
           <Table
