@@ -8,19 +8,16 @@ export default function AccountsWrapper() {
 
 
     return(
-        <Grid container spacing={10}>
-        <Grid item xs={20}>
-        <Container maxWidth="lg" sx={{ mt: 4,ml:2, mb: 4 }}>
-            <CustomizedDialogs/>
-            <Grid container spacing={1}>
-                <Grid item xs={12}>
-                    <Paper sx={{ p: 2,width:'120%' }}>
-                     <OrderTable/>   
-                    </Paper>
-                </Grid>     
-            </Grid>
-        </Container>
+        
+        <Container maxWidth="xlg" sx={{ mt: 4, mb: 4 }}>
+        <CustomizedDialogs/>
+        <Grid container spacing={3}>
+            <Grid item xs={12}>
+                <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+                     <OrderTable />
+                </Paper>
+            </Grid>     
         </Grid>
-        </Grid>
+    </Container>
     )
 }

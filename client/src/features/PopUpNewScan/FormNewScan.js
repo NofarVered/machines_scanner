@@ -75,7 +75,7 @@ export  function NewScan(props) {
   const [color,setColor]=useState('')
   const [open,setOpen]=useState(false)  
   const fileReader = new FileReader();
-  const [array, setArray] = useState([]);
+  
   
   const csvFileToArray = string => {
     const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
@@ -90,7 +90,7 @@ export  function NewScan(props) {
       return obj;
     });
 
-    setArray(array);
+    return array;
   };
   const handleChange=(evt)=>{
     const value = evt.target.value;
@@ -127,22 +127,29 @@ export  function NewScan(props) {
   
   const handleSubmit = (event) => {
     props.handleClose();    
+    let array=0
+    let Scan
     event.preventDefault();
+    
     if (file) {
         fileReader.onload = function (event) {
           const text = event.target.result;
-          csvFileToArray(text);
+          array = csvFileToArray(text);
+          Scan= createScan(scanInputs["scanName"],scanInputs["username"],array,cpmChoose)
+          addScan(Scan).then(()=>{
+            alert("i did it ! " + Scan )
+            setOpen(true)
+            setColor('success')
+        })    
+        
         };
   
         fileReader.readAsText(file);
+      
+  
     }
-    const Scan = createScan(scanInputs["scanName"],scanInputs["username"],array,cpmChoose)
+   
     
-    addScan(Scan).then(()=>{
-        alert("i did it ! " + Scan )
-        setOpen(true)
-        setColor('success')
-    })  
   };
 
   return (

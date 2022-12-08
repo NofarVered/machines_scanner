@@ -67,7 +67,7 @@ export  function CustomizedDialogs() {
   return (
     <div>
         <Box textAlign='center'>
-            <Button variant="contained" sx={{mb:6,mt:3,ml:23,p:2,borderRadius:6}} onClick={handleClickOpen}>
+            <Button variant="contained" sx={{mb:6,mt:3,mr:3,p:2,borderRadius:6}} onClick={handleClickOpen}>
                 Start a New Scan   
             </Button> 
         </Box>
