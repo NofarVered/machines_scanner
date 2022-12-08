@@ -59,6 +59,11 @@ export function Row(props){
     const [open, setOpen] = useState(false);
     const labelId=props.labelId
     const isItemSelected=props.isItemSelected
+    const reRunScan=(scanId)=>{
+        reRunScan(scanId).then((result)=>{
+            alert("i did it ")
+        })        
+    }
    
     return(                          
             <React.Fragment>

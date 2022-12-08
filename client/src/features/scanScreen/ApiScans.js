@@ -45,3 +45,22 @@ export function addScan(Scan){
           )
 }
 
+
+export function reRunScan(scanId){
+    const newScan = { 
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(scanId)
+    };
+    return fetch(scansUrl, newScan)
+        .then(response => response.json())
+        .then(
+            (result) => {   
+               return result
+            },           
+            (error) => {              
+              alert(error)
+            }
+          )
+}
+
