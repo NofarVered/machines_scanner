@@ -79,6 +79,16 @@ export function Row(props){
                 key={row.ScanName}
                 selected={isItemSelected}
             >
+                <TableCell align="center">
+                    
+                    <IconButton
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => setOpen(!open)}
+                    >
+                        {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    </IconButton>
+                    </TableCell>
                 <TableCell component="th" id={labelId} scope="row" align="center">                        
                         {row.ScanName}
                 
@@ -96,16 +106,7 @@ export function Row(props){
                 :
                     <ReRunComp onClick={reRunScan} image={imageReRun}/>}
                
-                <TableCell align="center">
-                    
-                <IconButton
-                    aria-label="expand row"
-                    size="small"
-                    onClick={() => setOpen(!open)}
-                >
-                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-                </IconButton>
-                </TableCell>
+                
                 
                 
                 
