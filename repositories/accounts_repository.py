@@ -53,6 +53,7 @@ class Accounts_repo:
         return accountsByMachine
 
     def getAllRemovedAccounts():
+        print("account repo")
         removedAccounts = db.execute_select_all_query(sql_get_all_removed_accounts)
         return removedAccounts
 
