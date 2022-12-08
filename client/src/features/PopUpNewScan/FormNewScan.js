@@ -168,9 +168,9 @@ export  function NewScan(props) {
               <Grid item xs={12}  >
                     <MaterialUIPickers/>
               </Grid>   
-              <Grid item xs={12}  >
+              <Grid item align='center' sx={{mr:1.3}} xs={12}  >
             <Button
-                sx={{mt:2}}
+                sx={{mt:2,bgcolor:"	#0000cd",borderRadius:6}}
                 variant="contained"
                 component="label"
                 >
@@ -183,9 +183,9 @@ export  function NewScan(props) {
               </Grid>  
               
             </Grid>            
-            <Box textAlign='center' >
+            <Box sx={{mt:4,mr:14}} >
                 <DialogActions>
-                <Button onClick={handleSubmit} sx={{ mt: 4,bgcolor:""}} variant="contained">new Scan</Button>
+                <Button  onClick={handleSubmit} sx={{ mt: 4,p:2,borderRadius:6,pl:4,pr:4,bgcolor:"#0000cd"}} variant="contained">new Scan</Button>
                  </DialogActions>   
             </Box>
             </Box>

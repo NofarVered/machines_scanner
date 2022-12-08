@@ -76,7 +76,7 @@ export  function CustomizedDialogs() {
        <TableHead sx={{
             "& th": {
               color: "white",              
-              backgroundColor: "#1976D2"
+              backgroundColor: "#0000cd"
             }
           }}>
             <TableRow sx={{boxShadow: 4}}>                

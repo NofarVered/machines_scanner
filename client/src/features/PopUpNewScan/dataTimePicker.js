@@ -60,7 +60,7 @@ export default function MaterialUIPickers() {
             'label':{color:'white'}
           }}>      
         <DateTimePicker
-          label="from"
+          label="to"
           value={value}
           onChange={handleChange}
           renderInput={(params) => <TextField {...params} />}
