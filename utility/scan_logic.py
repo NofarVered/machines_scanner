@@ -40,8 +40,8 @@ def execute_select_all_query(sql_query, params=None):
 
 
 def get_users_from_new_scan():
-    accounts_data = json_processor("./accounts_newscan.json")
-    machine_accounts_data = json_processor("./machines_accounts_newscan.json")
+    accounts_data = json_processor("utility/accounts_newscan.json")
+    machine_accounts_data = json_processor("utility/machines_accounts_newscan.json")
     return {"accounts_data": accounts_data, "machine_accounts_data": machine_accounts_data}
 
 

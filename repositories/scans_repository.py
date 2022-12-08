@@ -1,7 +1,7 @@
 from repositories.models.scans import Scans
 from repositories.sql_wrapper import db_wrapper
 from datetime import datetime
-
+from utility.scan_logic import get_users_from_new_scan
 
 insert_to_scan_requests_table = """
                                 INSERT IGNORE into scan_requests (success_date, execute_by, scan_name,scan_status,scan_file,is_most_recent, cpm_id)
@@ -68,12 +68,14 @@ class Scans_repo:
         date_string = now.strftime("%Y-%m-%dT%H:%M:%S")
         cpm_id = db.execute_select_one_query(sql_select_cpm_id,(scan['cpm_ip_address']))['cpm_id']
         id = db.execute_insert_query(insert_to_scan_requests_table,(date_string,scan['execute_by'],scan['scan_name'],3,"string of ips",1,cpm_id))
+        accounts = get_users_from_new_scan()
+        print(accounts)
         # accounts = []
         # for account in accounts:
-        #     db.execute_insert_query(insert_to_accounts_table,(account['account_name'],account['scan_id'],account['is_privilege'],account['group_name'],account['password_age']))
+        #     db.execute_insert_query(insert_to_accounts_table,(account['account_name'],id,account['is_privilege'],account['group_name'],account['password_age']))
         #     db.execute_insert_query(insert_to_machine_accounts_table,(account['account_name'],account['machine_id'],account['enum_status']))
         #     db.execute_insert_query(insert_to_machines_table,(account['machine_id'],account['operating_platform'],account['ip_address']))
-        return id
+        return accounts
     
     def getRecentScan():
         scans = db.execute_select_all_query(sql_select_recent_scans)
