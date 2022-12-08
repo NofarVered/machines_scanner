@@ -8,6 +8,8 @@ export default function AccountsWrapper() {
 
 
     return(
+        <Grid container spacing={10}>
+        <Grid item xs={20}>
         <Container maxWidth="lg" sx={{ mt: 4,ml:2, mb: 4 }}>
             <CustomizedDialogs/>
             <Grid container spacing={1}>
@@ -18,5 +20,7 @@ export default function AccountsWrapper() {
                 </Grid>     
             </Grid>
         </Container>
+        </Grid>
+        </Grid>
     )
 }

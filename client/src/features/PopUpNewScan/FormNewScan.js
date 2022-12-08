@@ -120,7 +120,7 @@ export  function NewScan(props) {
         "scan_name":scanName,
         "scan_file":scanFileIps,
         "execute_by":scanExcuteBy,
-        "cpm_ip":cpmIpAdress
+        "cpm_ip_address":cpmIpAdress
     }
     return newScan
   }
