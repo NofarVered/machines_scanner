@@ -37,14 +37,6 @@ function stableSort(array, comparator) {
 // ==============================|| ORDER TABLE - HEADER CELL ||============================== //
 const headCells = [
     {
-        id: 'detalis',
-        align: 'left',
-        disablePadding: false,
-        label: 'scan details'
-    },
-    
-
-    {
         id: 'ScanName',
         align: 'left',
         disablePadding: false,
@@ -81,6 +73,12 @@ const headCells = [
         label: 'rerun scan'
     },
     
+    {
+        id: 'detalis',
+        align: 'left',
+        disablePadding: false,
+        label: 'scan details'
+    },
     
 ];
 const fillRowInfo=(scans)=>{

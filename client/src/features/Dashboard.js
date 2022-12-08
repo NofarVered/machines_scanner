@@ -22,6 +22,7 @@ import CpmWrapper from './CpmWrapper';
 import Machineswrapper from './MachinesWrapper';
 
 
+
 const drawerWidth = 240;
 
 const AppBar = styled(MuiAppBar, {
@@ -146,8 +147,8 @@ function DashboardContent() {
             overflow: 'auto',
           }}
         >
-          <Toolbar />
-          <Route path='/' exact render={()=> <ScansWrapper />}/>
+          <Toolbar />         
+          <Route path='/scan' exact render={()=> <ScansWrapper />}/>
           <Route path='/cpm' exact render={()=> <CpmWrapper />}/>
           <Route path='/accounts' exact render={()=> <AccountsWrapper />}/>
           <Route path='/machines' exact render={()=> <Machineswrapper />}/>
