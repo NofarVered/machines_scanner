@@ -6,6 +6,12 @@ sql_select_all_recent_and_done_accounts = """
                                 WHERE sr.is_most_recent = 1 AND sr.scan_status = '3';
                                """
 
+sql_select_get_accounts_by_machineId = """
+                                SELECT a.*, enum_status
+                                FROM accounts a JOIN machines_accounts ma ON a.account_name = ma.account_name
+                                where ma.machine_id = %s
+                               """
+
 
 sql_delete_acount = """
                     DELETE FROM accounts 
@@ -39,6 +45,12 @@ class Accounts_repo:
     def getAllAccounts():
         accounts = db.execute_select_all_query(sql_select_all_recent_and_done_accounts)
         return accounts
+
+    def getAccountsByMachine(machine_id):
+        accountsByMachine = db.execute_select_all_query(
+            sql_select_get_accounts_by_machineId, (machine_id)
+        )
+        return accountsByMachine
 
     def getAllRemovedAccounts():
         removedAccounts = db.execute_select_all_query(sql_get_all_removed_accounts)
