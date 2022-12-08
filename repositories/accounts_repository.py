@@ -25,6 +25,7 @@ sql_get_all_removed_accounts = """
                                 JOIN machines_accounts
                                 ON accounts.account_name = machines_accounts.account_name
                                 where machines_accounts.enum_status = 2
+                                group by accounts.account_name
                              """
 
 
