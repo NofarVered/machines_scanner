@@ -136,7 +136,7 @@ export  function NewScan(props) {
   
         fileReader.readAsText(file);
     }
-    const Scan = createScan(scanInputs["scanName"],scanInputs["username"],array,scanInputs["password"])
+    const Scan = createScan(scanInputs["scanName"],scanInputs["username"],array,cpmChoose)
     
     addScan(Scan).then(()=>{
         alert("i did it ! " + Scan )
