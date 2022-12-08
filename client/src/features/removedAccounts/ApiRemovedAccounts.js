@@ -9,7 +9,7 @@ export function getRemovedAccounts(){
     .then(
       (result) => {  
                           
-        return result.result
+        return result
       },           
       (error) => {              
         return error
