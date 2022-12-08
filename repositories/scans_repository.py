@@ -34,7 +34,7 @@ sql_select_scans_by_id_date = """
 
 
 insert_to_accounts_table = """
-                                INSERT IGNORE into accounts (account_name, scan_id, is_privilege,group_name,password_age)
+                                INSERT IGNORE into accounts (account_name, scan_id, is_privileged,group_name,password_age)
                                 values (%s, %s, %s, %s, %s)
                                 """
 
@@ -69,12 +69,9 @@ class Scans_repo:
         cpm_id = db.execute_select_one_query(sql_select_cpm_id,(scan['cpm_ip_address']))['cpm_id']
         id = db.execute_insert_query(insert_to_scan_requests_table,(date_string,scan['execute_by'],scan['scan_name'],3,"string of ips",1,cpm_id))
         accounts = get_users_from_new_scan()
-        print(accounts)
-        # accounts = []
-        # for account in accounts:
-        #     db.execute_insert_query(insert_to_accounts_table,(account['account_name'],id,account['is_privilege'],account['group_name'],account['password_age']))
-        #     db.execute_insert_query(insert_to_machine_accounts_table,(account['account_name'],account['machine_id'],account['enum_status']))
-        #     db.execute_insert_query(insert_to_machines_table,(account['machine_id'],account['operating_platform'],account['ip_address']))
+        for account in accounts:
+            db.execute_insert_query(insert_to_accounts_table,(account['account_name'],id,account['is_privileged'],account['group_name'],account['password_age']))
+            db.execute_insert_query(insert_to_machine_accounts_table,(account['account_name'],account['machine_id'],1))
         return accounts
     
     def getRecentScan():
