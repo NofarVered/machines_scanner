@@ -20,7 +20,7 @@ def getAccounts():
     response_class=JSONResponse,
     status_code=status.HTTP_200_OK,
 )
-def getAccounts(machine_id):
+def getAccountsByMachineId(machine_id):
     result = Accounts_repo.getAccountsByMachine(machine_id)
     return result
 

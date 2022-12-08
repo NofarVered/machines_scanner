@@ -15,6 +15,7 @@ sql_select_machines_by_account_removed = """
 sql_select_all_machines = """
                                 SELECT m.*, ma.enum_status
                                 FROM machines m JOIN machines_accounts ma ON m.machine_id = ma.machine_id
+                                group by m.machine_id
                                 """
 
 
