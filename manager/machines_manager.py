@@ -25,3 +25,12 @@ def getMachinesByAccount(account_name):
 )
 def getMachinesByremovedAccount(account_name):
     return Machines_repo.getAllMachinesByRemovedAccount(account_name)
+
+
+@machine.get(
+    "/machines",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getMachinesByAccount():
+    return Machines_repo.getAllMachines()
