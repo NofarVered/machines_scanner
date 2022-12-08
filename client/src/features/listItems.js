@@ -13,7 +13,7 @@ import DevicesIcon from '@mui/icons-material/Devices';
 
 export const mainListItems = (
   <React.Fragment>
-    <Link to='/'>
+    <Link to='/' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItemButton>
         <ListItemIcon>
             <DashboardIcon />
@@ -21,7 +21,7 @@ export const mainListItems = (
         <ListItemText primary="Scans" />
         </ListItemButton>
     </Link>
-    <Link to='/cpm'>
+    <Link to='/cpm' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItemButton>
         <ListItemIcon>
             <ComputerIcon />
@@ -29,7 +29,7 @@ export const mainListItems = (
         <ListItemText primary="CPM Selection" />
         </ListItemButton>
     </Link>
-    <Link to='/accounts'>
+    <Link to='/accounts' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItemButton>
         <ListItemIcon>
             <PeopleIcon />
@@ -37,7 +37,7 @@ export const mainListItems = (
         <ListItemText primary="Accounts" />
         </ListItemButton>
     </Link> 
-    <Link to='/machines'>
+    <Link to='/machines' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItemButton>
         <ListItemIcon>
             <DevicesIcon />
@@ -45,7 +45,7 @@ export const mainListItems = (
         <ListItemText primary="Machines" />
         </ListItemButton>
     </Link> 
-    <Link to='/statistics'>
+    <Link to='/statistics' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItemButton>
         <ListItemIcon>
             <QueryStatsIcon />

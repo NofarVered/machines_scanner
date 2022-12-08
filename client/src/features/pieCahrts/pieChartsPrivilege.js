@@ -1,18 +1,25 @@
 import React from 'react';
 import ReactApexChart from "react-apexcharts";
-import { getPrivilegStatictis } from "./ApiClientPieChart";
+import { getPrivilegStatictis,getNonPrivilegStatictis } from "./ApiClientPieChart";
 
 export class ApexChartPrivilege extends React.Component {
        
     componentDidMount() {
-        getPrivilegStatictis().then((theStatic)=>{      
-            const privileged =theStatic["privileged"]   
-            const nonprivileged =theStatic["nonpriviliged"]
-            const all_users = privileged+nonprivileged   
-            const privilegAndNon = [(privileged/all_users)*100,(nonprivileged/all_users)*100]
-            this.setState({
-                series:privilegAndNon
+        getPrivilegStatictis().then((theStaticPrive)=>{      
+            const privileged =theStaticPrive[0]["number_of_privileged"] 
+            getNonPrivilegStatictis().then((theStaticNon)=>{
+                const nonprivileged =theStaticNon[0]["number_of_nonPrivileged"]
+                const all_users = privileged+nonprivileged   
+                const privilegAndNon = [(privileged/all_users)*100,(nonprivileged/all_users)*100]
+                this.setState({
+                    series:privilegAndNon
+                })
+            }) .catch(()=>{
+                this.setState({
+                    error:true
+                })
             })
+           
          }            
         ).catch(()=>
          {

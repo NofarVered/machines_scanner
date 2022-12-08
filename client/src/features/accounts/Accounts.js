@@ -8,49 +8,21 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Collapse from '@mui/material/Collapse';
 
+
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
 // third-party
 import NumberFormat from "react-number-format"
 
-import { getAccounts } from './ApiAccounts';
+import { getAccounts, getMachinesByAccount } from './ApiAccounts';
+import MachinesByAccount from './MachinesByAccount';
 
-
-// const accounts = [
-//     {
-//         'userName': 'matan',
-//         'groupName': 'admins',
-//         'privileged': 'yes',
-//         'password': '1234',
-//         'lastPasswordChange': '30-11-2022',
-//         'remoteMachine': 'Linux'
-//     }
-// ]
-
-
-function preventDefault(event) {
-    event.preventDefault();
-}
 
 
 function createData(accountName, scanId, isPrivileged, groupName, passwordAge) {
   return { accountName, scanId, isPrivileged, groupName, passwordAge };
 }
-
-const history= [
-  {
-    date: '2020-01-05',
-    customerId: '11091700',
-    amount: 3,
-  },
-  {
-    date: '2020-01-02',
-    customerId: 'Anonymous',
-    amount: 1,
-  },
-]
-
 
 
 
@@ -96,9 +68,9 @@ const headCells = [
       label: 'Scan ID'
   },
   {
-      id: 'is_privilege',
-      align: 'left',
-      disablePadding: true,
+      id: 'is_privileged',
+      align: 'center',
+      disablePadding: false,
       label: 'Privileged'
   },
   {
@@ -113,18 +85,18 @@ const headCells = [
     disablePadding: false,
     label: 'Password Age'
 },
-  {
-      id: 'detalis',
-      align: 'left',
-      disablePadding: false,
-      label: 'details'
-  }
+{
+    id: 'detalis',
+    align: 'left',
+    disablePadding: false,
+    label: 'details'
+}
 ];
 
 const fillRowInfo=(accounts)=>{
   const new_accounts=[]
   for(let i=0;i<accounts.length;i++){
-      new_accounts.push(createData(accounts[i].account_name, accounts[i].scan_id, accounts[i].is_privilege, accounts[i].group_name, accounts[i].password_age))
+      new_accounts.push(createData(accounts[i].account_name, accounts[i].scan_id, accounts[i].is_privileged, accounts[i].group_name, accounts[i].password_age))
   }
   return new_accounts
 
@@ -139,7 +111,7 @@ function OrderTableHead({ order, orderBy }) {
       <TableHead sx={{
           "& th": {
             color: "white",              
-            backgroundColor: "#1976D2"
+            backgroundColor: "#1976D2",
           }
         }}>
           <TableRow sx={{boxShadow: 4}}>
@@ -168,8 +140,17 @@ OrderTableHead.propTypes = {
 function Row(props){
   const row =props.row;
   const [open, setOpen] = useState(false);
+  const [machines, setMachines] = useState([])
   const labelId=props.labelId
   const isItemSelected=props.isItemSelected
+  
+  const getMachines = account => {
+    setOpen(!open)
+    getMachinesByAccount(account).then(result=> {
+        !Array.isArray(result) ? setMachines([]) : setMachines(result)
+    })
+  } 
+  
   return(                          
           <React.Fragment>
                               
@@ -188,52 +169,23 @@ function Row(props){
               
               </TableCell>
               <TableCell align="center">{row.scanId}</TableCell>
-              <TableCell align="center">{row.isPrivileged}</TableCell>
+              <TableCell align="center">{row.isPrivileged === 0 ? 'No' : 'Yes'}</TableCell>
               <TableCell align="center">{row.groupName}</TableCell>
               <TableCell align="center">{row.passwordAge}</TableCell>
               <TableCell align="center">
               <IconButton
                   aria-label="expand row"
                   size="small"
-                  onClick={() => setOpen(!open)}
+                  onClick={() => getMachines(row.accountName)}
               >
                   {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </IconButton>
-              </TableCell>
-              
+              </TableCell>  
           </TableRow>
           <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-          <Box sx={{ margin: 1 }}>
-          <Typography variant="h6" gutterBottom component="div">
-          Machines
-          </Typography>
-          <Table size="small" aria-label="purchases">
-          <TableHead>
-          <TableRow>
-          <TableCell>Date</TableCell>
-          <TableCell>Customer</TableCell>
-          <TableCell align="right">Amount</TableCell>
-          <TableCell align="right">Total price ($)</TableCell>
-          </TableRow>
-          </TableHead>
-          <TableBody>
-          {history.map((historyRow) => (
-          <TableRow key={historyRow.date}>
-          <TableCell component="th" scope="row">
-          {historyRow.date}
-          </TableCell>
-          <TableCell>{historyRow.customerId}</TableCell>
-          <TableCell align="right">{historyRow.amount}</TableCell>
-          <TableCell align="right">
-          {Math.round(historyRow.amount * 100) / 100}
-          </TableCell>
-          </TableRow>
-          ))}
-          </TableBody>
-          </Table>
-          </Box>
+                <MachinesByAccount machines={machines}/>
           </Collapse>
           </TableCell>
           </TableRow>
@@ -291,7 +243,7 @@ export default function Accounts() {
                         }
                     }}
                 >
-                    <OrderTableHead order={order} orderBy={orderBy} />
+                    <OrderTableHead order={order} orderBy={orderBy}/>
                     <TableBody>
                         {stableSort(accounts, getComparator(order, orderBy)).map((row, index) => {
                             const isItemSelected = isSelected(row.accountName);
