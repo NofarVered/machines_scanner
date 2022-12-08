@@ -28,15 +28,15 @@ function createData(machine_id, operating_system, ip_address, status) {
 } 
 
 
-const fillRowInfo=(machines_request)=>{
-  const new_machines=[]
+// const fillRowInfo=(accounts)=>{
+//   const new_accounts=[]
  
-  for(let i=0;i<machines_request.length;i++){
-      new_machines.push(createData(machines_request[i].machine_id,machines_request[i].operating_system, machines_request[i].ip_address, machines_request[i].status))
-  }
-  return new_machines
+//   for(let i=0;i<accounts_request.length;i++){
+//       new_accounts.push(createData(accounts_request[i].account_name,accounts_request[i].scan_id, accounts_request[i].is_privileged, accounts_request[i].group_name, accounts_request[i].password_age))
+//   }
+//   return new_accounts
 
-}
+// }
 
 
 function descendingComparator(a, b, orderBy) {
@@ -69,34 +69,34 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'machine_id',
+    id: 'account_name',
     numeric: false,
     disablePadding: true,
-    label: 'Machine ID',
+    label: 'Account',
   },
   {
-    id: 'operating_system',
+    id: 'scan_id',
     numeric: true,
     disablePadding: true,
-    label: 'Operating System',
+    label: 'Scan ID',
   },
   {
-    id: 'ip_address',
+    id: 'is_privileged',
     numeric: true,
     disablePadding: false,
-    label: 'IP Address',
+    label: 'privileged',
   },
   {
-    id: 'status',
+    id: 'group_name',
     numeric: true,
     disablePadding: false,
-    label: 'status',
+    label: 'Group Name',
   },
   {
-    id: 'remove_access',
+    id: 'password_age',
     numeric: true,
     disablePadding: false,
-    label: 'Remove Access',
+    label: 'Password Age',
   }
  
 ];
@@ -181,7 +181,7 @@ function EnhancedTableToolbar(props) {
           id="tableTitle"
           component="div"
         >
-          Machines
+          Accounts
         </Typography>
       )}
 
@@ -235,7 +235,7 @@ export default function AccountsByMachine(props) {
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - machines.length) : 0;
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - accounts.length) : 0;
 
 
   return(
@@ -254,10 +254,10 @@ export default function AccountsByMachine(props) {
               orderBy={orderBy}
             
               onRequestSort={handleRequestSort}
-              rowCount={machines.length}
+              rowCount={accounts.length}
             />
             <TableBody >
-              {stableSort(machines, getComparator(order, orderBy))
+              {stableSort(accounts, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {              
              
@@ -267,15 +267,11 @@ export default function AccountsByMachine(props) {
 
                     > 
                                    
-                      <TableCell align="left">{row.machine_id}</TableCell>                       
-                      <TableCell align="left">{row.operating_platform}</TableCell>
-                      <TableCell align="left">{row.ip_address}</TableCell>
-                      <TableCell align="left">{row.enum_status}</TableCell>
-                      <TableCell align='left' >
-                        <IconButton>
-                          <DeleteOutlineIcon></DeleteOutlineIcon>
-                        </IconButton>
-                    </TableCell>
+                      <TableCell align="left">{row.account_name}</TableCell>                       
+                      <TableCell align="left">{row.scan_id}</TableCell>
+                      <TableCell align="left">{row.is_privileged === 0 ? 'no' : 'yes'}</TableCell>
+                      <TableCell align="left">{row.group_name}</TableCell>
+                      <TableCell align="left">{row.password_age}</TableCell>
                     
                     </TableRow>
                   );
@@ -295,7 +291,7 @@ export default function AccountsByMachine(props) {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={machines.length}
+          count={accounts.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
