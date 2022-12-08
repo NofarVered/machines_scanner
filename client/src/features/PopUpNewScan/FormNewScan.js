@@ -74,8 +74,24 @@ export  function NewScan(props) {
   const [cpmChoose,setcpmChoose]=useState('')
   const [color,setColor]=useState('')
   const [open,setOpen]=useState(false)  
+  const fileReader = new FileReader();
+  const [array, setArray] = useState([]);
+  
+  const csvFileToArray = string => {
+    const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
+    const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
 
+    const array = csvRows.map(i => {
+      const values = i.split(",");
+      const obj = csvHeader.reduce((object, header, index) => {
+        object[header] = values[index];
+        return object;
+      }, {});
+      return obj;
+    });
 
+    setArray(array);
+  };
   const handleChange=(evt)=>{
     const value = evt.target.value;
     changeStatusInput(value,evt.target.name)        
@@ -99,10 +115,10 @@ export  function NewScan(props) {
 
   },[])
 
-  const createScan=(scanName,scanExcuteBy,scanFile,cpmIpAdress)=>{
+  const createScan=(scanName,scanExcuteBy,scanFileIps,cpmIpAdress)=>{
     const newScan = {
         "scan_name":scanName,
-        "scan_file":scanFile,
+        "scan_file":scanFileIps,
         "execute_by":scanExcuteBy,
         "cpm_ip":cpmIpAdress
     }
@@ -112,7 +128,15 @@ export  function NewScan(props) {
   const handleSubmit = (event) => {
     props.handleClose();    
     event.preventDefault();
-    const Scan = createScan(scanInputs["scanName"],scanInputs["username"],file,scanInputs["password"])
+    if (file) {
+        fileReader.onload = function (event) {
+          const text = event.target.result;
+          csvFileToArray(text);
+        };
+  
+        fileReader.readAsText(file);
+    }
+    const Scan = createScan(scanInputs["scanName"],scanInputs["username"],array,scanInputs["password"])
     
     addScan(Scan).then(()=>{
         alert("i did it ! " + Scan )
