@@ -18,7 +18,7 @@ def getAccounts():
 
 
 @account.get(
-    "/accounts/current/{machine_id}",
+    "/accounts/machine/{machine_id}",
     response_class=JSONResponse,
     status_code=status.HTTP_200_OK,
 )
