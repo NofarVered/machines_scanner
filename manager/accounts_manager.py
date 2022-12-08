@@ -28,7 +28,8 @@ def getAccountsByMachineId(machine_id):
 @account.get(
     "/accounts/removed", response_class=JSONResponse, status_code=status.HTTP_200_OK
 )
-def getAllRemovedAccounts():
+def getRemovedAccounts():
+    print("account manager")
     removedAccounts = Accounts_repo.getAllRemovedAccounts()
     return removedAccounts
 
