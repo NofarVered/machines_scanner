@@ -1,18 +1,27 @@
+
+
 import React from 'react';
+import cyberArk  from "./image/CyberArk_Features-image.png";
+import { Link } from 'react-router-dom'
+
+
+
 import {
   MDBBtn,
   MDBContainer,
   MDBCard,
   MDBCardBody,
-  MDBCardImage,
+  
   MDBRow,
   MDBCol,
-  MDBIcon,
+  
   MDBInput
 }
 from 'mdb-react-ui-kit';
 
 export function LoginIntro() {
+        
+
   return (
     <MDBContainer  className="my-5">    
 
@@ -25,18 +34,25 @@ export function LoginIntro() {
 
           <MDBCol md='6'>
             <MDBCardBody className='d-flex flex-column'>
-
-              <div className='d-flex flex-row mt-2'>
-                <MDBIcon fas icon="cubes fa-3x me-3" style={{ color: '#ff6219' }}/>
-                <span className="h1 fw-bold mb-0">Logo</span>
-              </div>
-
+           
+              <img src={cyberArk}
+                 height="100"
+                 style={{ margin: 'auto',
+                    width: 100+'px',	
+                    mt: 30+'px'}}
+                 alt="MDB Logo"
+                 loading="lazy" />
+                <span style={{color:'#0548A8'}} className="h1 fw-bold mt-4 mb-0">CyberArk</span>
+            
               <h5 className="fw-normal my-4 pb-3" style={{letterSpacing: '1px'}}>Sign into your account</h5>
 
                 <MDBInput wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="lg"/>
                 <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg"/>
 
-              <MDBBtn className="mb-4 px-5" color='dark' size='lg'>Login</MDBBtn>
+              <Link to='/Dashboard' >  
+              <MDBBtn className="mb-4 px-5" color='dark' size='lg' >Login</MDBBtn>
+              </Link>
+              
               <a className="small text-muted" href="#!">Forgot password?</a>
             
              

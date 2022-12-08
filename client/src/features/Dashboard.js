@@ -98,6 +98,7 @@ function DashboardContent() {
               }}
             >
               <MenuIcon />
+             
             </IconButton>
             <Typography
               component="h1"
@@ -148,11 +149,7 @@ function DashboardContent() {
           }}
         >
           <Toolbar />         
-          <Route path='/scan' exact render={()=> <ScansWrapper />}/>
-          <Route path='/cpm' exact render={()=> <CpmWrapper />}/>
-          <Route path='/accounts' exact render={()=> <AccountsWrapper />}/>
-          <Route path='/machines' exact render={()=> <Machineswrapper />}/>
-          <Route path='/statistics' exact render={()=> <StatisticsWrapper />}/>
+         
         </Box>
       </Box>
     </ThemeProvider>

@@ -60,7 +60,7 @@ export function Row(props){
     const labelId=props.labelId
     const isItemSelected=props.isItemSelected
     const reRunScan=(scanId)=>{
-        reRunScan(scanId).then(()=>{
+        reRunScan(scanId).then(()=>{            
             alert("i did it ")
         }).catch((error)=>{
             console.log(error)
@@ -90,7 +90,7 @@ export function Row(props){
                     <OrderStatus status={row.Status} />
                 </TableCell>
                 <TableCell  align="center">{row.ScanFile}</TableCell> 
-            
+
                {row.Status==1? 
                     <ReRunComp onClick={reRunScan} image={imageStop}/>
                 :
