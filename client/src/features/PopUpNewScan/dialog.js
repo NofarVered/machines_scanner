@@ -11,6 +11,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { NewScan } from "./FormNewScan";
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import { Container } from '@mui/system';
 
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -65,10 +66,12 @@ export  function CustomizedDialogs() {
 
   return (
     <div>
+        <Box textAlign='right' maxWidth='xlg'>
+            <Button variant="outlined" sx={{mb:4,}} onClick={handleClickOpen}>
+                open Scan   
+            </Button> 
+        </Box>
         
-      <Button variant="outlined" sx={{mb:4}} onClick={handleClickOpen}>
-         open Scan   
-      </Button> 
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"

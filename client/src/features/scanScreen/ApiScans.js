@@ -27,3 +27,21 @@ export function getScansHistory(scanId){
     )
 }
 
+export function addScan(Scan){
+    const newScan = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(Scan)
+    };
+    return fetch(scansUrl, newScan)
+        .then(response => response.json())
+        .then(
+            (result) => {   
+               return result
+            },           
+            (error) => {              
+              alert(error)
+            }
+          )
+}
+
