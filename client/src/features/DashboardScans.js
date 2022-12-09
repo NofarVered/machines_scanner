@@ -150,13 +150,13 @@ function DashboardContent() {
           }}
         >
           <Toolbar />         
-        
+        <ScansWrapper/>
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
+export default function DashboardScans() {
   return <DashboardContent />;
 }

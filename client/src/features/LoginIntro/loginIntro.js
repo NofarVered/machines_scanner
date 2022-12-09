@@ -2,10 +2,6 @@
 
 import React from 'react';
 import cyberArk  from "./image/CyberArk_Features-image.png";
-import { Link } from 'react-router-dom'
-
-
-
 import {
   MDBBtn,
   MDBContainer,
@@ -18,10 +14,11 @@ import {
   MDBInput
 }
 from 'mdb-react-ui-kit';
+import { Link } from 'react-router-dom';
 
-export function LoginIntro() {
-        
+export function LoginIntro(props) {        
 
+    
   return (
     <MDBContainer  className="my-5">    
 
@@ -36,7 +33,7 @@ export function LoginIntro() {
             <MDBCardBody className='d-flex flex-column'>
            
               <img src={cyberArk}
-                 height="100"
+                 height="80"
                  style={{ margin: 'auto',
                     width: 100+'px',	
                     mt: 30+'px'}}
@@ -48,13 +45,10 @@ export function LoginIntro() {
 
                 <MDBInput wrapperClass='mb-4' label='Email address' id='formControlLg' type='email' size="lg"/>
                 <MDBInput wrapperClass='mb-4' label='Password' id='formControlLg' type='password' size="lg"/>
-
-              <Link to='/Dashboard' >  
-              <MDBBtn className="mb-4 px-5" color='dark' size='lg' >Login</MDBBtn>
+              <Link to='/cpm'>
+              <MDBBtn className="mb-4 px-5" color='dark'  size='lg'>Login</MDBBtn>
               </Link>
-              
-              <a className="small text-muted" href="#!">Forgot password?</a>
-            
+              <a className="small text-muted" href="#!">Forgot password?</a>            
              
             </MDBCardBody>
           </MDBCol>

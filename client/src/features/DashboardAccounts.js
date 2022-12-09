@@ -150,13 +150,13 @@ function DashboardContent() {
           }}
         >
           <Toolbar />         
-        
+        <AccountsWrapper/>
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
+export default function DashboardAccounts() {
   return <DashboardContent />;
 }

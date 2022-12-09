@@ -150,13 +150,13 @@ function DashboardContent() {
           }}
         >
           <Toolbar />         
-        
+        <StatisticsWrapper/>
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
+export default function DashboardStatic() {
   return <DashboardContent />;
 }

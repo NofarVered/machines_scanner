@@ -150,13 +150,13 @@ function DashboardContent() {
           }}
         >
           <Toolbar />         
-        
+        <Machineswrapper/>
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
+export default function DashboardMachines() {
   return <DashboardContent />;
 }

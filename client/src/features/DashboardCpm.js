@@ -150,13 +150,13 @@ function DashboardContent() {
           }}
         >
           <Toolbar />         
-        
+        <CpmWrapper/>
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
+export default function DashboardCpm() {
   return <DashboardContent />;
 }
