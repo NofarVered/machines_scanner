@@ -16,7 +16,7 @@ import Button from '@mui/material/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { addScan } from "../scanScreen/ApiScans";
-import {CustomizedSnackbars  } from "./snackBar";
+
 import { getCpms } from "../cpmScreen/components/ApiCpm";
 import MaterialUIPickers from './dataTimePicker';
 
@@ -72,8 +72,7 @@ export  function NewScan(props) {
    };
   const [cpms,setCpms] =useState([])
   const [cpmChoose,setcpmChoose]=useState('')
-  const [color,setColor]=useState('')
-  const [open,setOpen]=useState(false)  
+  
   const fileReader = new FileReader();
   
   
@@ -138,12 +137,12 @@ export  function NewScan(props) {
           Scan= createScan(scanInputs["scanName"],scanInputs["username"],array,cpmChoose)
           addScan(Scan).then(()=>{
             alert("i did it ! " + Scan )
-            setOpen(true)
-            setColor('success')
+           
+            
         })    
         
         };
-  
+        props.handleSnackBar()
         fileReader.readAsText(file);
       
   
@@ -256,7 +255,6 @@ export  function NewScan(props) {
             </Box>
             </Box>
         </Box>
-        <CustomizedSnackbars open={open} color={color} messege={"you succed to create transaction"}/>
                     
       </Container>
     </ThemeProvider>

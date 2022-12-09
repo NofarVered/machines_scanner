@@ -1,15 +1,11 @@
 import React from 'react';
 import './App.css';
-import Dashboard from './features/Dashboard';
-import { BrowserRouter as Router, Redirect, Route} from 'react-router-dom'
+
+import { BrowserRouter as Router,Route} from 'react-router-dom'
 import 'mdb-react-ui-kit/dist/css/mdb.min.css';
 import { LoginIntro } from './features/LoginIntro/loginIntro';
 
-import AccountsWrapper from './features/AccountsWrapper';
-import StatisticsWrapper from './features/StatisticsWrapper';
-import ScansWrapper from './features/ScansWrapper'
-import CpmWrapper from './features/CpmWrapper';
-import Machineswrapper from './features/MachinesWrapper';
+
 import DashboardCpm from './features/DashboardCpm';
 import DashboardScans from './features/DashboardScans';
 import DashboardAccounts from './features/DashboardAccounts';
@@ -23,8 +19,7 @@ function App() {
      
             <Route path='/scan' exact render={()=> <DashboardScans  />}/>          
             <Route path='/' exact render={()=> <LoginIntro />}/>                    
-           
-  
+            
             <Route path='/cpm' exact render={()=> <DashboardCpm />}/>
             <Route path='/accounts' exact render={()=> <DashboardAccounts/>}/>
           

@@ -10,6 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { NewScan } from "./FormNewScan";
+import {CustomizedSnackbars  } from "./snackBar";
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import { Container } from '@mui/system';
 
@@ -56,13 +57,19 @@ BootstrapDialogTitle.propTypes = {
 
 export  function CustomizedDialogs() {
   const [open, setOpen] = React.useState(false);
-
+  const [color,setColor]=React.useState('')
+  const [openSnack,setOpenSnack]=React.useState(false)  
+  const handleSnackBar=()=>{
+    setOpenSnack(true)
+    setColor('success')
+  }
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
   };
+  
 
   return (
     <div>
@@ -94,8 +101,9 @@ export  function CustomizedDialogs() {
             </TableRow>
         </TableHead>
         <DialogContent sx={{backgroundSize:'cover',backgroundImage: `url(${'https://img.freepik.com/free-vector/geometric-stripe-shape-with-diagonal-halftone-line-background_1409-1934.jpg?w=1380&t=st=1670481845~exp=1670482445~hmac=e256bcbeb4fedf7433aee932e74141e5e666cb3c692915dc4def0536456940a7'})` }} dividers>
-            <NewScan handleClose={handleClose}/>
+            <NewScan handleSnackBar={handleSnackBar} handleClose={handleClose}/>
         </DialogContent>
+        <CustomizedSnackbars open={openSnack} color={color} messege={"you succed to create transaction"}/>
       
       </BootstrapDialog>
     </div>
