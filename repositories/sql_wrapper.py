@@ -11,6 +11,17 @@ connection = pymysql.connect(
 )
 
 
+class db_wrapper_statistics:
+    pymysql.connect(
+        host="localhost",
+        user="root",
+        password="",
+        db="machines_scanner",
+        charset="utf8",
+        cursorclass=pymysql.cursors.DictCursor,
+    )
+
+
 class db_wrapper:
     def __init__(self):
         try:

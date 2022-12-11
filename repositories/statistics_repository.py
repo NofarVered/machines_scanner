@@ -1,6 +1,6 @@
 from repositories.sql_wrapper import db_wrapper
 from repositories.sql_wrapper import connection
-
+import pymysql
 
 sql_count_privilliged_accounts = """
                                         SELECT COUNT(*) as number_of_privileged
@@ -67,51 +67,157 @@ db = db_wrapper()
 
 class Statistics_repo:
     def getPrivilegedAmount():
-        connection.ping()
-        privilegedAmount = db.execute_select_all_query(sql_count_privilliged_accounts)
-        return privilegedAmount
+        connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="machines_scanner",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_count_privilliged_accounts)
+                result = cursor.fetchall()
+                return result
+        except TypeError as e:
+            return e
 
     def getNonPrivilegedAmount():
-        connection.ping()
-        nonPrivilegedAmount = db.execute_select_all_query(
-            sql_count_not_privilliged_accounts
+        connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="machines_scanner",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
         )
-        return nonPrivilegedAmount
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_count_not_privilliged_accounts)
+                result = cursor.fetchall()
+                return result
+        except TypeError as e:
+            return e
 
     def getWindowsAmount():
-        connection.ping()
-        windowsAmount = db.execute_select_all_query(sql_count_windows_accounts)
-        return windowsAmount
+        connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="machines_scanner",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_count_windows_accounts)
+                result = cursor.fetchall()
+                return result
+        except TypeError as e:
+            return e
 
     def getMacAmount():
-        connection.ping()
-        macAmount = db.execute_select_all_query(sql_count_mac_accounts)
-        return macAmount
+        connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="machines_scanner",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_count_mac_accounts)
+                result = cursor.fetchall()
+                return result
+        except TypeError as e:
+            return e
 
     def getLinuxAmount():
-        connection.ping()
-        linuxAmount = db.execute_select_all_query(sql_count_linux_accounts)
-        return linuxAmount
+        connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="machines_scanner",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_count_linux_accounts)
+                result = cursor.fetchall()
+                return result
+        except TypeError as e:
+            return e
 
     def getAccountsAmount():
-        connection.ping()
-        accountsAmount = db.execute_select_all_query(sql_count_accounts_amount)
-        return accountsAmount
+        connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="machines_scanner",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_count_accounts_amount)
+                result = cursor.fetchall()
+                return result
+        except TypeError as e:
+            return e
 
     def getMachinesAmount():
-        connection.ping()
-        machinesAmount = db.execute_select_all_query(sql_count_machines_amount)
-        return machinesAmount
+        connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="machines_scanner",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_count_machines_amount)
+                result = cursor.fetchall()
+                return result
+        except TypeError as e:
+            return e
 
     def getSuccessfulScansAmount():
-        connection.ping()
-        succesfulScansAmount = db.execute_select_all_query(sql_count_successful_scans)
-        return succesfulScansAmount
+        connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="machines_scanner",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_count_successful_scans)
+                result = cursor.fetchall()
+                return result
+        except TypeError as e:
+            return e
 
     def getfailedScansAmount():
-        connection.ping()
-        failedScansAmount = db.execute_select_all_query(sql_count_failed_scans)
-        return failedScansAmount
+        connection = pymysql.connect(
+            host="localhost",
+            user="root",
+            password="",
+            db="machines_scanner",
+            charset="utf8",
+            cursorclass=pymysql.cursors.DictCursor,
+        )
+        try:
+            with connection.cursor() as cursor:
+                cursor.execute(sql_count_failed_scans)
+                result = cursor.fetchall()
+                return result
+        except TypeError as e:
+            return e
 
     # def getAllMachinesByAccount(acount_name):
     #     machines = db.execute_select_all_query(
