@@ -1,16 +1,14 @@
 import PropTypes from 'prop-types';
 import { useState,useEffect } from 'react';
 import * as React from 'react';
-import {getScansRecent} from './ApiScans'
+
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
 
 
 import { Row } from './row';
-function createData(ScanId,ScanName, SuucesDate, excuteBy, Status, ScanFile) {
-    return { ScanId,ScanName, SuucesDate, excuteBy, Status, ScanFile };
-}
+
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
         return -1;
@@ -81,13 +79,7 @@ const headCells = [
     },
     
 ];
-const fillRowInfo=(scans)=>{
-    const new_scans=[]
-    for(let i=0;i<scans.length;i++){
-        new_scans.push(createData(scans[i].scan_id,scans[i].scan_name, scans[i].success_date, scans[i].execute_by, scans[i].scan_status, scans[i].scan_file))
-    }
-    return new_scans
-}
+
 // ==============================|| ORDER TABLE - HEADER ||============================== //
 function OrderTableHead({ order, orderBy }) {
     return (
@@ -118,19 +110,13 @@ OrderTableHead.propTypes = {
 };
 // ==============================|| ORDER TABLE - STATUS ||============================== //
 // ==============================|| ORDER TABLE ||============================== //
-export default function OrderTable() {
+export default function OrderTable(props) {
     const [order] = useState('asc');
     const [orderBy] = useState('ScanName');
     const [selected] = useState([]);
-    const [scans,setScans]=useState([])
+   
     const isSelected = (ScanName) => selected.indexOf(ScanName) !== -1;
-    useEffect(() => {
-        getScansRecent().then((result)=>{
-            setScans(fillRowInfo(result.payload))              
-        }).catch((error)=>{
-            console.log(error)
-        })
-      }, []);
+   
     return (
         <Box>
             <TableContainer
@@ -156,7 +142,7 @@ export default function OrderTable() {
                 >
                     <OrderTableHead order={order} orderBy={orderBy} />
                     <TableBody>
-                        {stableSort(scans, getComparator(order, orderBy)).map((row, index) => {
+                        {stableSort(props.scans, getComparator(order, orderBy)).map((row, index) => {
                             const isItemSelected = isSelected(row.ScanName);
                             const labelId = `enhanced-table-checkbox-${index}`;
                             return (                                

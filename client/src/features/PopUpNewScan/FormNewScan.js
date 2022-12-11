@@ -135,8 +135,7 @@ export  function NewScan(props) {
           const text = event.target.result;
           array = csvFileToArray(text);
           Scan= createScan(scanInputs["scanName"],scanInputs["username"],array,cpmChoose)
-          addScan(Scan).then(()=>{
-            alert("i did it ! " + Scan )
+          addScan(Scan).then(()=>{        
            
             
         })    
