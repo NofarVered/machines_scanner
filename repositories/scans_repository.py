@@ -63,6 +63,12 @@ sql_select_recent_scans_by_id = """
                                 FROM scan_requests
                                 WHERE scan_requests.is_most_recent = 1 AND scan_requests.scan_id = %s
                                 """
+
+sql_update_machines_accounts = """
+                            UPDATE machines_accounts
+                            SET enum_status = %s
+                            WHERE account_name = %s AND machine_id = %s
+                            """
 db = db_wrapper()
 
 class Scans_repo:
@@ -86,8 +92,12 @@ class Scans_repo:
                 if (( new_account['account_name'] == old_account['account_name'] ) and ( new_account['machine_id'] == old_account['machine_id'] ) ):
                             if old_account['enum_status'] == 2:
                                 new_account['enum_stauts'] = 3
+                            elif (old_account['enum_status'] == 3):
+                                new_account['enum_stauts'] = 3
                             else:
                                 new_account['enum_stauts'] = 1
+                            db.execute_update_query(sql_update_machines_accounts,(new_account['enum_stauts'],new_account['account_name'],new_account['machine_id']))
+                            continue
                 else:
                     new_account['enum_stauts'] = 1
 
@@ -111,25 +121,24 @@ class Scans_repo:
         now = datetime.now()
         date_string = now.strftime("%Y-%m-%dT%H:%M:%S")
         scan = db.execute_select_one_query(sql_select_recent_scans_by_id,(scan_id))
-## update the last scan
         db.execute_update_query(sql_select_scans_by_id_date,(scan['scan_id'],scan["success_date"]))
-## get the accounts of the old scan
         old_accounts = Scans_repo.getAccounts()
-## insert a scan with the same id
-        scan = db.execute_insert_query(insert_to_scan_requests_table_with_id,(scan['scan_id'],date_string,scan['execute_by'],scan['scan_name'],scan['scan_status'],scan['scan_file'],scan['is_most_recent'],scan['cpm_id']))
-## getting new acoounts
+        db.execute_insert_query(insert_to_scan_requests_table_with_id,(scan['scan_id'],date_string,scan['execute_by'],scan['scan_name'],scan['scan_status'],scan['scan_file'],scan['is_most_recent'],scan['cpm_id']))
         new_accounts = get_users_from_new_scan(scan["scan_file"])
-## checking for diff("enum_status" is enum. 1= "exists", 2="removed", 3="readded")
         for new_account in new_accounts:
-            for old_account in old_accounts:
-                if (( new_account['account_name'] == old_account['account_name'] ) and ( new_account['machine_id'] == old_account['machine_id'] ) ):
-                            if old_account['enum_status'] == 2:
-                                new_account['enum_stauts'] = 3
-                            else:
-                                new_account['enum_stauts'] = 1
-                else:
-                    new_account['enum_stauts'] = 1
-## adding accounts scanned by the scans
-            db.execute_insert_query(insert_to_accounts_table,(new_account['account_name'],new_account['scan_id'],new_account['is_privilege'],new_account['group_name'],new_account['password_age']))
-            db.execute_insert_query(insert_to_machine_accounts_table,(new_account['account_name'],new_account['machine_id'],new_account['enum_status']))
-        return old_accounts
+                for old_account in old_accounts:
+                    if (( new_account['account_name'] == old_account['account_name'] ) and ( new_account['machine_id'] == old_account['machine_id'] ) ):
+                                if old_account['enum_status'] == 2:
+                                    new_account['enum_stauts'] = 3
+                                elif (old_account['enum_status'] == 3):
+                                    new_account['enum_stauts'] = 3
+                                else:
+                                    new_account['enum_stauts'] = 1
+                                db.execute_update_query(sql_update_machines_accounts,(new_account['enum_stauts'],new_account['account_name'],new_account['machine_id']))
+                                continue
+                    else:
+                        new_account['enum_stauts'] = 1
+
+                db.execute_insert_query(insert_to_accounts_table,(new_account['account_name'],scan['scan_id'],new_account['is_privileged'],new_account['group_name'],new_account['password_age']))
+                db.execute_insert_query(insert_to_machine_accounts_table,(new_account['account_name'],new_account['machine_id'],new_account['enum_stauts']))
+        return scan
