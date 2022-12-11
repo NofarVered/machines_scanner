@@ -19,13 +19,6 @@
 	border-top-right-radius: 14px;
 }
 
-img {
-	margin: auto;
-	width: 100px;
-	border: solid white 4px;
-	border-radius: 50%;
-	margin-top: 75px;
-}
 
 .bold-text {
 	font-weight: bold;
@@ -42,6 +35,10 @@ img {
 	padding-bottom: 10px;
 }
 .avatar {
+    margin: auto;	
+	border: solid white 4px;
+	border-radius: 50%;
+	margin-top: 75px;
     vertical-align: middle;
     width: 150px;
     height: 130px;
@@ -56,6 +53,7 @@ img {
 	text-align: center;
 	letter-spacing: 1px;	
 	line-height: 5px;
+    margin-top: 14px;
 }
 
 .social-container {

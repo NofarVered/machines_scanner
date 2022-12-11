@@ -12,8 +12,8 @@ scans = APIRouter()
 @scans.post('/scans', response_class=JSONResponse, status_code=status.HTTP_201_CREATED)
 async def addScan(request: Request):
     req = await request.json()
-    Scans_repo.addScan(req)
-    return {"success": True, "payload": req}
+    cpm_id = Scans_repo.addScan(req)
+    return {"success": True, "payload": cpm_id}
 
 
 @scans.get('/scans', response_class=JSONResponse, status_code=status.HTTP_200_OK)

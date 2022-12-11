@@ -13,7 +13,7 @@ import DevicesIcon from '@mui/icons-material/Devices';
 
 export const mainListItems = (
   <React.Fragment>
-    <Link to='/' style={{ textDecoration: 'none', color: 'black' }}>
+    <Link to='/scan' style={{ textDecoration: 'none', color: 'black' }}>
         <ListItemButton>
         <ListItemIcon>
             <DashboardIcon />

@@ -18,7 +18,7 @@ export  function CustomizedSnackbars(props) {
         <Alert severity={props.color} sx={{ width: '100%' }}>
           {props.messege}
         </Alert>
-      </Snackbar>
+      </Snackbar>   
         :null}
       </div>
       

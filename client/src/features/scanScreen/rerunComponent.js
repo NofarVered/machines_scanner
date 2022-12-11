@@ -2,6 +2,9 @@ import React, { Component }  from 'react'
 import Box from '@mui/material/Box';
 
 export function ReRunComp(props){
+    const reRunScan=()=>{
+        props.reRunScan();
+    }
     return(
         <Box
         component="img"
@@ -13,7 +16,8 @@ export function ReRunComp(props){
         mt:2,
         cursor:"pointer"
         }}
-        
+        onClick={reRunScan}
+
         alt="The house from the offer."
         src={props.image}
      />
