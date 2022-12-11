@@ -4,6 +4,7 @@ import ArrowUpward from '@mui/icons-material/ArrowUpward'
 import MoneyIcon from '@mui/icons-material/Money';
 import { getAmountMachines,getAmountOfAccount } from "./ApiClientPieChart";
 import React, { Component, useEffect, useState }  from 'react'
+import AutoGraphIcon from '@mui/icons-material/AutoGraph';
 export function Statics(props){
     const [amountAccount,SetAmountAccount]=useState('')
     const [amountMachines,SetAmountMachines]=useState('')
@@ -49,12 +50,12 @@ return(  <Card
         <Grid item>
           <Avatar
             sx={{
-              backgroundColor: 'error.main',
+              backgroundColor: '#1976D2',
               height: 56,
               width: 56
             }}
           >
-            <MoneyIcon />
+            <AutoGraphIcon  />
           </Avatar>
         </Grid>
       </Grid>

@@ -38,7 +38,7 @@ export default function ScansWrapper() {
         }).catch((error)=>{
             console.log(error)
         })
-      }, [scans]);
+      }, []);
 
     return(
         
