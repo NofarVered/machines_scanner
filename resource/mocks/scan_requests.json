@@ -26,4 +26,6 @@
 {"scan_id":17,"success_date":"2022-03-16 00:54:25","execute_by":"Kata Pierse","scan_name":"Dickinson, Toy and Hamill","cpm_id":3,"scan_status":3,"scan_file":"Aenean.xls","is_most_recent":true},
 {"scan_id":18,"success_date":"2022-10-31 08:37:39","execute_by":"Patricia Argo","scan_name":"Skiles-Boyer","cpm_id":2,"scan_status":3,"scan_file":"JustoIn.mp3","is_most_recent":true},
 {"scan_id":19,"success_date":"2022-08-10 11:50:49","execute_by":"Christian Petow","scan_name":"Bins-Weimann","cpm_id":3,"scan_status":3,"scan_file":"EratNullaTempus.mp3","is_most_recent":true},
-{"scan_id":20,"success_date":"2021-12-10 04:15:16","execute_by":"Isaac Wareham","scan_name":"Hyatt Group","cpm_id":4,"scan_status":3,"scan_file":"EtTempusSemper.ppt","is_most_recent":true}]
+{"scan_id":20,"success_date":"2021-12-10 04:15:16","execute_by":"Isaac Wareham","scan_name":"Hyatt Group","cpm_id":4,"scan_status":3,"scan_file":"EtTempusSemper.ppt","is_most_recent":true}
+{"scan_id":21,"success_date":"2019-08-10 11:50:49","execute_by":"Nofar Nahum","scan_name":"red hot 1","cpm_id":1,"scan_status":4,"scan_file":"EratNullaTempus.mp3","is_most_recent":true},
+{"scan_id":22,"success_date":"2018-12-10 04:15:16","execute_by":"Nofar Nahum","scan_name":"red hot 2","cpm_id":1,"scan_status":4,"scan_file":"EtTempusSemper.ppt","is_most_recent":true}]
