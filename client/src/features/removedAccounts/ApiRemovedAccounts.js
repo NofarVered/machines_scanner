@@ -1,15 +1,15 @@
 import axios from 'axios'
 
-const accountsUrl ='http://localhost:8000/accounts/current'
+const accountsUrl ='http://localhost:8000/accounts/removed'
 
 
-export function getAccounts(){
+export function getRemovedAccounts(){
     return fetch(accountsUrl) 
     .then(res => res.json())
     .then(
       (result) => {  
                           
-        return result.result
+        return result
       },           
       (error) => {              
         return error
@@ -17,8 +17,8 @@ export function getAccounts(){
     )
 }
 
-export function getMachinesByAccount(account) {
-  return fetch(`http://localhost:8000/machines/${account}`) 
+export function getMachinesByRemovedAccount(account) {
+  return fetch(`http://localhost:8000/machines/removed/${account}`) 
   .then(res => res.json())
   .then(
     (result) => {                    

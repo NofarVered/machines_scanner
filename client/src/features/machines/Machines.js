@@ -13,7 +13,8 @@ import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, Tab
 // third-party
 import NumberFormat from "react-number-format"
 
-import { getMachines } from './ApiMachines';
+import { getMachines, getAccountsByMachine } from './ApiMachines';
+import AccountsByMachine from './AccountsByMachine';
 
 
 
@@ -25,20 +26,6 @@ function preventDefault(event) {
 function createData(machineId, OperatingSystem, ipAddress) {
   return { machineId, OperatingSystem, ipAddress };
 }
-
-const history= [
-  {
-    date: '2020-01-05',
-    customerId: '11091700',
-    amount: 3,
-  },
-  {
-    date: '2020-01-02',
-    customerId: 'Anonymous',
-    amount: 1,
-  },
-]
-
 
 
 
@@ -144,8 +131,18 @@ OrderTableHead.propTypes = {
 function Row(props){
   const row =props.row;
   const [open, setOpen] = useState(false);
+  const [accounts, setAccounts] = useState([])
   const labelId=props.labelId
   const isItemSelected=props.isItemSelected
+
+  const getAccounts = machine => {
+    setOpen(!open)
+    getAccountsByMachine(machine).then(result=> {
+        !Array.isArray(result) ? setAccounts([]) : setAccounts(result)
+    })
+  } 
+
+
   return(                          
           <React.Fragment>
                               
@@ -169,7 +166,7 @@ function Row(props){
               <IconButton
                   aria-label="expand row"
                   size="small"
-                  onClick={() => setOpen(!open)}
+                  onClick={() => getAccounts(row.machineId)}
               >
                   {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
               </IconButton>
@@ -179,35 +176,7 @@ function Row(props){
           <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-          <Box sx={{ margin: 1 }}>
-          <Typography variant="h6" gutterBottom component="div">
-          Accounts
-          </Typography>
-          <Table size="small" aria-label="purchases">
-          <TableHead>
-          <TableRow>
-          <TableCell>Date</TableCell>
-          <TableCell>Customer</TableCell>
-          <TableCell align="right">Amount</TableCell>
-          <TableCell align="right">Total price ($)</TableCell>
-          </TableRow>
-          </TableHead>
-          <TableBody>
-          {history.map((historyRow) => (
-          <TableRow key={historyRow.date}>
-          <TableCell component="th" scope="row">
-          {historyRow.date}
-          </TableCell>
-          <TableCell>{historyRow.customerId}</TableCell>
-          <TableCell align="right">{historyRow.amount}</TableCell>
-          <TableCell align="right">
-          {Math.round(historyRow.amount * 100) / 100}
-          </TableCell>
-          </TableRow>
-          ))}
-          </TableBody>
-          </Table>
-          </Box>
+                <AccountsByMachine accounts={accounts}/>
           </Collapse>
           </TableCell>
           </TableRow>

@@ -1,3 +1,4 @@
+import React, { Component }  from 'react'
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Container } from '@mui/system';
@@ -7,7 +8,6 @@ import { useState,useEffect } from 'react';
 import {getScansRecent} from './scanScreen/ApiScans'
 import * as React from 'react';
 import {CustomizedSnackbars  } from "./PopUpNewScan/snackBar";
-
 
 
 export default function ScansWrapper() {
