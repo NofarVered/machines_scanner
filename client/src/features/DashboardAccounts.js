@@ -21,6 +21,7 @@ import ScansWrapper from './ScansWrapper'
 import CpmWrapper from './CpmWrapper';
 import Machineswrapper from './MachinesWrapper';
 import Accounts from './accounts/Accounts';
+import Notifications from './Notifications';
 
 
 
@@ -110,11 +111,7 @@ function DashboardContent() {
             >
               Machines Scanner
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={0} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+              <Notifications />
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
