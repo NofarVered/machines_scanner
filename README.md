@@ -31,10 +31,7 @@ STATISTICS - we added a new feature of presenting intersting statistics like Dis
 
 ## DB Architecture
 
-
-
-
-
+![erd_diagram](https://user-images.githubusercontent.com/70105078/206911902-a45b4ed4-15c1-4780-9cc6-bd99d71844d1.png)
 
 
 
