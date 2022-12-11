@@ -9,7 +9,7 @@ export function getAccounts(){
     .then(
       (result) => {  
                           
-        return result.result
+        return result
       },           
       (error) => {              
         return error
@@ -30,6 +30,15 @@ export function getMachinesByAccount(account) {
   )
 }
 
-export function changeStatusToRemoved(account) {
-  axios.put(``)
+export function changeStatusToRemoved(account, machine) {
+  axios.put(`http://localhost:8000/accounts/${account}/${machine}`)
+  .then(res => res.json())
+  .then(
+    (result) => {
+      return result
+    },
+    (error) => {
+      return error
+    }
+  )
 }

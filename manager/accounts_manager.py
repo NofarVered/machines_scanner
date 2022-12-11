@@ -14,7 +14,7 @@ account = APIRouter()
 )
 def getAccounts():
     result = Accounts_repo.getAllAccounts()
-    return {"result": result}
+    return result
 
 
 @account.get(

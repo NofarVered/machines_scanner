@@ -21,6 +21,7 @@ import ScansWrapper from './ScansWrapper'
 import CpmWrapper from './CpmWrapper';
 import Machineswrapper from './MachinesWrapper';
 import Accounts from './accounts/Accounts';
+import Notifications from './Notifications';
 
 
 
@@ -78,6 +79,8 @@ function DashboardContent() {
     setOpen(!open);
   };
 
+  
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
@@ -110,11 +113,7 @@ function DashboardContent() {
             >
               Machines Scanner
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={0} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+             <Notifications />
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>

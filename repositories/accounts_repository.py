@@ -1,9 +1,11 @@
 from repositories.sql_wrapper import db_wrapper
+from repositories.enum import enum_status
 
 sql_select_all_recent_and_done_accounts = """
                                 SELECT a.*
-                                FROM accounts a JOIN scan_requests sr ON a.scan_id = sr.scan_id
-                                WHERE sr.is_most_recent = 1 AND sr.scan_status = '3';
+                                FROM accounts a JOIN machines_accounts ma ON a.account_name = ma.account_name
+                                WHERE ma.enum_status = 1 OR ma.enum_status = 3
+                                GROUP BY ma.account_name;
                                """
 
 sql_select_get_accounts_by_machineId = """
@@ -38,9 +40,19 @@ sql_get_all_removed_accounts = """
 db = db_wrapper()
 
 
+def enumStatusHandler(accounts):
+    for account in accounts:
+        enum_status_number = account["enum_status"]
+        account["enum_status"] = enum_status(enum_status_number).name
+    return accounts
+
+
 class Accounts_repo:
     def removed_acount(account_name, machine_id):
-        db.execute_update_query(sql_remove_acount_machine, (account_name, machine_id))
+        accounts = db.execute_update_query(
+            sql_remove_acount_machine, (account_name, machine_id)
+        )
+        return accounts
 
     def getAllAccounts():
         accounts = db.execute_select_all_query(sql_select_all_recent_and_done_accounts)
@@ -50,6 +62,7 @@ class Accounts_repo:
         accountsByMachine = db.execute_select_all_query(
             sql_select_get_accounts_by_machineId, (machine_id)
         )
+        enumStatusHandler(accountsByMachine)
         return accountsByMachine
 
     def getAllRemovedAccounts():

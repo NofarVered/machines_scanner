@@ -12,9 +12,16 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import { changeStatusToRemoved } from './ApiAccounts';
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
+
+
+function useForceUpdate(){
+  const [value, setValue] = useState(0); 
+  return () => setValue(value => value + 1); 
+}
 
  
 function createData(machine_id, operating_system, ip_address, status) {
@@ -208,6 +215,7 @@ EnhancedTableToolbar.propTypes = {
 
 
 export default function MachinesByAccount(props) {
+  const account = props.account
   const machines = props.machines
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('status');
@@ -231,6 +239,18 @@ export default function MachinesByAccount(props) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const removeAccountFromMachine = (account, machine) => {
+    console.log(`remove ${account} from ${machine}`)
+    changeStatusToRemoved(account, machine)
+    .then(
+      
+      console.log(props)
+    )
+    .then(
+      props.getMachinesByAccount(account)
+    )  
+  } 
 
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -273,7 +293,7 @@ export default function MachinesByAccount(props) {
                       <TableCell align="left">{row.ip_address}</TableCell>
                       <TableCell align="left">{row.enum_status}</TableCell>
                       <TableCell align='left' >
-                        <IconButton>
+                        <IconButton onClick={()=> removeAccountFromMachine(account, row.machine_id)}>
                           <DeleteOutlineIcon></DeleteOutlineIcon>
                         </IconButton>
                     </TableCell>
@@ -306,38 +326,5 @@ export default function MachinesByAccount(props) {
       
     </Box>
 
-        // <Box sx={{ margin: 1 }}>
-        //   <Typography variant="h6" gutterBottom component="div">
-        //   Machines
-        //   </Typography>
-        //   <Table size="small" aria-label="purchases">
-        //   <TableHead>
-        //   <TableRow>
-        //   <TableCell>Machine ID</TableCell>
-        //   <TableCell >Operating System</TableCell>
-        //   <TableCell align="right">IP Address </TableCell>
-        //   <TableCell align="center">Status </TableCell>
-        //   <TableCell align="center">Remove Access </TableCell>
-        //   </TableRow>
-        //   </TableHead>
-        //   <TableBody>
-        //   {machines.map(machine => (
-        //     <TableRow key={machine.machine_id}>
-        //     <TableCell component="th" scope="row">
-        //     {machine.machine_id}
-        //     </TableCell>
-        //     <TableCell>{machine.operating_platform}</TableCell>
-        //     <TableCell align="right">{machine.ip_address}</TableCell>
-        //     <TableCell align="center">{machine.status}</TableCell>
-        //     <TableCell align='center'>
-        //         <IconButton>
-        //             <DeleteOutlineIcon></DeleteOutlineIcon>
-        //         </IconButton>
-        //       </TableCell>
-        //     </TableRow>
-        //   ))}
-        //   </TableBody>
-        //   </Table>
-        // </Box>
   )
 }

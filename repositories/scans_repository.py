@@ -76,7 +76,9 @@ class Scans_repo:
     def convertToIpString(ips):
         ips_string = ""
         for ip in ips:
-            ips_string +=  ip['ip_addresses '][:-1] + " "
+            print(ip)
+            if ip != "" and ip != " ":
+                ips_string +=  ip['ip_adresses \r'][:-1] + " "
         return ips_string
 
     def addScan(scan):
