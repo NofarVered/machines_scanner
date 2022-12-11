@@ -31,5 +31,5 @@ def getScansByHistoryId(scan_id):
 @scans.post('/scans/rerun', response_class=JSONResponse, status_code=status.HTTP_200_OK)
 async def reRunScan(request: Request):
     req = await request.json()
-    scans = Scans_repo.reRunScan(req)
+    scans = Scans_repo.reRunScan(req['scan_id'])
     return {"success": True, "payload": scans}
