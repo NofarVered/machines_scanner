@@ -20,6 +20,8 @@ import StatisticsWrapper from './StatisticsWrapper';
 import ScansWrapper from './ScansWrapper'
 import CpmWrapper from './CpmWrapper';
 import Machineswrapper from './MachinesWrapper';
+import Accounts from './accounts/Accounts';
+
 
 
 const drawerWidth = 240;
@@ -97,6 +99,7 @@ function DashboardContent() {
               }}
             >
               <MenuIcon />
+             
             </IconButton>
             <Typography
               component="h1"
@@ -146,18 +149,14 @@ function DashboardContent() {
             overflow: 'auto',
           }}
         >
-          <Toolbar />
-          <Route path='/' exact render={()=> <ScansWrapper />}/>
-          <Route path='/cpm' exact render={()=> <CpmWrapper />}/>
-          <Route path='/accounts' exact render={()=> <AccountsWrapper />}/>
-          <Route path='/machines' exact render={()=> <Machineswrapper />}/>
-          <Route path='/statistics' exact render={()=> <StatisticsWrapper />}/>
+          <Toolbar />         
+        <CpmWrapper/>
         </Box>
       </Box>
     </ThemeProvider>
   );
 }
 
-export default function Dashboard() {
+export default function DashboardCpm() {
   return <DashboardContent />;
 }

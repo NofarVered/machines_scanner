@@ -11,8 +11,8 @@ import Collapse from '@mui/material/Collapse';
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
 
-import { getAccounts, getMachinesByAccount } from './ApiAccounts';
-import MachinesByAccount from './MachinesByAccount';
+import { getRemovedAccounts, getMachinesByRemovedAccount } from './ApiRemovedAccounts';
+import MachinesByRemovedAccount from './MachinesByRemovedAccount';
 
 
 
@@ -142,7 +142,7 @@ function Row(props){
   
   const getMachines = account => {
     setOpen(!open)
-    getMachinesByAccount(account).then(result=> {
+    getMachinesByRemovedAccount(account).then(result=> {
         !Array.isArray(result) ? setMachines([]) : setMachines(result)
     })
   } 
@@ -181,7 +181,7 @@ function Row(props){
           <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-                <MachinesByAccount machines={machines}/>
+                <MachinesByRemovedAccount machines={machines}/>
           </Collapse>
           </TableCell>
           </TableRow>
@@ -191,7 +191,7 @@ function Row(props){
 }
 
 
-export default function Accounts() {
+export default function RemovedAccounts() {
 
   const [order] = useState('asc');
     const [orderBy] = useState('ScanName');
@@ -204,7 +204,7 @@ export default function Accounts() {
     const isSelected = (accountName) => selected.indexOf(accountName) !== -1;
 
     useEffect(() => {
-        getAccounts().then((result)=>{
+        getRemovedAccounts().then((result)=>{
           console.log(result)
           setAccounts(fillRowInfo(result))
           console.log(accounts)
@@ -256,4 +256,4 @@ export default function Accounts() {
             </TableContainer>
         </Box>
     );
-  }
+}

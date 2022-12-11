@@ -15,8 +15,8 @@ import DialogActions from '@mui/material/DialogActions';
 import Button from '@mui/material/Button';
 import { withStyles } from '@material-ui/core/styles';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { addScan } from "../scanScreen/ApiScans";
 
-import {CustomizedSnackbars  } from "./snackBar";
 import { getCpms } from "../cpmScreen/components/ApiCpm";
 import MaterialUIPickers from './dataTimePicker';
 
@@ -59,14 +59,38 @@ const CssTextField = withStyles({
 const theme = createTheme();
 
 export  function NewScan(props) {
+  const [file, setFile] = useState();
+ 
   const [scanInputs,setscanInputs]=useState({
-        amount:0,        
-        vendor:""
+        scanName:"",        
+        username:"",
+        password:"",
   })
+
+  const handleOnChangeFile = (e) => {
+    setFile(e.target.files[0]);
+   };
   const [cpms,setCpms] =useState([])
   const [cpmChoose,setcpmChoose]=useState('')
-  const [color,setColor]=useState('')
-  const [open,setOpen]=useState(false)  
+  
+  const fileReader = new FileReader();
+  
+  
+  const csvFileToArray = string => {
+    const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
+    const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
+
+    const array = csvRows.map(i => {
+      const values = i.split(",");
+      const obj = csvHeader.reduce((object, header, index) => {
+        object[header] = values[index];
+        return object;
+      }, {});
+      return obj;
+    });
+
+    return array;
+  };
   const handleChange=(evt)=>{
     const value = evt.target.value;
     changeStatusInput(value,evt.target.name)        
@@ -90,13 +114,39 @@ export  function NewScan(props) {
 
   },[])
 
+  const createScan=(scanName,scanExcuteBy,scanFileIps,cpmIpAdress)=>{
+    const newScan = {
+        "scan_name":scanName,
+        "scan_file":scanFileIps,
+        "execute_by":scanExcuteBy,
+        "cpm_ip_address":cpmIpAdress
+    }
+    return newScan
+  }
   
   const handleSubmit = (event) => {
-    props.handleClose();
-    setOpen(true)
-    setColor('success')
+    props.handleClose();    
+    let array=0
+    let Scan
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
+    
+    if (file) {
+        fileReader.onload = function (event) {
+          const text = event.target.result;
+          array = csvFileToArray(text);
+          Scan= createScan(scanInputs["scanName"],scanInputs["username"],array,cpmChoose)
+          addScan(Scan).then(()=>{        
+            props.handleSnackBar()
+            
+        })    
+        
+        };
+       
+        fileReader.readAsText(file);
+      
+  
+    }
+   
     
   };
 
@@ -136,8 +186,20 @@ export  function NewScan(props) {
                 </Select>
             </FormControl>
             </Grid>
-            </Grid>
-            
+            </Grid>            
+              <Grid item xs={12} sx={{mt:2}}>
+                <CssTextField
+                  sx={{input: { color: 'white' },border:"white", "label": {color: "white"}}    }  
+                  required
+                  fullWidth
+                  name="scanName"
+                  label="scan Name"
+                  type="scanName"
+                  id="scanName"
+                  autoComplete="scanName"
+                  onChange={handleChange}
+                />
+              </Grid>
               <Grid item xs={12} sx={{mt:2}}>
                 <CssTextField
                   sx={{input: { color: 'white' },border:"white", "label": {color: "white"}}    }  
@@ -173,9 +235,11 @@ export  function NewScan(props) {
                 sx={{mt:2,bgcolor:"	#0000cd",borderRadius:6}}
                 variant="contained"
                 component="label"
+                
                 >
                 Upload File
                 <input
+                    onChange={handleOnChangeFile}
                     type="file"
                     hidden
                 />
@@ -190,7 +254,6 @@ export  function NewScan(props) {
             </Box>
             </Box>
         </Box>
-        <CustomizedSnackbars open={open} color={color} messege={"you succed to create transaction"}/>
                     
       </Container>
     </ThemeProvider>

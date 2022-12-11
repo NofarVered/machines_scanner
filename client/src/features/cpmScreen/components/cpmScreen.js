@@ -1,5 +1,5 @@
+import React, { Component }  from 'react'
 import Box from "@mui/material/Box";
-
 import ProfileCard from "./ProfileCard";
 import Elad from "../images/Elad.jpeg";
 import Amit from "../images/Amit.jpeg";
