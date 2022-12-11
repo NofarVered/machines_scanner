@@ -1,5 +1,5 @@
 from repositories.sql_wrapper import db_wrapper
-from repositories.enum import operating_platform, scan_status
+from repositories.enum import operating_platform, enum_status
 
 sql_select_machines_by_account_not_removed = """
                                 SELECT m.machine_id, m.operating_platform, ip_address, ma.enum_status
@@ -23,10 +23,17 @@ sql_select_all_machines = """
 db = db_wrapper()
 
 
-def enumHandler(machines):
+def enumStatusHandler(machines):
     for machine in machines:
-        scan_status_number = machine["enum_status"]
-        machine["enum_status"] = scan_status(scan_status_number).name
+        enum_status_number = machine["enum_status"]
+        machine["enum_status"] = enum_status(enum_status_number).name
+    return machines
+
+
+def enumOPHandler(machines):
+    for machine in machines:
+        OP_enum_number = machine["operating_platform"]
+        machine["operating_platform"] = operating_platform(OP_enum_number).name
     return machines
 
 
@@ -35,17 +42,20 @@ class Machines_repo:
         machines = db.execute_select_all_query(
             sql_select_machines_by_account_not_removed, (acount_name)
         )
-        enumHandler(machines)
+        enumStatusHandler(machines)
+        enumOPHandler(machines)
         return machines
 
     def getAllMachinesByRemovedAccount(acount_name):
         machines = db.execute_select_all_query(
             sql_select_machines_by_account_removed, (acount_name)
         )
-        enumHandler(machines)
+        enumStatusHandler(machines)
+        enumOPHandler(machines)
         return machines
 
     def getAllMachines():
         machines = db.execute_select_all_query(sql_select_all_machines)
-        enumHandler(machines)
+        enumStatusHandler(machines)
+        enumOPHandler(machines)
         return machines

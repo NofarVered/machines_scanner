@@ -38,7 +38,29 @@ sql_count_linux_accounts = """
                                         SELECT count(*) as num_of_linux_accounts FROM machines Where operating_platform = 3                                    
                                 """
 
+sql_count_accounts_amount = """
+                            SELECT count(*) as active_accounts_amount
+                            FROM accounts a 
+                            JOIN scan_requests sr ON a.scan_id = sr.scan_id
+                            WHERE sr.is_most_recent = 1 AND sr.scan_status = '3';
+                            """
 
+sql_count_machines_amount = """
+                            SELECT count(DISTINCT machine_id) AS "Number of machines"
+                            FROM machines
+                            """
+
+sql_count_successful_scans = """
+                            SELECT count(*) as "Successful scans"
+                            FROM scan_requests
+                            WHERE scan_status = 3
+                            """
+
+sql_count_failed_scans = """
+                            SELECT count(*) as "Failed scans"
+                            FROM scan_requests
+                            WHERE scan_status = 4
+                            """
 db = db_wrapper()
 
 
@@ -64,6 +86,22 @@ class Statistics_repo:
     def getLinuxAmount():
         linuxAmount = db.execute_select_all_query(sql_count_linux_accounts)
         return linuxAmount
+
+    def getAccountsAmount():
+        accountsAmount = db.execute_select_all_query(sql_count_accounts_amount)
+        return accountsAmount
+
+    def getMachinesAmount():
+        machinesAmount = db.execute_select_all_query(sql_count_machines_amount)
+        return machinesAmount
+
+    def getSuccessfulScansAmount():
+        succesfulScansAmount = db.execute_select_all_query(sql_count_successful_scans)
+        return succesfulScansAmount
+
+    def getfailedScansAmount():
+        failedScansAmount = db.execute_select_all_query(sql_count_failed_scans)
+        return failedScansAmount
 
     # def getAllMachinesByAccount(acount_name):
     #     machines = db.execute_select_all_query(
