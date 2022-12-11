@@ -1,7 +1,16 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-
+  readdedUsers: [
+    {
+      accountName: "Matan",
+      machineId: "cf:1e:88:c6:66:db"
+    },
+    {
+      accountName: "Or",
+      machineId: "65:c1:a5:67:2b:cb"
+    }
+  ]
 };
 
 

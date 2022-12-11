@@ -91,12 +91,6 @@ const headCells = [
     numeric: true,
     disablePadding: false,
     label: 'status',
-  },
-  {
-    id: 'remove_access',
-    numeric: true,
-    disablePadding: false,
-    label: 'Remove Access',
   }
  
 ];
@@ -272,11 +266,6 @@ export default function MachinesByRemovedAccount(props) {
                       <TableCell align="left">{row.operating_platform}</TableCell>
                       <TableCell align="left">{row.ip_address}</TableCell>
                       <TableCell align="left">{row.enum_status}</TableCell>
-                      <TableCell align='left' >
-                        <IconButton>
-                          <DeleteOutlineIcon></DeleteOutlineIcon>
-                        </IconButton>
-                    </TableCell>
                     
                     </TableRow>
                   );
