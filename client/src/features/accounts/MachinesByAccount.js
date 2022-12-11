@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import { changeStatusToRemoved } from './ApiAccounts';
 
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
@@ -208,6 +209,7 @@ EnhancedTableToolbar.propTypes = {
 
 
 export default function MachinesByAccount(props) {
+  const account = props.account
   const machines = props.machines
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('status');
@@ -231,6 +233,14 @@ export default function MachinesByAccount(props) {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const removeAccountFromMachine = (account, machine) => {
+    console.log(`remove ${account} from ${machine}`)
+    changeStatusToRemoved(account, machine)
+    .then(
+      
+    )  
+  } 
 
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -273,7 +283,7 @@ export default function MachinesByAccount(props) {
                       <TableCell align="left">{row.ip_address}</TableCell>
                       <TableCell align="left">{row.enum_status}</TableCell>
                       <TableCell align='left' >
-                        <IconButton>
+                        <IconButton onClick={()=> removeAccountFromMachine(account, row.machine_id)}>
                           <DeleteOutlineIcon></DeleteOutlineIcon>
                         </IconButton>
                     </TableCell>

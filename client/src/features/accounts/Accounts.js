@@ -181,7 +181,7 @@ function Row(props){
           <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-                <MachinesByAccount machines={machines}/>
+                <MachinesByAccount machines={machines} account={row.accountName}/>
           </Collapse>
           </TableCell>
           </TableRow>
