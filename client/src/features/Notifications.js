@@ -2,6 +2,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 
+
 export default function Notifications() {
 
 
@@ -10,6 +11,6 @@ export default function Notifications() {
             <Badge badgeContent={0} color="secondary">
                 <NotificationsIcon />
             </Badge>
-      </IconButton> 
+        </IconButton> 
     )
 }
