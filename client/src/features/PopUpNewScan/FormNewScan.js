@@ -88,7 +88,7 @@ export  function NewScan(props) {
       }, {});
       return obj;
     });
-
+    // const array_without_space = array.filter(e => e["ip_addresses "] != "")
     return array;
   };
   const handleChange=(evt)=>{
