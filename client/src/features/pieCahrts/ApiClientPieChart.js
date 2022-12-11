@@ -69,3 +69,58 @@ export function getWindowsStatictis(){
       }
     )
 }
+
+
+export function getAmountMachines(){
+    return fetch(getLinuxStatics) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        return result
+      },           
+      (error) => {              
+        return error
+      }
+    )
+}
+
+
+export function getAmountOfAccount(){
+    return fetch(getLinuxStatics) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        return result
+      },           
+      (error) => {              
+        return error
+      }
+    )
+}
+
+
+export function getStaticsOfSucccesScans(){
+    return fetch(getLinuxStatics) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        return result
+      },           
+      (error) => {              
+        return error
+      }
+    )
+}
+
+export function getStaticsOfFailedScans(){
+    return fetch(getLinuxStatics) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        return result
+      },           
+      (error) => {              
+        return error
+      }
+    )
+}
