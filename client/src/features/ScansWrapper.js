@@ -1,10 +1,11 @@
+import React, { Component }  from 'react'
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import { Container } from '@mui/system';
 import OrderTable from './scanScreen/tableScans';
 import { CustomizedDialogs } from "./PopUpNewScan/dialog";
 
-export default function AccountsWrapper() {
+export default function ScansWrapper() {
 
 
     return(

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const accountsUrl ='http://localhost:8000/accounts/'
+const accountsUrl ='http://localhost:8000/accounts/current'
 
 
 export function getAccounts(){

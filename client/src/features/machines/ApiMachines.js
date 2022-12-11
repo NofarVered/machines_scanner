@@ -15,7 +15,7 @@ export function getMachines(){
 }
 
 export function getAccountsByMachine(machine) {
-  return fetch(`http://localhost:8000/accounts/${machine}`)
+  return fetch(`http://localhost:8000/accounts/machine/${machine}`)
   .then(res => res.json())
   .then(
     (result) => {                    
