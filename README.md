@@ -16,8 +16,17 @@ The project simulates scanning machines in a certain organization and obtaining 
 
 The user logs in to the home page, where the user (IT) get access according to premittions.
 
+![log-in](https://user-images.githubusercontent.com/70105078/206912759-54ab4c60-dce8-4131-93d7-270033441147.png)
 
 Then the user can see all active accounts that has access to the organization. After any time defined by the organization. Rescans will be performed in order to pick up changes regarding the active accounts
+
+![accounts](https://user-images.githubusercontent.com/70105078/206913019-7a709261-d1ec-4da5-b8b5-e44e6119a24b.png)
+
+
+in addition the user can see and control all scans that ran on the system
+
+![scans](https://user-images.githubusercontent.com/70105078/206913043-9e5869cb-0667-40c2-8b6a-eed96dff7228.png)
+
 
 ## Features
 START A NEW SCAN - the user has the option to insert a new scan - which be done by upload a csv file  with ip addresses (for scaninng machines).
@@ -39,6 +48,12 @@ MACHINES BY ACCOUNTS - the user can see all the machines that was scaned. and ge
 STATISTICS - we added a new feature of presenting intersting statistics like Distribution of accounts by operating systems, comparison between privileged and non-privileged accounts and display of the number of successful scans versus failed scans.
 
 ![statistics](https://user-images.githubusercontent.com/70105078/206912171-a49fec75-12f8-4df3-90d1-abb0c53c53d2.png)
+
+REMOVED ACCOUNTS - the user ia able to see history of accounts that was removed from the system and track them if needed. 
+(a new feature that Not implemented in Cyberark's existing product. it was performed in an inconvenient way and was not visible to the user).
+
+![removed accounts](https://user-images.githubusercontent.com/70105078/206913106-7931ab8f-4957-4667-afb4-eb568aca0019.png)
+
 
 ## DB Architecture
 
