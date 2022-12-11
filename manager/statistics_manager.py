@@ -51,3 +51,21 @@ def getWindowsAmount():
 )
 def getLinuxAmount():
     return Statistics_repo.getLinuxAmount()
+
+
+@statistics.get(
+    "/statistics/accountsAmount",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getAccountsAmount():
+    return Statistics_repo.getAccountsAmount()
+
+
+@statistics.get(
+    "/statistics/machinesAmount",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getMachinesAmount():
+    return Statistics_repo.getMachinesAmount()
