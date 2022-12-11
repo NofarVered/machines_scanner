@@ -3,10 +3,12 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 
 
-export default function NotificationsDialog() {
+export default function NotificationsDialog(props) {
     
+
+
     return(
-        <Dialog>
+        <Dialog open={props.open}>
             <List sx={{ pt: 0 }}>
                 <ListItem>
 

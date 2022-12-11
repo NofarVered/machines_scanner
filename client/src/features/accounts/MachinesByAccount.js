@@ -17,6 +17,12 @@ import { changeStatusToRemoved } from './ApiAccounts';
 // material-ui
 import { Box, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material';
 
+
+function useForceUpdate(){
+  const [value, setValue] = useState(0); 
+  return () => setValue(value => value + 1); 
+}
+
  
 function createData(machine_id, operating_system, ip_address, status) {
   return {
@@ -239,6 +245,10 @@ export default function MachinesByAccount(props) {
     changeStatusToRemoved(account, machine)
     .then(
       
+      console.log(props)
+    )
+    .then(
+      props.getMachinesByAccount(account)
     )  
   } 
 
@@ -316,38 +326,5 @@ export default function MachinesByAccount(props) {
       
     </Box>
 
-        // <Box sx={{ margin: 1 }}>
-        //   <Typography variant="h6" gutterBottom component="div">
-        //   Machines
-        //   </Typography>
-        //   <Table size="small" aria-label="purchases">
-        //   <TableHead>
-        //   <TableRow>
-        //   <TableCell>Machine ID</TableCell>
-        //   <TableCell >Operating System</TableCell>
-        //   <TableCell align="right">IP Address </TableCell>
-        //   <TableCell align="center">Status </TableCell>
-        //   <TableCell align="center">Remove Access </TableCell>
-        //   </TableRow>
-        //   </TableHead>
-        //   <TableBody>
-        //   {machines.map(machine => (
-        //     <TableRow key={machine.machine_id}>
-        //     <TableCell component="th" scope="row">
-        //     {machine.machine_id}
-        //     </TableCell>
-        //     <TableCell>{machine.operating_platform}</TableCell>
-        //     <TableCell align="right">{machine.ip_address}</TableCell>
-        //     <TableCell align="center">{machine.status}</TableCell>
-        //     <TableCell align='center'>
-        //         <IconButton>
-        //             <DeleteOutlineIcon></DeleteOutlineIcon>
-        //         </IconButton>
-        //       </TableCell>
-        //     </TableRow>
-        //   ))}
-        //   </TableBody>
-        //   </Table>
-        // </Box>
   )
 }
