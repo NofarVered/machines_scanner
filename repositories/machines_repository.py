@@ -1,5 +1,5 @@
 from repositories.sql_wrapper import db_wrapper
-from repositories.enum import operating_platform, scan_status
+from repositories.enum import operating_platform, enum_status
 
 sql_select_machines_by_account_not_removed = """
                                 SELECT m.machine_id, m.operating_platform, ip_address, ma.enum_status
@@ -25,8 +25,8 @@ db = db_wrapper()
 
 def enumStatusHandler(machines):
     for machine in machines:
-        scan_status_number = machine["enum_status"]
-        machine["enum_status"] = scan_status(scan_status_number).name
+        enum_status_number = machine["enum_status"]
+        machine["enum_status"] = enum_status(enum_status_number).name
     return machines
 
 
