@@ -1,3 +1,4 @@
+import React, { Component }  from 'react'
 import { Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import CpmScreen from "./cpmScreen/components/cpmScreen";

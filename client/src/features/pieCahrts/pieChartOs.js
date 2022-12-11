@@ -1,31 +1,33 @@
 import React from 'react';
-import { getPrivilegStatictis } from "./ApiClientPieChart";
+import { getMacStatictis,getLinuxStatictis,getWindowsStatictis } from "./ApiClientPieChart";
 import ReactApexChart from "react-apexcharts";
 
 
 export class ApexChartOsStatistics extends React.Component {
-    // componentDidMount() {
-    //     getPrivilegStatictis().then((theStatic)=>{      
-    //         const mac =theStatic["mac"]   
-    //         const linux =theStatic["linux"]
-    //         const windows =theStatic["windows"]            
-    //         const privilegAndNon = [mac,linux,windows]
-    //         const series=
-    //         [{"name": 'Inflation',
-    //         "data":privilegAndNon}]
+    
+    componentDidMount() {
+        let linux
+        let mac 
+        let windows 
+        Promise.all([getMacStatictis(), getLinuxStatictis(), getWindowsStatictis()]).then((values) => {
+            mac =values[0][0]["num_of_mac_accounts"]   
+            linux =values[1][0]["num_of_linux_accounts"]      
+            windows =values[2][0]["num_of_windows_accounts"]   
+            const privilegAndNon = [mac,linux,windows]
+            
+            const series=
+                [{"name": 'Inflation',
+                "data":privilegAndNon}]
+    
+                this.setState({
+                    series:series
+                })
+        });
 
-    //         this.setState({
-    //             series:series
-    //         })
-    //      }            
-    //     ).catch(()=>
-    //      {
-    //         this.setState({
-    //             error:true
-    //         })
-    //      }  
-    //     )
-    // }
+
+        
+        
+    }
     
     
     constructor(props) {
@@ -35,11 +37,12 @@ export class ApexChartOsStatistics extends React.Component {
         error:false,
         series: [{
           name: 'Inflation',
-          data: [2.3, 3.1, 4.0]
+          data: []
         }],
         options: {
           chart: {
             height: 350,
+            width: 100,
             type: 'bar',
           },
           plotOptions: {
@@ -57,7 +60,7 @@ export class ApexChartOsStatistics extends React.Component {
             },
             offsetY: -20,
             style: {
-              fontSize: '12px',
+              fontSize: '20px',
               colors: ["#304758"]
             }
           },
@@ -103,7 +106,7 @@ export class ApexChartOsStatistics extends React.Component {
           
           },
           title: {
-            text: 'Opertion systems diversion ',
+            text: 'Operating systems ',
             floating: true,
             offsetY: 330,
             align: 'center',
