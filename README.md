@@ -25,6 +25,9 @@ START A NEW SCAN - the user has the option to insert a new scan - which be done 
 RERUN - in the scans page, the user can rerun the same scan that aleady ran in the past (a new feature that Not implemented in Cyberark's existing product)
 In addition, after such an action, we will activate a security mechanism in which IT will look for suspicious activity in which an account that was previously removed has returned to receive login privileges. In this case a security alert will be displayed to the user!
 
+![rerun](https://user-images.githubusercontent.com/70105078/206912509-a62e867a-d80f-4f80-a06f-b458ed7fa4e1.png)
+
+
 MACHINES BY ACCOUNTS - the user can see all the machines that was scaned. and get all acounts of that came from that machines.  (a new feature that Not implemented in Cyberark's existing product. it was performed in an inconvenient way and was not visible to the user) 
 
 ![machines by accounts](https://user-images.githubusercontent.com/70105078/206912339-2f619cdc-6054-4c2a-bab4-c8919588547a.png)
