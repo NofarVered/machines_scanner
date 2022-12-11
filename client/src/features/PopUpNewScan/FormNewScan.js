@@ -80,7 +80,7 @@ export  function NewScan(props) {
     const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
     const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
 
-    const array = csvRows.map(i => {
+    const array = csvRows.map(i => {        
       const values = i.split(",");
       const obj = csvHeader.reduce((object, header, index) => {
         object[header] = values[index];
@@ -88,7 +88,7 @@ export  function NewScan(props) {
       }, {});
       return obj;
     });
-    // const array_without_space = array.filter(e => e["ip_addresses "] != "")
+ 
     return array;
   };
   const handleChange=(evt)=>{

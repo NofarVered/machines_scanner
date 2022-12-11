@@ -21,7 +21,11 @@ export default function ScansWrapper() {
     const handleSnackBar=()=>{
         setOpenSnack(true)
         setColor('success')
-        //this.forceUpdate();
+        getScansRecent().then((result)=>{
+            setScans(fillRowInfo(result.payload))              
+        }).catch((error)=>{
+            console.log(error)
+        })
     }
     function createData(ScanId,ScanName, SuucesDate, excuteBy, Status, ScanFile) {
         return { ScanId,ScanName, SuucesDate, excuteBy, Status, ScanFile };
