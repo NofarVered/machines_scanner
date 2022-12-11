@@ -22,7 +22,7 @@ Then the user can see all active accounts that has access to the organization. A
 ## Features
 START A NEW SCAN - the user has the option to insert a new scan - which be done by upload a csv file  with ip addresses (for scaninng machines).
 
-![Uploading new scan.png…]()
+![new scan](https://user-images.githubusercontent.com/70105078/206912664-2806f1ed-575a-43a6-b098-2a7ca4408fcf.png)
 
 
 RERUN - in the scans page, the user can rerun the same scan that aleady ran in the past (a new feature that Not implemented in Cyberark's existing product)
