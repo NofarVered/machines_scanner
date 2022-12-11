@@ -22,6 +22,9 @@ Then the user can see all active accounts that has access to the organization. A
 ## Features
 START A NEW SCAN - the user has the option to insert a new scan - which be done by upload a csv file  with ip addresses (for scaninng machines).
 
+![Uploading new scan.png…]()
+
+
 RERUN - in the scans page, the user can rerun the same scan that aleady ran in the past (a new feature that Not implemented in Cyberark's existing product)
 In addition, after such an action, we will activate a security mechanism in which IT will look for suspicious activity in which an account that was previously removed has returned to receive login privileges. In this case a security alert will be displayed to the user!
 
