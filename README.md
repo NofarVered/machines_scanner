@@ -27,6 +27,9 @@ In addition, after such an action, we will activate a security mechanism in whic
 
 MACHINES BY ACCOUNTS - the user can see all the machines that was scaned. and get all acounts of that came from that machines.  (a new feature that Not implemented in Cyberark's existing product. it was performed in an inconvenient way and was not visible to the user) 
 
+![machines by accounts](https://user-images.githubusercontent.com/70105078/206912339-2f619cdc-6054-4c2a-bab4-c8919588547a.png)
+
+
 STATISTICS - we added a new feature of presenting intersting statistics like Distribution of accounts by operating systems, comparison between privileged and non-privileged accounts and display of the number of successful scans versus failed scans.
 
 ![statistics](https://user-images.githubusercontent.com/70105078/206912171-a49fec75-12f8-4df3-90d1-abb0c53c53d2.png)
