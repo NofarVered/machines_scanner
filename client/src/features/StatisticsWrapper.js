@@ -7,22 +7,11 @@ import { ApexChartPrivilege } from './pieCahrts/pieChartsPrivilege';
 import { Statics } from './pieCahrts/staticsCard';
 
 
-import { getAmountMachines,getAmountOfAccount } from "./pieCahrts/ApiClientPieChart";
+
+import { ApexChart } from './pieCahrts/PieChartScansSuccess';
 
 export default function StatisticsWrapper() {
-    let AmountAccounts
-    let AmountScans   
-    
-    useEffect(()=>{
-            
-        Promise.all([getAmountOfAccount(), getAmountMachines()]).then((values) => {
-            AmountAccounts =values[0][0]["num_of_mac_accounts"]   
-            AmountScans =values[1][0]["num_of_linux_accounts"]     
-            
-            
-           
-        });
-    },[])  
+  
 
 
     return(
@@ -34,12 +23,15 @@ export default function StatisticsWrapper() {
                     </Paper>
                 </Grid> 
                 <Grid item xs={12}>
-                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-                        <ApexChartPrivilege/>   
-                        <Statics Amount={AmountAccounts} name={"Account Amount"}/>
-                        <Statics Amount={AmountScans} name={"scans Amount"} />
+                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'row' }}>
+                        <ApexChartPrivilege />   
+                        <ApexChart/>
+                       
                     </Paper>
-                   
+                    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'row' }}>                       
+                        <Statics  name={"Account Amount"}/>
+                        <Statics name={"scans Amount"} />
+                    </Paper>
                          
                     
                 </Grid>      

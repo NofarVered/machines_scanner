@@ -1,14 +1,27 @@
 import { Avatar, Box, Card, CardContent, Grid, Typography } from '@mui/material';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowUpward from '@mui/icons-material/ArrowUpward'
 import MoneyIcon from '@mui/icons-material/Money';
-
-
+import { getAmountMachines,getAmountOfAccount } from "./ApiClientPieChart";
+import React, { Component, useEffect, useState }  from 'react'
 export function Statics(props){
-
+    const [amountAccount,SetAmountAccount]=useState('')
+    const [amountMachines,SetAmountMachines]=useState('')
+   
+   
+    useEffect(()=>{                    
+        Promise.all([getAmountOfAccount(), getAmountMachines()]).then((values) => {
+            let AmountAccounts =values[0][0]["active_accounts_amount"]   
+            let AmountMachines =values[1][0]["Number of machines"]   
+            SetAmountAccount(AmountAccounts) 
+            SetAmountMachines(AmountMachines)
+           
+        });
+    },[])  
       
 
 return(  <Card
-    sx={{ height: '100%',width:500+'px' }}
+    sx={{ height: '100%',width:500+'px',ml:5,boxShadow:4 }}
     
   >
     <CardContent>
@@ -29,7 +42,8 @@ return(  <Card
             color="textPrimary"
             variant="h4"
           >
-            {props.Amount}
+            {props.name.includes("Account")? amountMachines: amountAccount }
+           
           </Typography>
         </Grid>
         <Grid item>
@@ -51,7 +65,9 @@ return(  <Card
           alignItems: 'center'
         }}
       >
-        <ArrowDownwardIcon color="error" />
+        {props.name.includes("Account")?
+        <ArrowDownwardIcon color="error" />:
+        <ArrowUpward color="success" />}
         <Typography
           color="error"
           sx={{
@@ -59,6 +75,7 @@ return(  <Card
           }}
           variant="body2"
         >
+            
           13%
         </Typography>
         <Typography

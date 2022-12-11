@@ -1,19 +1,20 @@
-class ApexChart extends React.Component {
+import React from 'react';
+import { getStaticsOfSucccesScans,getStaticsOfFailedScans } from "./ApiClientPieChart";
+import ReactApexChart from "react-apexcharts";
+
+
+export class ApexChart extends React.Component {
 
     componentDidMount() {
         let scansSuccess
         let scansFailed        
-        Promise.all([getAllScansFailed(), getAllScansSuccess()]).then((values) => {
-            scansSuccess =values[0][0]["num_of_mac_accounts"]   
-            scansFailed =values[1][0]["num_of_linux_accounts"]     
-            const successAndNon = [scansSuccess,scansFailed]
-            
-            const series=
-                [{"name": 'Inflation',
-                "data":successAndNon}]
-    
+        Promise.all([getStaticsOfFailedScans(), getStaticsOfSucccesScans()]).then((values) => {
+            scansFailed =values[0][0]["Failed scans"]   
+            scansSuccess =values[1][0]["Successful scans"]     
+            const successAndNon = [scansSuccess,scansFailed]          
+           
                 this.setState({
-                    series:series
+                    series:successAndNon
                 })
         });
     }
@@ -51,7 +52,7 @@ class ApexChart extends React.Component {
               }
             }
           },
-          labels: ["Comedy", "Action", "SciFi", "Drama", "Horror"],
+          labels: ["success Scans", "failed Scans"],
           dataLabels: {
             dropShadow: {
               blur: 3,
@@ -63,7 +64,7 @@ class ApexChart extends React.Component {
             opacity: 1,
             pattern: {
               enabled: true,
-              style: ['verticalLines', 'squares', 'horizontalLines', 'circles','slantedLines'],
+              style: ['squares', 'horizontalLines', 'circles','slantedLines'],
             },
           },
           states: {
@@ -74,9 +75,7 @@ class ApexChart extends React.Component {
           theme: {
             palette: 'palette2'
           },
-          title: {
-            text: "Favourite Movie Type"
-          },
+         
           responsive: [{
             breakpoint: 480,
             options: {
@@ -100,8 +99,8 @@ class ApexChart extends React.Component {
       return (
         
 
-  <div id="chart">
-        <ReactApexChart options={this.state.options} series={this.state.series} type="donut" width={380} />
+  <div id="chart" style={{marginLeft: 300+'px',marginTop:6}} >
+        <ReactApexChart  options={this.state.options} series={this.state.series} type="donut" width={380} />
 </div>
 
       )}
