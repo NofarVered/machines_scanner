@@ -1,4 +1,5 @@
 from repositories.sql_wrapper import db_wrapper
+from repositories.sql_wrapper import connection
 
 
 sql_count_privilliged_accounts = """
@@ -66,40 +67,49 @@ db = db_wrapper()
 
 class Statistics_repo:
     def getPrivilegedAmount():
+        connection.ping()
         privilegedAmount = db.execute_select_all_query(sql_count_privilliged_accounts)
         return privilegedAmount
 
     def getNonPrivilegedAmount():
+        connection.ping()
         nonPrivilegedAmount = db.execute_select_all_query(
             sql_count_not_privilliged_accounts
         )
         return nonPrivilegedAmount
 
     def getWindowsAmount():
+        connection.ping()
         windowsAmount = db.execute_select_all_query(sql_count_windows_accounts)
         return windowsAmount
 
     def getMacAmount():
+        connection.ping()
         macAmount = db.execute_select_all_query(sql_count_mac_accounts)
         return macAmount
 
     def getLinuxAmount():
+        connection.ping()
         linuxAmount = db.execute_select_all_query(sql_count_linux_accounts)
         return linuxAmount
 
     def getAccountsAmount():
+        connection.ping()
         accountsAmount = db.execute_select_all_query(sql_count_accounts_amount)
         return accountsAmount
 
     def getMachinesAmount():
+        connection.ping()
         machinesAmount = db.execute_select_all_query(sql_count_machines_amount)
         return machinesAmount
 
     def getSuccessfulScansAmount():
+        connection.ping()
         succesfulScansAmount = db.execute_select_all_query(sql_count_successful_scans)
         return succesfulScansAmount
 
     def getfailedScansAmount():
+        connection.ping()
         failedScansAmount = db.execute_select_all_query(sql_count_failed_scans)
         return failedScansAmount
 

@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from repositories import querys
 from repositories.sql_wrapper import db_wrapper
 from repositories.statistics_repository import Statistics_repo
+from repositories.sql_wrapper import connection
 
 db = db_wrapper()
 statistics = APIRouter()
