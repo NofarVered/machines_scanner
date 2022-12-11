@@ -51,7 +51,7 @@ export function reRunScan(scanId){
     const newScan = { 
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(scanId)
+        body: JSON.stringify({"scan_id":scanId})
     };
     return fetch(scansReRunUrl, newScan)
         .then(response => response.json())

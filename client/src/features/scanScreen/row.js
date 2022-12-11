@@ -6,7 +6,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Collapse from '@mui/material/Collapse';
 import * as React from 'react';
 import {ReRunComp} from './rerunComponent'
-
+import { reRunScan } from "./ApiScans";
 import Dot from './dot';
 
 
@@ -59,7 +59,7 @@ export function Row(props){
     const [open, setOpen] = useState(false);
     const labelId=props.labelId
     const isItemSelected=props.isItemSelected
-    const reRunScan=(scanId)=>{
+    const reRun=(scanId)=>{
         reRunScan(scanId).then(()=>{            
             alert("i did it ")
         }).catch((error)=>{
@@ -92,9 +92,9 @@ export function Row(props){
                 <TableCell  align="center">{row.ScanFile}</TableCell> 
 
                {row.Status==1? 
-                    <ReRunComp onClick={reRunScan} image={imageStop}/>
+                    <ReRunComp onClick={reRun} reRunScan={reRun} id={row.ScanId} image={imageStop}/>
                 :
-                    <ReRunComp onClick={reRunScan} image={imageReRun}/>}
+                    <ReRunComp onClick={reRun} reRunScan={reRun} id={row.ScanId}   image={imageReRun}/>}
                
                 <TableCell align="center">
                     
