@@ -69,3 +69,21 @@ def getAccountsAmount():
 )
 def getMachinesAmount():
     return Statistics_repo.getMachinesAmount()
+
+
+@statistics.get(
+    "/statistics/successfulScansAmount",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getSuccessfulScansAmount():
+    return Statistics_repo.getSuccessfulScansAmount()
+
+
+@statistics.get(
+    "/statistics/failedScansAmount",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getFailedScansAmount():
+    return Statistics_repo.getfailedScansAmount()

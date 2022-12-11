@@ -49,6 +49,18 @@ sql_count_machines_amount = """
                             SELECT count(DISTINCT machine_id) AS "Number of machines"
                             FROM machines
                             """
+
+sql_count_successful_scans = """
+                            SELECT count(*) as "Successful scans"
+                            FROM scan_requests
+                            WHERE scan_status = 3
+                            """
+
+sql_count_failed_scans = """
+                            SELECT count(*) as "Failed scans"
+                            FROM scan_requests
+                            WHERE scan_status = 4
+                            """
 db = db_wrapper()
 
 
@@ -82,6 +94,14 @@ class Statistics_repo:
     def getMachinesAmount():
         machinesAmount = db.execute_select_all_query(sql_count_machines_amount)
         return machinesAmount
+
+    def getSuccessfulScansAmount():
+        succesfulScansAmount = db.execute_select_all_query(sql_count_successful_scans)
+        return succesfulScansAmount
+
+    def getfailedScansAmount():
+        failedScansAmount = db.execute_select_all_query(sql_count_failed_scans)
+        return failedScansAmount
 
     # def getAllMachinesByAccount(acount_name):
     #     machines = db.execute_select_all_query(
