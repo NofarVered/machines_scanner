@@ -29,6 +29,8 @@ MACHINES BY ACCOUNTS - the user can see all the machines that was scaned. and ge
 
 STATISTICS - we added a new feature of presenting intersting statistics like Distribution of accounts by operating systems, comparison between privileged and non-privileged accounts and display of the number of successful scans versus failed scans.
 
+![statistics](https://user-images.githubusercontent.com/70105078/206912171-a49fec75-12f8-4df3-90d1-abb0c53c53d2.png)
+
 ## DB Architecture
 
 ![erd_diagram](https://user-images.githubusercontent.com/70105078/206911902-a45b4ed4-15c1-4780-9cc6-bd99d71844d1.png)
