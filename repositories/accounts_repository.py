@@ -1,4 +1,5 @@
 from repositories.sql_wrapper import db_wrapper
+from repositories.enum import operating_platform, scan_status
 
 sql_select_all_recent_and_done_accounts = """
                                 SELECT a.*
@@ -38,18 +39,31 @@ sql_get_all_removed_accounts = """
 db = db_wrapper()
 
 
+def enumHandler(accounts):
+    for account in accounts:
+        scan_status_number = account["enum_status"]
+        account["enum_status"] = scan_status(scan_status_number).name
+        print("i")
+    return accounts
+
+
 class Accounts_repo:
     def removed_acount(account_name, machine_id):
-        db.execute_update_query(sql_remove_acount_machine, (account_name, machine_id))
+        accounts = db.execute_update_query(
+            sql_remove_acount_machine, (account_name, machine_id)
+        )
+        return accounts
 
     def getAllAccounts():
         accounts = db.execute_select_all_query(sql_select_all_recent_and_done_accounts)
+
         return accounts
 
     def getAccountsByMachine(machine_id):
         accountsByMachine = db.execute_select_all_query(
             sql_select_get_accounts_by_machineId, (machine_id)
         )
+        enumHandler(accountsByMachine)
         return accountsByMachine
 
     def getAllRemovedAccounts():
