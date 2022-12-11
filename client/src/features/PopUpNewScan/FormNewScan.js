@@ -136,12 +136,12 @@ export  function NewScan(props) {
           array = csvFileToArray(text);
           Scan= createScan(scanInputs["scanName"],scanInputs["username"],array,cpmChoose)
           addScan(Scan).then(()=>{        
-           
+            props.handleSnackBar()
             
         })    
         
         };
-        props.handleSnackBar()
+       
         fileReader.readAsText(file);
       
   

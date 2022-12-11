@@ -21,6 +21,7 @@ export default function ScansWrapper() {
     const handleSnackBar=()=>{
         setOpenSnack(true)
         setColor('success')
+        //this.forceUpdate();
     }
     function createData(ScanId,ScanName, SuucesDate, excuteBy, Status, ScanFile) {
         return { ScanId,ScanName, SuucesDate, excuteBy, Status, ScanFile };
@@ -37,7 +38,7 @@ export default function ScansWrapper() {
         }).catch((error)=>{
             console.log(error)
         })
-      }, []);
+      }, [scans]);
 
     return(
         
