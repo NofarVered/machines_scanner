@@ -5,7 +5,6 @@ sql_select_all_recent_and_done_accounts = """
                                 SELECT a.*
                                 FROM accounts a JOIN machines_accounts ma ON a.account_name = ma.account_name
                                 WHERE ma.enum_status = 1 OR ma.enum_status = 3
-                                GROUP BY ma.account_name;
                                """
 
 sql_select_get_accounts_by_machineId = """
@@ -13,7 +12,11 @@ sql_select_get_accounts_by_machineId = """
                                 FROM accounts a JOIN machines_accounts ma ON a.account_name = ma.account_name
                                 where ma.machine_id = %s
                                """
-
+sql_select_all_readd_accounts = """
+                                SELECT a.*
+                                FROM accounts a JOIN machines_accounts ma ON a.account_name = ma.account_name
+                                WHERE ma.enum_status = 3
+                               """
 
 sql_delete_acount = """
                     DELETE FROM accounts 
@@ -57,6 +60,10 @@ class Accounts_repo:
     def getAllAccounts():
         accounts = db.execute_select_all_query(sql_select_all_recent_and_done_accounts)
         return accounts
+
+    def getAllAccountsReadd():
+        accounts = db.execute_select_all_query(sql_select_all_readd_accounts)
+        return accounts    
 
     def getAccountsByMachine(machine_id):
         accountsByMachine = db.execute_select_all_query(
