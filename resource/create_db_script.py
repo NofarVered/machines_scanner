@@ -42,6 +42,7 @@ def load_data(sql_query, file_name):
     try:
         with CONNECTOR.cursor() as cursor:
             for record in data:
+                print(record)
                 cursor.execute(sql_query, [field for field in record.values()])
             CONNECTOR.commit()
             CONNECTOR.close()
@@ -58,7 +59,7 @@ def json_processor(file_name):
 
 # python create_db_script.py
 if __name__ == "__main__":
-    # print("--- START creating DB machines_scanner")
+    print("--- START creating DB machines_scanner")
     # create_database()
     # print("--- START creating tables")
     # create_all_tables()
@@ -68,4 +69,4 @@ if __name__ == "__main__":
     # load_data(insert_to_accounts_table, mock_accounts_file)
     # load_data(insert_to_machines_table, mock_machines_file)
     load_data(insert_to_machines_accounts_table, mock_machines_accounts_file)
-    print("--- DONE LOAD DATA")
+    # print("--- DONE LOAD DATA")
