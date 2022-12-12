@@ -39,6 +39,7 @@ create_accounts_table = """CREATE TABLE accounts(
 
 create_machines_table = """CREATE TABLE machines(
     machine_id INT PRIMARY KEY AUTO_INCREMENT,
+    MAC_address VARCHAR(255),
     operating_platform INT,
     ip_address VARCHAR(255)
 );"""
@@ -55,7 +56,6 @@ create_machines_accounts_table = """CREATE TABLE machines_accounts(
     FOREIGN KEY(account_name) REFERENCES accounts(account_name)
 );
 """
-
 
 
 mock_accounts_file = "./resource/mocks/accounts.json"
