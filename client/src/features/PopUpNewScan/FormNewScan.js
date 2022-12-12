@@ -80,7 +80,7 @@ export  function NewScan(props) {
     const csvHeader = string.slice(0, string.indexOf("\n")).split(",");
     const csvRows = string.slice(string.indexOf("\n") + 1).split("\n");
 
-    const array = csvRows.map(i => {
+    const array = csvRows.map(i => {        
       const values = i.split(",");
       const obj = csvHeader.reduce((object, header, index) => {
         object[header] = values[index];
@@ -88,7 +88,7 @@ export  function NewScan(props) {
       }, {});
       return obj;
     });
-
+ 
     return array;
   };
   const handleChange=(evt)=>{
@@ -136,12 +136,12 @@ export  function NewScan(props) {
           array = csvFileToArray(text);
           Scan= createScan(scanInputs["scanName"],scanInputs["username"],array,cpmChoose)
           addScan(Scan).then(()=>{        
-           
+            props.handleSnackBar()
             
         })    
         
         };
-        props.handleSnackBar()
+       
         fileReader.readAsText(file);
       
   

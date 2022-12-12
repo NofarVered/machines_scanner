@@ -3,6 +3,11 @@ const getNonPrivilegStatic ='http://localhost:8000/statistics/nonPrivilegedAmoun
 const getMacStatics ='http://localhost:8000/statistics/macAmount'
 const getLinuxStatics ='http://localhost:8000/statistics/linuxAmount'
 const getWindowsStatics ='http://localhost:8000/statistics/windowsAmount'
+const getScansSuccessStatics ='http://localhost:8000/statistics/successfulScansAmount'
+const gescanFailedStatics ='http://localhost:8000/statistics/failedScansAmount'
+const getAmountOfMachines ='http://localhost:8000/statistics/machinesAmount'
+const getAmountOfAccounts ='http://localhost:8000/statistics/accountsAmount'
+
 
 
 
@@ -59,6 +64,61 @@ export function getLinuxStatictis(){
 
 export function getWindowsStatictis(){
     return fetch(getWindowsStatics) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        return result
+      },           
+      (error) => {              
+        return error
+      }
+    )
+}
+
+
+export function getAmountMachines(){
+    return fetch(getAmountOfMachines) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        return result
+      },           
+      (error) => {              
+        return error
+      }
+    )
+}
+
+
+export function getAmountOfAccount(){
+    return fetch(getAmountOfAccounts) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        return result
+      },           
+      (error) => {              
+        return error
+      }
+    )
+}
+
+
+export function getStaticsOfSucccesScans(){
+    return fetch(getScansSuccessStatics) 
+    .then(res => res.json())
+    .then(
+      (result) => {                    
+        return result
+      },           
+      (error) => {              
+        return error
+      }
+    )
+}
+
+export function getStaticsOfFailedScans(){
+    return fetch(gescanFailedStatics) 
     .then(res => res.json())
     .then(
       (result) => {                    

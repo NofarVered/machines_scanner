@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 
 export function ReRunComp(props){
     const reRunScan=()=>{
-        props.reRunScan();
+        props.reRunScan(props.id);
     }
     return(
         <Box

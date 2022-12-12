@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from repositories import querys
 from repositories.sql_wrapper import db_wrapper
 from repositories.statistics_repository import Statistics_repo
+from repositories.sql_wrapper import connection
 
 db = db_wrapper()
 statistics = APIRouter()
@@ -51,3 +52,39 @@ def getWindowsAmount():
 )
 def getLinuxAmount():
     return Statistics_repo.getLinuxAmount()
+
+
+@statistics.get(
+    "/statistics/accountsAmount",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getAccountsAmount():
+    return Statistics_repo.getAccountsAmount()
+
+
+@statistics.get(
+    "/statistics/machinesAmount",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getMachinesAmount():
+    return Statistics_repo.getMachinesAmount()
+
+
+@statistics.get(
+    "/statistics/successfulScansAmount",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getSuccessfulScansAmount():
+    return Statistics_repo.getSuccessfulScansAmount()
+
+
+@statistics.get(
+    "/statistics/failedScansAmount",
+    response_class=JSONResponse,
+    status_code=status.HTTP_200_OK,
+)
+def getFailedScansAmount():
+    return Statistics_repo.getfailedScansAmount()
