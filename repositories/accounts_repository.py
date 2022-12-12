@@ -5,7 +5,6 @@ sql_select_all_recent_and_done_accounts = """
                                 SELECT a.*
                                 FROM accounts a JOIN machines_accounts ma ON a.account_name = ma.account_name
                                 WHERE ma.enum_status = 1 OR ma.enum_status = 3
-                                GROUP BY ma.account_name;
                                """
 
 sql_select_get_accounts_by_machineId = """
