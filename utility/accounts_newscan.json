@@ -11,7 +11,7 @@
 
 {"account_name":"Sheffield_Triple","is_privileged":true,"group_name":"Glider, squirrel","password_age":144,"machine_id":4},
 {"account_name":"Sweet Gum 7","is_privileged":false,"group_name":"Golden-mantled ground squirrel","password_age":181,"machine_id":4},
-{"account_name":"hydrocodone bitartrate1990","is_privileged":false,"group_name":"Grenadier, common","password_age":117, "machine_id":8},
+{"account_name":"hydrocodone_bitartrate1990","is_privileged":false,"group_name":"Grenadier, common","password_age":117, "machine_id":8},
 {"account_name":"Relief PM","is_privileged":true,"group_name":"Red-billed tropic bird","password_age":114,"machine_id":8},
 {"account_name":"Vagistat-3","scan_id":16,"is_privileged":false,"group_name":"Purple grenadier","password_age":399,"machine_id":8}
 ]
