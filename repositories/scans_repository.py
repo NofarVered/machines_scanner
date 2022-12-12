@@ -44,9 +44,9 @@ insert_to_machine_accounts_table = """
                                 """
 
 insert_to_machines_table = """
-                                INSERT IGNORE into machines (machine_id, operating_platform, ip_address)
-                                values (%s, %s, %s)
-                                """
+                            INSERT IGNORE into machines (machine_id, MAC_address, operating_platform, ip_address)
+                            values (%s , %s, %s, %s)
+                            """
 
 sql_select_accounts = """
                             SELECT *

@@ -13,7 +13,7 @@ sql_select_get_accounts_by_machineId = """
                                 where ma.machine_id = %s
                                """
 sql_select_all_readd_accounts = """
-                                SELECT a.*
+                                SELECT *
                                 FROM accounts a JOIN machines_accounts ma ON a.account_name = ma.account_name
                                 WHERE ma.enum_status = 3
                                """
