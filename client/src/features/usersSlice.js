@@ -14,24 +14,24 @@ const initialState = {
 };
 
 
-export const getReadded = createAsyncThunk(
-  'counter/fetchCount',
-  async (amount) => {
-    const response = await fetchCount(amount);
-    // The value we return becomes the `fulfilled` action payload
-    return response.data;
-  }
-);
+// export const incrementAsync = createAsyncThunk(
+//   'counter/fetchCount',
+//   async (amount) => {
+//     const response = await fetchCount(amount);
+//     // The value we return becomes the `fulfilled` action payload
+//     return response.data;
+//   }
+// );
 
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
 
-  // reducers: {
-  //   getReadded: (state)=> {
-  //     return state.readdedUsers
-  //   }
-  // }
+  reducers: {
+    getReadded: (state)=> {
+      return state.readdedUsers
+    }
+  }
   
 });
 
