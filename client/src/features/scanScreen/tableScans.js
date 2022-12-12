@@ -58,12 +58,7 @@ const headCells = [
         disablePadding: false,
         label: 'Status'
     },
-    {
-          id: 'ScanFile',
-        align: 'right',
-        disablePadding: false,
-        label: 'Scan File'
-    },
+    
     {
         id: 'rerun',
         align: 'left',
