@@ -42,7 +42,7 @@ def load_data(sql_query, file_name):
     try:
         with CONNECTOR.cursor() as cursor:
             for record in data:
-                # print(record)
+                print(record)
                 cursor.execute(sql_query, [field for field in record.values()])
             CONNECTOR.commit()
             CONNECTOR.close()
@@ -68,5 +68,5 @@ if __name__ == "__main__":
     # load_data(insert_to_scan_requests_table, mock_scan_requests_file)
     # load_data(insert_to_accounts_table, mock_accounts_file)
     # load_data(insert_to_machines_table, mock_machines_file)
-    # load_data(insert_to_machines_accounts_table, mock_machines_accounts_file)
-    print("--- DONE LOAD DATA")
+    load_data(insert_to_machines_accounts_table, mock_machines_accounts_file)
+    # print("--- DONE LOAD DATA")
