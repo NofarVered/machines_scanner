@@ -89,7 +89,7 @@ export function Row(props){
                 <TableCell align="center">
                     <OrderStatus status={row.Status} />
                 </TableCell>
-                <TableCell  align="center">{row.ScanFile}</TableCell> 
+           
 
                {row.Status==1? 
                     <ReRunComp onClick={reRun} reRunScan={reRun} id={row.ScanId} image={imageStop}/>
