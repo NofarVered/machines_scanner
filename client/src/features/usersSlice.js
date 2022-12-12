@@ -26,11 +26,17 @@ const initialState = {
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
+
+  reducers: {
+    getReadded: (state)=> {
+      return state.readdedUsers
+    }
+  }
   
 });
 
-export const {  } = usersSlice.actions;
+export const { getReadded } = usersSlice.actions;
 
-export const selectusers = (state) => state.users.value;
+export const selectUsers = (state) => state.users.readdedUsers;
 
 export default usersSlice.reducer;
