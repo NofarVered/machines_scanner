@@ -205,9 +205,7 @@ export default function Accounts() {
 
     useEffect(() => {
         getAccounts().then((result)=>{
-          console.log(result)
           setAccounts(fillRowInfo(result))
-          console.log(accounts)
      
         }).catch((error)=>{
             console.log(error)
