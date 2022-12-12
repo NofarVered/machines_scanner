@@ -12,7 +12,11 @@ export class ApexChartOsStatistics extends React.Component {
         Promise.all([getMacStatictis(), getLinuxStatictis(), getWindowsStatictis()]).then((values) => {
             mac =values[0][0]["num_of_mac_accounts"]   
             linux =values[1][0]["num_of_linux_accounts"]      
-            windows =values[2][0]["num_of_windows_accounts"]   
+            windows =values[2][0]["num_of_windows_accounts"] 
+            const sumOfMachines = mac+linux+windows
+            mac=Math.round((mac/sumOfMachines)*100)
+            linux=Math.round((linux/sumOfMachines)*100)
+            windows=Math.round((windows/sumOfMachines)*100)
             const privilegAndNon = [mac,linux,windows]
             
             const series=
