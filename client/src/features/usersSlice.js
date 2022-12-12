@@ -14,8 +14,8 @@ const initialState = {
 };
 
 
-// export const incrementAsync = createAsyncThunk(
-//   'counter/fetchCount',
+// export const get = createAsyncThunk(
+//   'http://127.0.0.1:8000/accounts/readd',
 //   async (amount) => {
 //     const response = await fetchCount(amount);
 //     // The value we return becomes the `fulfilled` action payload
@@ -27,11 +27,11 @@ export const usersSlice = createSlice({
   name: 'users',
   initialState,
 
-  reducers: {
-    getReadded: (state)=> {
-      return state.readdedUsers
-    }
-  }
+  // reducers: {
+  //   getReadded: (state)=> {
+  //     return state.readdedUsers
+  //   }
+  // }
   
 });
 

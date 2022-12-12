@@ -8,8 +8,8 @@ import ListItemButton from '@mui/material/ListItemButton';
 
 export default function NotificationsDialog(props) {
 
-    console.log(props.notifications[0].accountName)
     const notifications = props.notifications;
+    
     return(
         <Dialog 
             PaperProps={{ sx: { position: "fixed", top: 70, right: 70, m: 0 } }}
@@ -19,7 +19,7 @@ export default function NotificationsDialog(props) {
                 {notifications.map((notification) => (
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemText primary={`The user ${notification.accountName} was added to the machine ${notification.MachineId}`} />
+                            <ListItemText primary={`The user ${notification.account_name} was added to the machine `} />
                         </ListItemButton>
                     </ListItem>
                 ))}
