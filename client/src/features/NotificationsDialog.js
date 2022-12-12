@@ -19,7 +19,7 @@ export default function NotificationsDialog(props) {
                 {notifications.map((notification) => (
                     <ListItem disablePadding>
                         <ListItemButton>
-                            <ListItemText primary={`The user ${notification.account_name} was added to the machine `} />
+                            <ListItemText primary={`The user ${notification.account_name} was added to the machine ${notification.machine_id}`} />
                         </ListItemButton>
                     </ListItem>
                 ))}
