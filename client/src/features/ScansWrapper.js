@@ -53,7 +53,7 @@ export default function ScansWrapper() {
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                      <OrderTable scans={scans} />
                 </Paper>
-                <CustomizedSnackbars open={openSnack} color={color} messege={"you succed to create transaction"}/>
+                <CustomizedSnackbars open={openSnack} color={color} messege={"you succeed to create Scan"}/>
       
             </Grid>     
         </Grid>

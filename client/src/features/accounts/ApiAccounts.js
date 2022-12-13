@@ -30,15 +30,22 @@ export function getMachinesByAccount(account) {
   )
 }
 
-export function changeStatusToRemoved(account, machine) {
-  axios.put(`http://localhost:8000/accounts/${account}/${machine}`)
-  .then(res => res.json())
-  .then(
-    (result) => {
-      return result
-    },
-    (error) => {
-      return error
-    }
-  )
+
+export function changeStatusToRemoved(account, machine){
+  const newScan = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      
+  };
+  return fetch(`http://localhost:8000/accounts/${account}/${machine}`,newScan)
+      .then(response => response.json())
+      .then(
+          (result) => {
+             return result
+          },
+          (error) => {
+            alert(error)
+          }
+        )
 }
+

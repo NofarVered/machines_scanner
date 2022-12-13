@@ -1,10 +1,12 @@
 import React from "react";
 import "./ProfileCard.css";
-import avatar from "../images/Elad.jpeg";
+
+import { Link } from 'react-router-dom'
 
 export function ProfileCard(props) {
    
 	return (
+        <Link to='/scan' >
 		<div className="card-container card ">
 			<header className="header_card">
 				<img className="avatar" src={props.images} />
@@ -24,6 +26,7 @@ export function ProfileCard(props) {
 				
 			</div>
 		</div>
+        </Link>
 	);
 }
 
