@@ -60,11 +60,11 @@ def json_processor(file_name):
 # python create_db_script.py
 if __name__ == "__main__":
     print("--- START creating DB machines_scanner")
-    # create_database()
-    # print("--- START creating tables")
+    create_database()
+    print("--- STAR T creating tables")
     # create_all_tables()
     # print("--- DATABSE IS READY")
-    # load_data(insert_to_cpms_table, mock_cpms_file) 
+    # load_data(insert_to_cpms_table, mock_cpms_file)
     # load_data(insert_to_scan_requests_table, mock_scan_requests_file)
     # load_data(insert_to_accounts_table, mock_accounts_file)
     # load_data(insert_to_machines_table, mock_machines_file)
