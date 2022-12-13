@@ -61,7 +61,7 @@ export function Row(props){
     const isItemSelected=props.isItemSelected
     const reRun=(scanId)=>{
         reRunScan(scanId).then(()=>{            
-            alert("i did it ")
+            alert(" i rerun a scan ")
         }).catch((error)=>{
             console.log(error)
         })       
